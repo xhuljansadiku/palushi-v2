@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project for Palushi Brothers Construction Ltd.
+
+## Analytics & Tracking
+
+**Cookie consent:** Analytics scripts (GA4, GTM, Meta Pixel) only load after the user accepts cookies.
+
+Copy `.env.example` to `.env.local` and add your IDs:
+
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 (e.g. `G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager (e.g. `GTM-XXXXXXX`) |
+| `NEXT_PUBLIC_META_PIXEL_ID` | Meta/Facebook Pixel for retargeting (e.g. `123456789`) |
+
+Tracking scripts load automatically when these variables are set and the user has accepted cookies.
 
 ## Getting Started
 

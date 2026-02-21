@@ -1,0 +1,59 @@
+export const siteConfig = {
+  name: "Palushi Brothers Construction Ltd",
+  tagline: "London's Premier Space Transformators",
+  description:
+    "Construction and renovation services across London. Loft conversions, house extensions, full renovations, roofing, and kitchen & bathroom refurbishments. Since 2012.",
+  url: "https://www.palushibrothers.co.uk",
+  phone: "020 3435 7555",
+  phoneRaw: "02034357555",
+  email: "palushibrothers@gmail.com",
+  address: {
+    line1: "1 Odette House",
+    line2: "Hamilton Rd, Norwood",
+    line3: "London SE27 9SB, UK",
+    full: "1 Odette House, Hamilton Rd, Norwood, London SE27 9SB, UK",
+    mapsUrl: "https://maps.app.goo.gl/5QSRnAkVhVzJ58pT6",
+    /** Geo coordinates for Norwood SE27 9SB */
+    latitude: 51.428,
+    longitude: -0.078,
+  },
+  hours: "Open 24 hours, 7 days a week",
+  foundedYear: 2012,
+  social: {
+    facebook: "https://bit.ly/sai4ull",
+    instagram: "#",
+    linkedin: "#",
+    youtube: "#",
+    whatsapp: "https://wa.me/442034357555",
+  },
+  trustpilot: {
+    url: "https://www.trustpilot.com/review/palushibrothers.co.uk",
+    templateId: "56278e9abfbbba0bdcd568bc",
+    businessUnitId: "692ebc486c9fbf29e3ea998b",
+  },
+  formSubmit: {
+    endpoint: "https://formsubmit.co/palushibrothers@gmail.com",
+  },
+  newsletter: {
+    endpoint: "https://formsubmit.co/ajax/palushibrothers@gmail.com",
+  },
+  googleVerification: "thAvgR5h3dhrgNzhHCB7C1Ax6z5XJBHr1NM9iFE9cQw",
+  /** Stats shown on homepage - update as needed */
+  stats: {
+    projectsCompleted: "500+",
+    clientSatisfaction: "100%",
+  },
+  /** Hero slider images - replace with local paths when available */
+  heroImages: [
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80",
+  ],
+  /** Social links - replace # with real URLs when available */
+  socialPlaceholderNote: "Add Instagram, LinkedIn, YouTube URLs in site-config when ready",
+} as const;
+
+/** Years of experience since foundedYear - updates automatically each year */
+export function getYearsExperience(): number {
+  return new Date().getFullYear() - siteConfig.foundedYear;
+}

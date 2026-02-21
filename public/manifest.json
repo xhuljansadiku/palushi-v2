@@ -1,0 +1,23 @@
+{
+  "name": "Palushi Brothers Construction Ltd",
+  "short_name": "Palushi Brothers",
+  "description": "Construction and renovation services across London. Loft conversions, extensions, roofing, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "icons": [
+    {
+      "src": "/images/logo/logo-2026.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo/logo-2026.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
