@@ -7,6 +7,37 @@
   --accent-hover: #b91c1c;
 }
 
+/*
+:root {
+  --background: #f8f7f4;    warm off white 
+  --foreground: #1a1a1a;
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+}
+
+:root {
+  --background: #f3f4f6;    soft light gray 
+  --foreground: #111827;
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+}
+
+:root {
+  --background: #f5f1ea;   soft beige 
+  --foreground: #1c1917;
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+}
+
+:root {
+  --background: #f1f5f9;    cool gray 
+  --foreground: #0f172a;
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+}
+
+*/
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
