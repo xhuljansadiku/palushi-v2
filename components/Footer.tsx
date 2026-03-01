@@ -21,31 +21,31 @@ const legalLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-neutral-200 bg-neutral-50 text-neutral-600">
+    <footer className="relative border-t border-neutral-200 bg-neutral-50 text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400">
       {/* Accent line - vijë e kuqe e hollë në krye */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/80 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 py-12 pb-24 sm:px-6 sm:pb-12 lg:px-8 lg:py-14">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-4 text-center lg:text-left lg:gap-0">
           {/* 1. Logo + tagline */}
-          <div className="sm:col-span-4 lg:col-span-1 lg:border-r lg:border-neutral-200/70 lg:pr-8">
+          <div className="sm:col-span-4 lg:col-span-1 lg:border-r lg:border-neutral-200/70 lg:pr-8 dark:lg:border-neutral-700/70">
             <Link href="/" className="inline-block mx-auto lg:mx-0">
               <Image
                 src="/images/logo/logo-footer-2026.png"
                 alt={siteConfig.name}
-                width={280}
-                height={90}
-                className="h-14 w-auto object-contain sm:h-16 lg:h-[72px]"
+                width={560}
+                height={180}
+                className="h-28 w-auto max-w-full object-contain sm:h-32 lg:h-[200px]"
               />
             </Link>
-            <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-neutral-500 lg:mx-0">
+            <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-neutral-500 lg:mx-0 dark:text-neutral-400">
               {siteConfig.tagline}
             </p>
           </div>
 
           {/* 2. Quick Links */}
-          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800">
+          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Quick Links
             </h4>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2"
+                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
                   >
                     {link.label}
                   </Link>
@@ -64,8 +64,8 @@ export function Footer() {
           </div>
 
           {/* 3. Services */}
-          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800">
+          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Services
             </h4>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
@@ -74,7 +74,7 @@ export function Footer() {
                 <li key={svc.slug}>
                   <Link
                     href={`/services/${svc.slug}`}
-                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2"
+                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
                   >
                     {svc.title}
                   </Link>
@@ -85,7 +85,7 @@ export function Footer() {
 
           {/* 4. Contact */}
           <div className="lg:pl-8">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Contact
             </h4>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
@@ -95,7 +95,7 @@ export function Footer() {
                   href={siteConfig.address.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition hover:text-red-600 hover:underline underline-offset-2"
+                  className="transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
                 >
                   {siteConfig.address.line1}
                 </a>
@@ -103,7 +103,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="transition hover:text-red-600 hover:underline underline-offset-2"
+                  className="transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
                 >
                   {siteConfig.email}
                 </a>
@@ -111,29 +111,29 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:${siteConfig.phoneRaw}`}
-                  className="transition hover:text-red-600 hover:underline underline-offset-2"
+                  className="transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
                 >
                   {siteConfig.phone}
                 </a>
               </li>
-              <li className="pt-0.5 text-neutral-500">{siteConfig.hours}</li>
+              <li className="pt-0.5 text-neutral-500 dark:text-neutral-400">{siteConfig.hours}</li>
             </ul>
           </div>
         </div>
 
         {/* Copyright bar: © | Legal | Social - mobile: stacked & centered */}
-        <div className="mt-10 flex flex-col items-center gap-5 border-t border-neutral-200/80 pt-6 sm:flex-row sm:justify-between sm:gap-6">
-          <p className="text-center text-sm text-neutral-500 sm:text-left">
+        <div className="mt-10 flex flex-col items-center gap-5 border-t border-neutral-200/80 pt-6 dark:border-neutral-700/80 sm:flex-row sm:justify-between sm:gap-6">
+          <p className="text-center text-sm text-neutral-500 sm:text-left dark:text-neutral-400">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
             <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm">
               {legalLinks.map((link, i) => (
                 <span key={link.href} className="inline-flex items-center gap-2">
-                  {i > 0 && <span className="text-neutral-300" aria-hidden>·</span>}
+                  {i > 0 && <span className="text-neutral-300 dark:text-neutral-600" aria-hidden>·</span>}
                   <Link
                     href={link.href}
-                    className="text-neutral-500 transition hover:text-red-600 hover:underline underline-offset-2"
+                    className="text-neutral-500 transition hover:text-red-600 hover:underline underline-offset-2 dark:text-neutral-400 dark:hover:text-red-500"
                   >
                     {link.label}
                   </Link>
@@ -145,7 +145,7 @@ export function Footer() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition hover:bg-red-600 hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition hover:bg-red-600 hover:text-white dark:bg-neutral-700/80 dark:text-neutral-400 dark:hover:bg-red-600 dark:hover:text-white"
                 aria-label="Facebook"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -156,7 +156,7 @@ export function Footer() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition hover:bg-red-600 hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition hover:bg-red-600 hover:text-white dark:bg-neutral-700/80 dark:text-neutral-400 dark:hover:bg-red-600 dark:hover:text-white"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

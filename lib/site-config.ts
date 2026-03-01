@@ -24,13 +24,14 @@ export const siteConfig = {
     instagram: "#",
     linkedin: "#",
     youtube: "#",
-    whatsapp: "https://wa.me/442034357555",
+    whatsapp: "https://wa.me/447447782369",
   },
   trustpilot: {
     url: "https://www.trustpilot.com/review/palushibrothers.co.uk",
     templateId: "56278e9abfbbba0bdcd568bc",
     businessUnitId: "692ebc486c9fbf29e3ea998b",
   },
+  googleReviewUrl: "https://g.page/r/CfZQ-EVixSvZEBM/review",
   formSubmit: {
     endpoint: "https://formsubmit.co/palushibrothers@gmail.com",
   },

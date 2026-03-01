@@ -49,7 +49,7 @@ export default function HomePage() {
       <HeroSlider />
 
       {/* Trustpilot */}
-      <section className="border-b border-neutral-200 bg-white py-6">
+      <section className="border-b border-neutral-200 bg-white py-6 dark:border-neutral-800 dark:bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <TrustpilotWidget />
         </div>
@@ -59,19 +59,19 @@ export default function HomePage() {
       <StatsSection />
 
       {/* Trust bar */}
-      <section className="border-b border-neutral-200 bg-neutral-50 py-6">
+      <section className="border-b border-neutral-200 bg-neutral-50 py-6 dark:border-neutral-800 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col flex-wrap items-center justify-center gap-8 text-center text-sm text-neutral-600 sm:flex-row">
+          <div className="flex flex-col flex-wrap items-center justify-center gap-8 text-center text-sm text-neutral-600 sm:flex-row dark:text-neutral-400">
             <div className="flex flex-col items-center gap-3 sm:flex-row">
               <Image
                 src="/images/icon/maps.svg"
                 alt=""
                 width={40}
                 height={40}
-                className="h-10 w-10"
+                className="h-10 w-10 dark:[filter:brightness(0)_invert(1)]"
               />
               <div>
-                <span className="font-semibold text-neutral-900">Areas We Cover</span>
+                <span className="font-semibold text-neutral-900 dark:text-neutral-100">Areas We Cover</span>
                 <br />
                 All London boroughs and surrounding areas
               </div>
@@ -82,10 +82,10 @@ export default function HomePage() {
                 alt=""
                 width={40}
                 height={40}
-                className="h-10 w-10"
+                className="h-10 w-10 dark:[filter:brightness(0)_invert(1)]"
               />
               <div>
-                <span className="font-semibold text-neutral-900">Location</span>
+                <span className="font-semibold text-neutral-900 dark:text-neutral-100">Location</span>
                 <br />
                 {siteConfig.address.line1}, {siteConfig.address.line2}
               </div>
@@ -96,10 +96,10 @@ export default function HomePage() {
                 alt=""
                 width={40}
                 height={40}
-                className="h-10 w-10"
+                className="h-10 w-10 dark:[filter:brightness(0)_invert(1)]"
               />
               <div>
-                <span className="font-semibold text-neutral-900">Opening Hours</span>
+                <span className="font-semibold text-neutral-900 dark:text-neutral-100">Opening Hours</span>
                 <br />
                 {siteConfig.hours}
               </div>
@@ -109,7 +109,7 @@ export default function HomePage() {
       </section>
 
       {/* About */}
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
             <div className="flex items-center justify-center bg-red-600 lg:col-span-4 lg:min-h-[280px]">
@@ -119,20 +119,20 @@ export default function HomePage() {
               </div>
             </div>
             <div className="lg:col-span-8">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
                 Welcome to {siteConfig.name}
               </h2>
-              <p className="mt-2 text-lg font-medium text-red-600">
+              <p className="mt-2 text-lg font-medium text-red-600 dark:text-red-500">
                 {siteConfig.tagline}
               </p>
-              <p className="mt-4 text-neutral-600">
+              <p className="mt-4 text-neutral-600 dark:text-neutral-400">
                 For over {getYearsExperience()} years, we&apos;ve been the creative force behind
                 countless homes across London, turning every room into a canvas
                 of inspiration. More than just painters and remodelers,
                 we&apos;re architects of dreams, curators of comfort, and
                 creators of atmospheres.
               </p>
-              <p className="mt-4 text-neutral-600">
+              <p className="mt-4 text-neutral-600 dark:text-neutral-400">
                 Our services span the entire spectrum of home transformation—from
                 vibrant wall makeovers to luxurious bathroom designs, and from
                 culinary sanctuaries in the kitchen to breathing new life into
@@ -141,7 +141,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="mt-6 inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+                className="mt-6 inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
               >
                 Read more
               </Link>
@@ -151,13 +151,13 @@ export default function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="bg-neutral-50 py-16 sm:py-24">
+      <section className="bg-neutral-50 py-16 sm:py-24 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
               Services We Offer
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
               Whether working with our in-house team or trusted subcontractors,
               we always ensure that projects are delivered exceeding expectations.
             </p>
@@ -167,7 +167,7 @@ export default function HomePage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
+                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md dark:bg-neutral-800 dark:border dark:border-neutral-700"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -184,8 +184,8 @@ export default function HomePage() {
                     </h3>
                   </div>
                 </div>
-                <div className="p-6">
-                  <p className="text-neutral-600 line-clamp-2">
+                <div className="p-6 dark:bg-neutral-800">
+                  <p className="text-neutral-600 line-clamp-2 dark:text-neutral-400">
                     {service.shortDescription}
                   </p>
                   <span className="mt-3 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline">
@@ -211,7 +211,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href="/services"
-              className="inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+              className="inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
             >
               View all services
             </Link>
@@ -220,13 +220,13 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
               Why Choose Us
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
               We combine experience, transparency, and quality to deliver projects
               you&apos;ll love.
             </p>
@@ -235,7 +235,7 @@ export default function HomePage() {
             {trustBullets.map((bullet, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-6 text-center sm:flex-row sm:items-start sm:text-left"
+                className="flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-6 text-center dark:border-neutral-700 dark:bg-neutral-900 sm:flex-row sm:items-start sm:text-left"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
                   <svg
@@ -252,7 +252,7 @@ export default function HomePage() {
                     />
                   </svg>
                 </span>
-                <p className="text-neutral-700">{bullet}</p>
+                <p className="text-neutral-700 dark:text-neutral-300">{bullet}</p>
               </div>
             ))}
           </div>
@@ -260,13 +260,13 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects */}
-      <section className="bg-neutral-50 py-16 sm:py-24">
+      <section className="bg-neutral-50 py-16 sm:py-24 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
               Featured Projects
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
               Our portfolio is a showcase of dreams transformed into tangible
               elegance. Each project is a testament to our commitment to
               perfection.
@@ -277,7 +277,7 @@ export default function HomePage() {
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
+                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md dark:bg-neutral-800 dark:border dark:border-neutral-700"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
@@ -297,8 +297,8 @@ export default function HomePage() {
                     </h3>
                   </div>
                 </div>
-                <div className="p-6">
-                  <p className="text-neutral-600 line-clamp-2">
+                <div className="p-6 dark:bg-neutral-800">
+                  <p className="text-neutral-600 line-clamp-2 dark:text-neutral-400">
                     {project.shortDescription}
                   </p>
                   <span className="mt-3 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline">
@@ -324,7 +324,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href="/projects"
-              className="inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+              className="inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
             >
               All Projects
             </Link>
@@ -335,13 +335,13 @@ export default function HomePage() {
       <TestimonialsCarousel />
 
       {/* Process */}
-      <section className="bg-neutral-50 py-16 sm:py-24">
+      <section className="bg-neutral-50 py-16 sm:py-24 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
               Our Process
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
               From first contact to final handover, we keep things simple and
               transparent.
             </p>
@@ -354,16 +354,16 @@ export default function HomePage() {
                     {item.step}
                   </span>
                   <div className="text-center sm:text-left">
-                    <h3 className="font-semibold text-neutral-900">
+                    <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">
                       {item.title}
                     </h3>
-                    <p className="mt-1 text-sm text-neutral-600">
+                    <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
                       {item.description}
                     </p>
                   </div>
                 </div>
                 {item.step < 4 && (
-                  <div className="absolute left-6 top-14 hidden h-full w-px bg-neutral-200 lg:block" />
+                  <div className="absolute left-6 top-14 hidden h-full w-px bg-neutral-200 dark:bg-neutral-700 lg:block" />
                 )}
               </div>
             ))}
@@ -372,13 +372,13 @@ export default function HomePage() {
       </section>
 
       {/* Areas */}
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
               Areas We Cover
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
               We serve all London boroughs and surrounding areas. Based in
               Norwood, we&apos;re your local construction experts.
             </p>
@@ -390,7 +390,7 @@ export default function HomePage() {
                 <Link
                   key={area.slug}
                   href={`/areas/${area.slug}`}
-                  className="rounded-full border border-neutral-300 px-5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600"
+                  className="rounded-full border border-neutral-300 px-5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-red-500 dark:hover:bg-red-950/30 dark:hover:text-red-500"
                 >
                   {area.name}
                 </Link>

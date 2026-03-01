@@ -35,12 +35,12 @@ export function NewsletterSignup() {
   };
 
   return (
-    <section className="border-t border-neutral-200 bg-neutral-50 py-16">
+    <section className="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
       <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="text-xl font-bold text-neutral-900">
+        <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
           Stay Updated
         </h2>
-        <p className="mt-2 text-neutral-600">
+        <p className="mt-2 text-neutral-600 dark:text-neutral-400">
           Get tips, offers, and project inspiration. No spam.
         </p>
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
@@ -50,7 +50,7 @@ export function NewsletterSignup() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"
             required
-            className="w-full rounded-md border border-neutral-300 px-4 py-3 text-neutral-900 focus:border-red-600 focus:ring-red-600 sm:w-64"
+            className="w-full rounded-md border border-neutral-300 px-4 py-3 text-neutral-900 focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-100 dark:placeholder-neutral-500 sm:w-64"
           />
           <button
             type="submit"
