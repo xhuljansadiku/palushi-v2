@@ -197,7 +197,7 @@ export default async function AreaPage({
 
       <CTA
         title={`Ready to Start Your Project in ${area.name}?`}
-        subtitle="Get a free quote today. We serve all London boroughs and surrounding areas."
+        subtitle="Get a free quote today. We serve Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London."
       />
     </>
   );

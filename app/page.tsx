@@ -73,7 +73,7 @@ export default function HomePage() {
               <div>
                 <span className="font-semibold text-neutral-900 dark:text-neutral-100">Areas We Cover</span>
                 <br />
-                All London boroughs and surrounding areas
+                Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, City of London
               </div>
             </div>
             <div className="flex flex-col items-center gap-3 sm:flex-row">
@@ -379,14 +379,12 @@ export default function HomePage() {
               Areas We Cover
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
-              We serve all London boroughs and surrounding areas. Based in
-              Norwood, we&apos;re your local construction experts.
+              Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth,
+              and City of London. Based in Norwood, we&apos;re your local construction experts.
             </p>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-3">
-            {areas
-              .filter((a) => a.slug !== "london")
-              .map((area) => (
+            {areas.map((area) => (
                 <Link
                   key={area.slug}
                   href={`/areas/${area.slug}`}

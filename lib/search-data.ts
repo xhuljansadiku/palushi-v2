@@ -17,9 +17,12 @@ export function searchContent(query: string): SearchResult[] {
 
   // Blog
   for (const post of blogPosts) {
-    const match =
-      post.title.toLowerCase().includes(q) ||
-      post.excerpt.toLowerCase().includes(q);
+    const searchText = [
+      post.title,
+      post.excerpt,
+      ...(post.keywords || []),
+    ].join(" ").toLowerCase();
+    const match = searchText.includes(q);
     if (match) {
       results.push({
         type: "blog",

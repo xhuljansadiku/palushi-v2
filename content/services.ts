@@ -18,7 +18,7 @@ export const services: Service[] = [
       "Transform your attic into a functional living space. We design and build loft conversions that add value and extra rooms to your home.",
     description:
       `Whether you're looking to create more space in your home, add an extra bedroom, home office, or playroom, our team of professionals will work closely with you to design and execute loft conversions that exceed expectations. We handle everything from initial design to completion, ensuring your attic becomes a beautiful, functional living area. With over ${getYearsExperience()} years of experience across London, we bring your vision to life.`,
-    image: "/images/gallery/blog4.jpg",
+    image: "/images/gallery/interior/project-2/done/Image1.jpeg",
     metaDescription:
       "Professional loft conversions in London. Transform your attic into extra living space. Design, build, and finish. Free quote.",
     faqs: [
@@ -46,7 +46,7 @@ export const services: Service[] = [
       "Add space and value to your home with single or double-storey extensions. Expert design and build across London.",
     description:
       "Our house extension services cover single and double-storey extensions, rear and side extensions, and wrap-around designs. We work with you from concept to completion, ensuring the new space blends seamlessly with your existing home. Whether you need a larger kitchen, extra bedrooms, or a dedicated home office, we deliver extensions that exceed expectations.",
-    image: "/images/gallery/111.jpg",
+    image: "/images/gallery/1/1.jpeg",
     metaDescription:
       "House extensions in London. Single and double-storey extensions. Expert design and build. Free consultation.",
     faqs: [
@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Complete home transformations from painting and decorating to structural changes. We handle every aspect of your renovation.",
     description:
       "From vibrant wall makeovers to luxurious bathroom designs, and from culinary sanctuaries in the kitchen to breathing new life into every floorboard—our full renovation service covers the entire spectrum of home transformation. We coordinate painting, decorating, tiling, flooring, electrical, and plumbing work, ensuring a seamless project from start to finish. Whether it's a refresh or a complete overhaul, we deliver excellence.",
-    image: "/images/gallery/blog1.jpg",
+    image: "/images/gallery/2/15.jpeg",
     metaDescription:
       "Full home renovations in London. Painting, decorating, tiling, flooring, electrical, plumbing. Complete transformations.",
     faqs: [
@@ -102,7 +102,7 @@ export const services: Service[] = [
       "Roof and chimney maintenance, repairs, and replacements. From guttering to full re-roofs—we keep your home protected.",
     description:
       "Starting from the top of the house, we handle roof and chimney maintenance, guttering and fascia boards, pointing and brickwork, and roof replacements. Our roofing services ensure your home stays protected from the elements. We work with quality materials and trusted suppliers to deliver durable, long-lasting results.",
-    image: "/images/gallery/blog2.jpg",
+    image: "/images/gallery/exterior/project1/after/image1.jpg",
     metaDescription:
       "Roofing services in London. Roof repairs, chimney maintenance, guttering, fascia. Professional and reliable.",
     faqs: [
@@ -119,7 +119,7 @@ export const services: Service[] = [
       {
         question: "What areas do you cover?",
         answer:
-          "We cover all London boroughs and surrounding areas. Our office is in Norwood, and we regularly work across South London and beyond.",
+          "We cover Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London. Our office is in Norwood.",
       },
     ],
   },
@@ -130,7 +130,7 @@ export const services: Service[] = [
       "Bathroom tiling, kitchen remodeling, siliconing, and refurbishment. Create the kitchen or bathroom you've always wanted.",
     description:
       "We take care of bathroom tiling and refurbishment, siliconing, flooring, kitchen remodeling, and related electrical and plumbing work. Whether it's a new project or maintenance and refreshing, we always strive for excellence. From modern minimalist designs to classic finishes, we bring your vision to life with quality craftsmanship.",
-    image: "/images/gallery/blog1.jpg",
+    image: "/images/gallery/interior/project-1/after/image1.jpg",
     metaDescription:
       "Kitchen and bathroom refurbishments in London. Tiling, remodeling, plumbing, electrical. Quality craftsmanship.",
     faqs: [

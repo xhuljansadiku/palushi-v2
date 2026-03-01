@@ -85,7 +85,16 @@ export default async function ProjectDetailPage({
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "Projects", href: "/projects" }, { label: project.title }]} />
-          <p className="text-lg text-neutral-600">{project.description}</p>
+          {project.location && (
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800/50 dark:text-neutral-400">
+              <svg className="h-4 w-4 shrink-0 text-red-600 dark:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="font-medium">{project.location}</span>
+            </div>
+          )}
+          <p className="text-lg text-neutral-600 dark:text-neutral-400">{project.description}</p>
 
           {beforeImages.length > 0 && afterImages.length > 0 && (
             <div className="mt-16">
@@ -110,6 +119,35 @@ export default async function ProjectDetailPage({
 
           {afterImages.length > 0 && (
             <ProjectImageGrid images={afterImages} title="After" />
+          )}
+
+          {project.videos && project.videos.length > 0 && (
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold">Videos</h2>
+              <p className="mt-1 text-neutral-600">
+                Watch the transformation process
+              </p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {project.videos.map((video, i) => (
+                  <div key={i} className="overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900">
+                    <video
+                      src={video.src}
+                      controls
+                      playsInline
+                      className="aspect-video w-full object-cover"
+                      preload="metadata"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                    {video.label && (
+                      <p className="px-4 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                        {video.label}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
 
           {project.serviceSlug && (

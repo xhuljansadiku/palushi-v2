@@ -22,7 +22,7 @@ export const faqs = [
   {
     question: "What areas do you cover?",
     answer:
-      "We're based in Norwood and cover all London boroughs, including Crystal Palace, Streatham, Dulwich, Sydenham, Forest Hill, and surrounding areas.",
+      "We're based in Norwood and cover Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London.",
   },
   {
     question: "Are you insured?",

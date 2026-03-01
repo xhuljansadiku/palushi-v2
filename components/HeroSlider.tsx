@@ -14,7 +14,7 @@ const heroSlides = (getYears: () => number) => [
   {
     image: siteConfig.heroImages[1],
     title: "Transform Your Space",
-    subtitle: `Over ${getYears()} years of experience. Quality craftsmanship across all London boroughs.`,
+    subtitle: `Over ${getYears()} years of experience. Quality craftsmanship across Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London.`,
   },
   {
     image: siteConfig.heroImages[2],

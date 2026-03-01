@@ -12,7 +12,7 @@ export function SanitizedHtml({ html }: { html: string }) {
   });
   return (
     <div
-      className="prose prose-neutral max-w-none"
+      className="prose prose-neutral max-w-none dark:prose-invert"
       dangerouslySetInnerHTML={{ __html: sanitized }}
     />
   );

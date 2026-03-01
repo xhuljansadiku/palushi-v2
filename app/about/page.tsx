@@ -58,8 +58,8 @@ export default function AboutPage() {
                 metamorphosis—a blend of innovative design and masterful
                 execution. Thank you for considering {siteConfig.name} as your
                 partner in crafting elevated living experiences. Join us in
-                transforming houses into homes across all London boroughs and
-                surrounding areas. Your journey to exceptional living begins
+                transforming houses into homes across Westminster, Kensington & Chelsea,
+                Lambeth, Southwark, Wandsworth, and City of London. Your journey to exceptional living begins
                 here.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
