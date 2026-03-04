@@ -27,6 +27,7 @@ export const projects: Project[] = [
     slug: "bathroom-refurbishment",
     title: "Bathroom Refurbishment",
     category: "Kitchen & Bathroom",
+    location: "NW2 London",
     shortDescription:
       "Complete bathroom transformation with before and after gallery.",
     description:
