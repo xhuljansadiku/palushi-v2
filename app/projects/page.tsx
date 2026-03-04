@@ -29,7 +29,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Category filter */}
           <div className="mb-10 flex flex-wrap justify-center gap-2">
@@ -65,7 +65,7 @@ export default function ProjectsPage() {
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
+                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md dark:bg-neutral-900 dark:border dark:border-neutral-800 dark:hover:border-neutral-700"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -98,7 +98,7 @@ export default function ProjectsPage() {
                   <p className="flex-1 text-neutral-600 dark:text-neutral-400">
                     {project.shortDescription}
                   </p>
-                  <span className="mt-4 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline">
+                  <span className="mt-4 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline dark:text-red-500 dark:group-hover:text-red-400">
                     View project
                     <svg
                       className="ml-1 h-4 w-4"

@@ -41,7 +41,7 @@ export const siteConfig = {
   googleVerification: "thAvgR5h3dhrgNzhHCB7C1Ax6z5XJBHr1NM9iFE9cQw",
   /** Stats shown on homepage - update as needed */
   stats: {
-    projectsCompleted: "500+",
+    projectsCompleted: "300+",
     clientSatisfaction: "100%",
   },
   /** Hero slider images - replace with local paths when available */

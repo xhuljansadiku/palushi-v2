@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
-import { trackEvent, trackLeadConversion, TRACKING_EVENTS } from "@/lib/tracking";
+import { trackLeadConversion } from "@/lib/tracking";
+import { CustomSelect } from "@/components/CustomSelect";
 
 const projectTypes = [
   "Loft Conversion",
@@ -34,10 +35,20 @@ const timelines = [
 
 export default function QuotePage() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [projectType, setProjectType] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [projectTypeError, setProjectTypeError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("idle");
+    setProjectTypeError("");
+
+    if (!projectType.trim()) {
+      setProjectTypeError("Please select a project type");
+      return;
+    }
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -52,6 +63,9 @@ export default function QuotePage() {
       if (response.ok) {
         setStatus("success");
         form.reset();
+        setProjectType("");
+        setBudget("");
+        setTimeline("");
         trackLeadConversion("quote");
       } else {
         setStatus("error");
@@ -75,14 +89,14 @@ export default function QuotePage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           {status === "success" ? (
-            <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center">
-              <h2 className="text-xl font-semibold text-green-800">
+            <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-800 dark:bg-green-950/50">
+              <h2 className="text-xl font-semibold text-green-800 dark:text-green-300">
                 Thank you!
               </h2>
-              <p className="mt-2 text-green-700">
+              <p className="mt-2 text-green-700 dark:text-green-400">
                 We&apos;ve received your quote request and will be in touch
                 within 24 hours.
               </p>
@@ -116,74 +130,45 @@ export default function QuotePage() {
                 value="table"
               />
 
-              <div>
-                <label
-                  htmlFor="project_type"
-                  className="block text-sm font-medium text-neutral-700"
-                >
-                  Project type *
-                </label>
-                <select
-                  id="project_type"
-                  name="project_type"
-                  required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
-                >
-                  <option value="">Select project type</option>
-                  {projectTypes.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <CustomSelect
+                id="project_type"
+                name="project_type"
+                label="Project type *"
+                placeholder="Select project type"
+                options={projectTypes.map((t) => ({ value: t, label: t }))}
+                required
+                value={projectType}
+                onChange={(v) => {
+                  setProjectType(v);
+                  setProjectTypeError("");
+                }}
+                error={projectTypeError}
+              />
 
-              <div>
-                <label
-                  htmlFor="budget"
-                  className="block text-sm font-medium text-neutral-700"
-                >
-                  Approximate budget
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
-                >
-                  <option value="">Select budget range</option>
-                  {budgetRanges.map((b) => (
-                    <option key={b} value={b}>
-                      {b}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <CustomSelect
+                id="budget"
+                name="budget"
+                label="Approximate budget"
+                placeholder="Select budget range"
+                options={budgetRanges.map((b) => ({ value: b, label: b }))}
+                value={budget}
+                onChange={setBudget}
+              />
 
-              <div>
-                <label
-                  htmlFor="timeline"
-                  className="block text-sm font-medium text-neutral-700"
-                >
-                  When would you like to start?
-                </label>
-                <select
-                  id="timeline"
-                  name="timeline"
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
-                >
-                  <option value="">Select timeline</option>
-                  {timelines.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <CustomSelect
+                id="timeline"
+                name="timeline"
+                label="When would you like to start?"
+                placeholder="Select timeline"
+                options={timelines.map((t) => ({ value: t, label: t }))}
+                value={timeline}
+                onChange={setTimeline}
+              />
 
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-neutral-700"
+                  className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   Name *
                 </label>
@@ -192,7 +177,7 @@ export default function QuotePage() {
                   id="name"
                   name="name"
                   required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
+                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
                   placeholder="Your name"
                 />
               </div>
@@ -200,7 +185,7 @@ export default function QuotePage() {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-neutral-700"
+                  className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   Phone *
                 </label>
@@ -209,7 +194,7 @@ export default function QuotePage() {
                   id="phone"
                   name="phone"
                   required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
+                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
                   placeholder="Your phone number"
                 />
               </div>
@@ -217,7 +202,7 @@ export default function QuotePage() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-neutral-700"
+                  className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   Email *
                 </label>
@@ -226,7 +211,7 @@ export default function QuotePage() {
                   id="email"
                   name="email"
                   required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
+                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
                   placeholder="Your email"
                 />
               </div>
@@ -234,7 +219,7 @@ export default function QuotePage() {
               <div>
                 <label
                   htmlFor="postcode"
-                  className="block text-sm font-medium text-neutral-700"
+                  className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   Postcode
                 </label>
@@ -242,7 +227,7 @@ export default function QuotePage() {
                   type="text"
                   id="postcode"
                   name="postcode"
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
+                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
                   placeholder="Your postcode"
                 />
               </div>
@@ -250,7 +235,7 @@ export default function QuotePage() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-neutral-700"
+                  className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   Project details *
                 </label>
@@ -259,13 +244,13 @@ export default function QuotePage() {
                   name="message"
                   required
                   rows={5}
-                  className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
+                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
                   placeholder="Tell us about your project, any specific requirements, or questions..."
                 />
               </div>
 
               {status === "error" && (
-                <p className="rounded-md bg-red-50 p-4 text-red-800">
+                <p className="rounded-md bg-red-50 p-4 text-red-800 dark:bg-red-950/50 dark:text-red-300">
                   Something went wrong. Please try again or call us directly.
                 </p>
               )}

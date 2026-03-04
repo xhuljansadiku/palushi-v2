@@ -104,24 +104,24 @@ export default async function ServicePage({
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-neutral-600">{service.description}</p>
+          <div className="prose prose-lg max-w-none prose-neutral dark:prose-invert">
+            <p className="text-xl text-neutral-600 dark:text-neutral-300">{service.description}</p>
           </div>
 
           <div className="mt-16">
-            <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Frequently Asked Questions</h2>
             <dl className="mt-8 space-y-6">
               {service.faqs.map((faq, i) => (
                 <div
                   key={i}
-                  className="rounded-lg border border-neutral-200 bg-neutral-50 p-6"
+                  className="rounded-lg border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-700 dark:bg-neutral-900"
                 >
-                  <dt className="font-semibold text-neutral-900">
+                  <dt className="font-semibold text-neutral-900 dark:text-neutral-100">
                     {faq.question}
                   </dt>
-                  <dd className="mt-2 text-neutral-600">{faq.answer}</dd>
+                  <dd className="mt-2 text-neutral-600 dark:text-neutral-400">{faq.answer}</dd>
                 </div>
               ))}
             </dl>
@@ -136,7 +136,7 @@ export default async function ServicePage({
             </Link>
             <a
               href={`tel:${siteConfig.phoneRaw}`}
-              className="inline-flex items-center justify-center rounded-md border-2 border-neutral-900 px-8 py-4 text-base font-semibold text-neutral-900 transition hover:bg-neutral-900 hover:text-white"
+              className="inline-flex items-center justify-center rounded-md border-2 border-red-600 px-8 py-4 text-base font-semibold text-red-600 transition hover:bg-red-600 hover:text-white dark:border-red-500 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white"
             >
               Call Now: {siteConfig.phone}
             </a>
@@ -144,9 +144,9 @@ export default async function ServicePage({
         </div>
       </section>
 
-      <section className="border-t border-neutral-200 bg-neutral-50 py-12">
+      <section className="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-lg font-semibold text-neutral-900">
+          <h2 className="text-center text-lg font-semibold text-neutral-900 dark:text-neutral-100">
             Other Services
           </h2>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -156,7 +156,7 @@ export default async function ServicePage({
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
-                  className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600"
+                  className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-red-500 dark:hover:bg-red-950/30 dark:hover:text-red-400"
                 >
                   {s.title}
                 </Link>

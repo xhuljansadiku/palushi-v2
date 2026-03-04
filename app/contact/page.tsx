@@ -70,12 +70,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-3">
             <div className="flex flex-col items-center lg:col-span-2 lg:items-stretch">
-              <h2 className="text-xl font-semibold">Get in Touch</h2>
-              <p className="mt-2 text-neutral-600">
+              <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Get in Touch</h2>
+              <p className="mt-2 text-neutral-600 dark:text-neutral-400">
                 Just submit your details and we&apos;ll be in touch shortly.
               </p>
 
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-neutral-700"
+                      className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
                       Name *
                     </label>
@@ -114,7 +114,7 @@ export default function ContactPage() {
                       id="name"
                       name="name"
                       required
-                      className={`mt-2 block w-full rounded-md px-4 py-3 shadow-sm focus:ring-red-600 ${errors.name ? "border-red-500" : "border-neutral-300 focus:border-red-600"}`}
+                      className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.name ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                       placeholder="Your name"
                     />
                     {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
@@ -122,7 +122,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-neutral-700"
+                      className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
                       Phone *
                     </label>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                       id="phone"
                       name="phone"
                       required
-                      className={`mt-2 block w-full rounded-md px-4 py-3 shadow-sm focus:ring-red-600 ${errors.phone ? "border-red-500" : "border-neutral-300 focus:border-red-600"}`}
+                      className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.phone ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                       placeholder="Your phone number"
                     />
                     {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
@@ -142,7 +142,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-neutral-700"
+                      className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
                       Email *
                     </label>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                       id="email"
                       name="email"
                       required
-                      className={`mt-2 block w-full rounded-md px-4 py-3 shadow-sm focus:ring-red-600 ${errors.email ? "border-red-500" : "border-neutral-300 focus:border-red-600"}`}
+                      className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.email ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                       placeholder="Your email"
                     />
                     {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
@@ -159,7 +159,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="postcode"
-                      className="block text-sm font-medium text-neutral-700"
+                      className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
                       Postcode
                     </label>
@@ -167,16 +167,16 @@ export default function ContactPage() {
                       type="text"
                       id="postcode"
                       name="postcode"
-                      className="mt-2 block w-full rounded-md border border-neutral-300 px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600"
+                      className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500"
                       placeholder="Your postcode"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
+                    <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-neutral-700"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                   >
                     Message *
                   </label>
@@ -185,20 +185,20 @@ export default function ContactPage() {
                   name="message"
                   required
                   rows={5}
-                  className={`mt-2 block w-full rounded-md px-4 py-3 shadow-sm focus:ring-red-600 ${errors.message ? "border-red-500" : "border-neutral-300 focus:border-red-600"}`}
+                  className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.message ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                   placeholder="Tell us about your project"
                 />
                 {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
                 </div>
 
                 {status === "success" && (
-                  <p className="rounded-md bg-green-50 p-4 text-green-800">
+                  <p className="rounded-md bg-green-50 p-4 text-green-800 dark:bg-green-950/50 dark:text-green-300">
                     Thank you! Your message has been sent. We&apos;ll be in touch
                     shortly.
                   </p>
                 )}
                 {status === "error" && (
-                  <p className="rounded-md bg-red-50 p-4 text-red-800">
+                  <p className="rounded-md bg-red-50 p-4 text-red-800 dark:bg-red-950/50 dark:text-red-300">
                     Something went wrong. Please try again or call us directly.
                   </p>
                 )}
@@ -214,12 +214,12 @@ export default function ContactPage() {
 
             <div className="flex flex-col items-center space-y-8 lg:items-stretch">
               <div>
-                <h3 className="font-semibold text-neutral-900">Address</h3>
+                <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">Address</h3>
                 <a
                   href={siteConfig.address.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 block text-neutral-600 hover:text-red-600"
+                  className="mt-2 block text-neutral-600 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400"
                 >
                   {siteConfig.address.line1}
                   <br />
@@ -230,23 +230,23 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-neutral-900">Phone</h3>
+                <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">Phone</h3>
                 <a
                   href={`tel:${siteConfig.phoneRaw}`}
-                  className="mt-2 block text-neutral-600 hover:text-red-600"
+                  className="mt-2 block text-neutral-600 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400"
                 >
                   {siteConfig.phone}
                 </a>
-                <p className="mt-1 text-sm text-neutral-500">
+                <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-500">
                   {siteConfig.hours}
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-neutral-900">Email</h3>
+                <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">Email</h3>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="mt-2 block text-neutral-600 hover:text-red-600"
+                  className="mt-2 block text-neutral-600 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400"
                 >
                   {siteConfig.email}
                 </a>
@@ -264,7 +264,7 @@ export default function ContactPage() {
                   href={siteConfig.address.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center rounded-md border-2 border-neutral-900 px-6 py-3 font-semibold text-neutral-900 transition hover:bg-neutral-900 hover:text-white"
+                  className="flex items-center justify-center rounded-md border-2 border-red-600 px-6 py-3 font-semibold text-red-600 transition hover:bg-red-600 hover:text-white dark:border-red-500 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white"
                 >
                   Get Directions
                 </a>

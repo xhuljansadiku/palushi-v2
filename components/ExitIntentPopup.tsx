@@ -13,17 +13,12 @@ export function ExitIntentPopup() {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(STORAGE_KEY)) return;
 
-    const handleMouseLeave = (e: MouseEvent) => {
-      // Trigger when mouse leaves from top of viewport (desktop)
-      if (e.clientY <= 0) {
-        setVisible(true);
-        sessionStorage.setItem(STORAGE_KEY, "1");
-        document.removeEventListener("mouseout", handleMouseLeave);
-      }
-    };
+    const timer = setTimeout(() => {
+      setVisible(true);
+      sessionStorage.setItem(STORAGE_KEY, "1");
+    }, 8000);
 
-    document.addEventListener("mouseout", handleMouseLeave);
-    return () => document.removeEventListener("mouseout", handleMouseLeave);
+    return () => clearTimeout(timer);
   }, []);
 
   if (!visible) return null;
@@ -46,7 +41,7 @@ export function ExitIntentPopup() {
           </svg>
         </button>
         <h3 className="text-xl font-bold text-neutral-900">
-          Wait! Get Your Free Quote
+          Get Your Free Quote
         </h3>
         <p className="mt-2 text-neutral-600">
           Don&apos;t leave without getting a free, no-obligation quote for your
@@ -55,12 +50,14 @@ export function ExitIntentPopup() {
         <div className="mt-6 flex flex-col gap-3">
           <Link
             href="/quote"
+            onClick={() => setVisible(false)}
             className="rounded-md bg-red-600 px-6 py-3 text-center font-semibold text-white transition hover:bg-red-700"
           >
             Get Free Quote
           </Link>
           <a
             href={`tel:${siteConfig.phoneRaw}`}
+            onClick={() => setVisible(false)}
             className="rounded-md border-2 border-neutral-300 px-6 py-3 text-center font-semibold text-neutral-800 transition hover:border-red-600 hover:text-red-600"
           >
             Call Now: {siteConfig.phone}

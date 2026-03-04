@@ -73,6 +73,13 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Form controls - match page accent (red) instead of browser default blue */
+select,
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--accent);
+}
+
 /* Focus visible for keyboard navigation */
 *:focus {
   outline: none;

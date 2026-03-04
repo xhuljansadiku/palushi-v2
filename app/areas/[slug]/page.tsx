@@ -87,10 +87,10 @@ export default async function AreaPage({
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold">Our Services in {area.name}</h2>
-          <p className="mt-2 text-neutral-600">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Our Services in {area.name}</h2>
+          <p className="mt-2 text-neutral-600 dark:text-neutral-400">
             We offer a full range of construction and renovation services across{" "}
             {area.name} and the surrounding areas.
           </p>
@@ -99,15 +99,15 @@ export default async function AreaPage({
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm transition hover:border-red-200 hover:shadow-md"
+                className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm transition hover:border-red-200 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-red-500/50"
               >
-                <h3 className="font-semibold text-neutral-900">
+                <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">
                   {service.title}
                 </h3>
-                <p className="mt-2 text-sm text-neutral-600 line-clamp-2">
+                <p className="mt-2 text-sm text-neutral-600 line-clamp-2 dark:text-neutral-400">
                   {service.shortDescription}
                 </p>
-                <span className="mt-3 inline-flex items-center text-sm font-medium text-red-600">
+                <span className="mt-3 inline-flex items-center text-sm font-medium text-red-600 dark:text-red-500">
                   Learn more
                   <svg
                     className="ml-1 h-4 w-4"
@@ -129,10 +129,10 @@ export default async function AreaPage({
         </div>
       </section>
 
-      <section className="bg-neutral-50 py-16 sm:py-24">
+      <section className="bg-neutral-50 py-16 sm:py-24 dark:bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold">Recent Projects</h2>
-          <p className="mt-2 text-neutral-600">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Recent Projects</h2>
+          <p className="mt-2 text-neutral-600 dark:text-neutral-400">
             See how we&apos;ve transformed homes across London.
           </p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,7 +140,7 @@ export default async function AreaPage({
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
+                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md dark:bg-neutral-900 dark:border dark:border-neutral-800"
               >
                 <div className="relative aspect-video overflow-hidden">
                   <Image
@@ -166,7 +166,7 @@ export default async function AreaPage({
           <div className="mt-8 text-center">
             <Link
               href="/projects"
-              className="inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+              className="inline-block rounded-md bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
             >
               View all projects
             </Link>
@@ -174,9 +174,9 @@ export default async function AreaPage({
         </div>
       </section>
 
-      <section className="border-t border-neutral-200 py-12">
+      <section className="border-t border-neutral-200 py-12 dark:border-neutral-800 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-lg font-semibold text-neutral-900">
+          <h2 className="text-center text-lg font-semibold text-neutral-900 dark:text-neutral-100">
             Other Areas We Cover
           </h2>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -186,7 +186,7 @@ export default async function AreaPage({
                 <Link
                   key={a.slug}
                   href={`/areas/${a.slug}`}
-                  className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600"
+                  className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-red-500 dark:hover:bg-red-950/30 dark:hover:text-red-400"
                 >
                   {a.name}
                 </Link>

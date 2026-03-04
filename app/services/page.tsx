@@ -24,14 +24,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
+                className="group overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md dark:bg-neutral-900 dark:border dark:border-neutral-800 dark:hover:border-neutral-700"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -49,10 +49,10 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-neutral-600 line-clamp-2">
+                  <p className="text-neutral-600 line-clamp-2 dark:text-neutral-400">
                     {service.shortDescription}
                   </p>
-                  <span className="mt-3 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline">
+                  <span className="mt-3 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline dark:text-red-500 dark:group-hover:text-red-400">
                     Read more
                     <svg
                       className="ml-1 h-4 w-4"

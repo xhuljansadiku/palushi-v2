@@ -24,7 +24,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
             <div className="flex items-center justify-center bg-red-600 lg:col-span-4 lg:min-h-[320px]">
@@ -36,24 +36,24 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="lg:col-span-8">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
                 Our Story
               </h2>
-              <p className="mt-6 text-neutral-600">
+              <p className="mt-6 text-neutral-600 dark:text-neutral-300">
                 For over {getYearsExperience()} years, we&apos;ve been the creative force behind
                 countless homes across London, turning every room into a canvas
                 of inspiration. More than just painters and remodelers,
                 we&apos;re architects of dreams, curators of comfort, and
                 creators of atmospheres.
               </p>
-              <p className="mt-4 text-neutral-600">
+              <p className="mt-4 text-neutral-600 dark:text-neutral-300">
                 Our services span the entire spectrum of home transformation—from
                 vibrant wall makeovers to luxurious bathroom designs, and from
                 culinary sanctuaries in the kitchen to breathing new life into
                 every floorboard. With over {getYearsExperience()} years of dedication, we&apos;ve
                 left our mark in every corner of London, making dreams a reality.
               </p>
-              <p className="mt-4 text-neutral-600">
+              <p className="mt-4 text-neutral-600 dark:text-neutral-300">
                 As you explore our portfolio, witness the stories of
                 metamorphosis—a blend of innovative design and masterful
                 execution. Thank you for considering {siteConfig.name} as your
@@ -65,13 +65,13 @@ export default function AboutPage() {
               <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
                 <Link
                   href="/projects"
-                  className="inline-block rounded-md bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+                  className="inline-block rounded-md bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-500"
                 >
                   View our projects
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-block rounded-md border-2 border-neutral-900 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-900 hover:text-white"
+                  className="inline-block rounded-md border-2 border-red-600 bg-transparent px-6 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-600 hover:text-white dark:border-red-500 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white"
                 >
                   Get in touch
                 </Link>
@@ -81,34 +81,34 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-neutral-50 py-16 sm:py-24">
+      <section className="bg-neutral-50 py-16 sm:py-24 dark:bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
               Why Choose Us
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">
               Experience, transparency, and quality—that&apos;s what we bring to
               every project.
             </p>
           </div>
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div className="flex flex-col items-center rounded-lg bg-white p-8 text-center shadow-sm lg:items-stretch lg:text-left">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600">
+            <div className="flex flex-col items-center rounded-lg bg-white p-8 text-center shadow-sm dark:bg-neutral-900 dark:border dark:border-neutral-800 lg:items-stretch lg:text-left">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-950/50 dark:text-red-400">
                 <span className="text-xl font-bold">
                   {getYearsExperience()}+
                 </span>
               </div>
-              <h3 className="mt-4 font-semibold text-neutral-900">
+              <h3 className="mt-4 font-semibold text-neutral-900 dark:text-neutral-100">
                 Years of Experience
               </h3>
-              <p className="mt-2 text-sm text-neutral-600">
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                 Over {getYearsExperience()} years of delivering quality construction and renovation
                 projects across London.
               </p>
             </div>
-            <div className="flex flex-col items-center rounded-lg bg-white p-8 text-center shadow-sm lg:items-stretch lg:text-left">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600">
+            <div className="flex flex-col items-center rounded-lg bg-white p-8 text-center shadow-sm dark:bg-neutral-900 dark:border dark:border-neutral-800 lg:items-stretch lg:text-left">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-950/50 dark:text-red-400">
                 <svg
                   className="h-6 w-6"
                   fill="none"
@@ -123,16 +123,16 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="mt-4 font-semibold text-neutral-900">
+              <h3 className="mt-4 font-semibold text-neutral-900 dark:text-neutral-100">
                 Transparent Quotes
               </h3>
-              <p className="mt-2 text-sm text-neutral-600">
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                 No hidden costs. We provide clear, detailed quotes so you know
                 exactly what to expect.
               </p>
             </div>
-            <div className="flex flex-col items-center rounded-lg bg-white p-8 text-center shadow-sm lg:items-stretch lg:text-left">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600">
+            <div className="flex flex-col items-center rounded-lg bg-white p-8 text-center shadow-sm dark:bg-neutral-900 dark:border dark:border-neutral-800 lg:items-stretch lg:text-left">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-950/50 dark:text-red-400">
                 <svg
                   className="h-6 w-6"
                   fill="none"
@@ -147,10 +147,10 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="mt-4 font-semibold text-neutral-900">
+              <h3 className="mt-4 font-semibold text-neutral-900 dark:text-neutral-100">
                 Quality Craftsmanship
               </h3>
-              <p className="mt-2 text-sm text-neutral-600">
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                 We use trusted suppliers and skilled tradespeople to deliver
                 results that exceed expectations.
               </p>

@@ -19,9 +19,9 @@ export default function PrivacyPolicyPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-neutral max-w-none">
+          <div className="prose prose-neutral prose-lg max-w-none prose-headings:mt-12 prose-headings:mb-4 prose-headings:first:mt-0 prose-p:mb-6 prose-p:leading-relaxed prose-p:text-neutral-600 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline dark:prose-invert dark:prose-headings:text-neutral-100 dark:prose-p:text-neutral-300 dark:prose-a:text-red-500">
             <h2>Introduction</h2>
             <p>
               Palushi Brothers Construction Ltd (&quot;we&quot;, &quot;our&quot;,

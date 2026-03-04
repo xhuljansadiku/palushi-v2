@@ -82,7 +82,7 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "Projects", href: "/projects" }, { label: project.title }]} />
           {project.location && (
@@ -98,8 +98,8 @@ export default async function ProjectDetailPage({
 
           {beforeImages.length > 0 && afterImages.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-2xl font-bold">Before & After</h2>
-              <p className="mt-1 text-neutral-600">
+              <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Before & After</h2>
+              <p className="mt-1 text-neutral-600 dark:text-neutral-400">
                 Drag the slider to compare before and after
               </p>
               <div className="mt-6">
@@ -154,7 +154,7 @@ export default async function ProjectDetailPage({
             <div className="mt-16">
               <Link
                 href={`/services/${project.serviceSlug}`}
-                className="inline-flex items-center text-red-600 hover:underline"
+                className="inline-flex items-center text-red-600 hover:underline dark:text-red-500 dark:hover:text-red-400"
               >
                 View {project.category} services
                 <svg
@@ -176,9 +176,9 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-neutral-200 bg-neutral-50 py-12">
+      <section className="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-lg font-semibold text-neutral-900">
+          <h2 className="text-center text-lg font-semibold text-neutral-900 dark:text-neutral-100">
             Other Projects
           </h2>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -188,7 +188,7 @@ export default async function ProjectDetailPage({
                 <Link
                   key={p.slug}
                   href={`/projects/${p.slug}`}
-                  className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600"
+                  className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:bg-red-50 hover:text-red-600 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-red-500 dark:hover:bg-red-950/30 dark:hover:text-red-400"
                 >
                   {p.title}
                 </Link>
