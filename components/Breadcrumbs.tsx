@@ -25,23 +25,23 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <nav aria-label="Breadcrumb" className="mb-6">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-neutral-600">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
           <li>
-            <Link href="/" className="transition hover:text-red-600">
+            <Link href="/" className="transition hover:text-red-600 dark:hover:text-red-400">
               Home
             </Link>
           </li>
           {items.map((item, i) => (
             <li key={i} className="flex items-center gap-2">
-              <span aria-hidden className="text-neutral-400">
+              <span aria-hidden className="text-neutral-400 dark:text-neutral-500">
                 /
               </span>
               {item.href ? (
-                <Link href={item.href} className="transition hover:text-red-600">
+                <Link href={item.href} className="transition hover:text-red-600 dark:hover:text-red-400">
                   {item.label}
                 </Link>
               ) : (
-                <span className="font-medium text-neutral-900">{item.label}</span>
+                <span className="font-medium text-neutral-900 dark:text-neutral-100">{item.label}</span>
               )}
             </li>
           ))}

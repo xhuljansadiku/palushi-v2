@@ -39,7 +39,7 @@ export default function ProjectsPage() {
               className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
                 selectedCategory === null
                   ? "bg-red-600 text-white"
-                  : "border border-neutral-300 text-neutral-700 hover:border-red-600 hover:bg-red-50 hover:text-red-600"
+                  : "border border-neutral-300 text-neutral-700 hover:border-red-600 hover:bg-red-50 hover:text-red-600 dark:border-neutral-500 dark:text-neutral-200 dark:hover:border-red-500 dark:hover:bg-neutral-800 dark:hover:text-red-400"
               }`}
             >
               All
@@ -52,7 +52,7 @@ export default function ProjectsPage() {
                 className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
                   selectedCategory === cat
                     ? "bg-red-600 text-white"
-                    : "border border-neutral-300 text-neutral-700 hover:border-red-600 hover:bg-red-50 hover:text-red-600"
+                    : "border border-neutral-300 text-neutral-700 hover:border-red-600 hover:bg-red-50 hover:text-red-600 dark:border-neutral-500 dark:text-neutral-200 dark:hover:border-red-500 dark:hover:bg-neutral-800 dark:hover:text-red-400"
                 }`}
               >
                 {cat}
