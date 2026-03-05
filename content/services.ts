@@ -30,12 +30,12 @@ export const services: Service[] = [
       {
         question: "How long does a loft conversion take?",
         answer:
-          "A typical loft conversion takes 6–12 weeks depending on complexity. We provide a clear timeline at the start and keep you updated throughout the project.",
+          "A typical loft conversion takes 6-12 weeks depending on complexity. We provide a clear timeline at the start and keep you updated throughout the project.",
       },
       {
         question: "Will a loft conversion add value to my home?",
         answer:
-          "Yes. A well-executed loft conversion typically adds significant value to your property—often 20% or more—while giving you the extra space you need without moving.",
+          "Yes. A well-executed loft conversion typically adds significant value to your property, often 20% or more, while giving you the extra space you need without moving.",
       },
     ],
   },
@@ -53,7 +53,7 @@ export const services: Service[] = [
       {
         question: "How much does a house extension cost?",
         answer:
-          "Costs vary based on size, design, and finishes. We provide transparent quotes after an initial site visit. Single-storey extensions typically start from a different baseline than double-storey—we'll give you a clear breakdown.",
+          "Costs vary based on size, design, and finishes. We provide transparent quotes after an initial site visit. Single-storey extensions typically start from a different baseline than double-storey, we'll give you a clear breakdown.",
       },
       {
         question: "Do I need planning permission for an extension?",
@@ -63,7 +63,7 @@ export const services: Service[] = [
       {
         question: "How long does an extension take to build?",
         answer:
-          "A single-storey extension typically takes 3–4 months; double-storey can take 4–6 months. We provide a detailed schedule at the start.",
+          "A single-storey extension typically takes 3-4 months; double-storey can take 4-6 months. We provide a detailed schedule at the start.",
       },
     ],
   },
@@ -73,7 +73,7 @@ export const services: Service[] = [
     shortDescription:
       "Complete home transformations from painting and decorating to structural changes. We handle every aspect of your renovation.",
     description:
-      "From vibrant wall makeovers to luxurious bathroom designs, and from culinary sanctuaries in the kitchen to breathing new life into every floorboard—our full renovation service covers the entire spectrum of home transformation. We coordinate painting, decorating, tiling, flooring, electrical, and plumbing work, ensuring a seamless project from start to finish. Whether it's a refresh or a complete overhaul, we deliver excellence.",
+      "From vibrant wall makeovers to luxurious bathroom designs, and from culinary sanctuaries in the kitchen to breathing new life into every floorboard, our full renovation service covers the entire spectrum of home transformation. We coordinate painting, decorating, tiling, flooring, electrical, and plumbing work, ensuring a seamless project from start to finish. Whether it's a refresh or a complete overhaul, we deliver excellence.",
     image: "/images/gallery/2/15.jpeg",
     metaDescription:
       "Full home renovations in London. Painting, decorating, tiling, flooring, electrical, plumbing. Complete transformations.",
@@ -81,7 +81,7 @@ export const services: Service[] = [
       {
         question: "Do you manage the entire renovation project?",
         answer:
-          "Yes. We coordinate all trades—painting, decorating, tiling, flooring, electrical, and plumbing—so you have a single point of contact and a streamlined process.",
+          "Yes. We coordinate all trades: painting, decorating, tiling, flooring, electrical, and plumbing, so you have a single point of contact and a streamlined process.",
       },
       {
         question: "Can you work around us living in the property?",
@@ -99,7 +99,7 @@ export const services: Service[] = [
     slug: "roofing",
     title: "Roofing",
     shortDescription:
-      "Roof and chimney maintenance, repairs, and replacements. From guttering to full re-roofs—we keep your home protected.",
+      "Roof and chimney maintenance, repairs, and replacements. From guttering to full re-roofs, we keep your home protected.",
     description:
       "Starting from the top of the house, we handle roof and chimney maintenance, guttering and fascia boards, pointing and brickwork, and roof replacements. Our roofing services ensure your home stays protected from the elements. We work with quality materials and trusted suppliers to deliver durable, long-lasting results.",
     image: "/images/gallery/exterior/project1/after/image1.jpg",
@@ -142,7 +142,7 @@ export const services: Service[] = [
       {
         question: "How long does a bathroom refurbishment take?",
         answer:
-          "A typical bathroom refurbishment takes 1–2 weeks depending on scope. We'll give you a clear timeline before we start.",
+          "A typical bathroom refurbishment takes 1-2 weeks depending on scope. We'll give you a clear timeline before we start.",
       },
       {
         question: "Can you work with my existing layout?",

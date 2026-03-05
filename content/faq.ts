@@ -7,12 +7,12 @@ export const faqs = [
   {
     question: "How long does a loft conversion take?",
     answer:
-      "A typical loft conversion takes 6–12 weeks, depending on the complexity. Velux-style conversions are usually quicker; dormer conversions may take longer. We'll give you a clear timeline in your quote.",
+      "A typical loft conversion takes 6-12 weeks, depending on the complexity. Velux-style conversions are usually quicker; dormer conversions may take longer. We'll give you a clear timeline in your quote.",
   },
   {
     question: "How much does a loft conversion cost in London?",
     answer:
-      "Costs vary. Basic loft conversions typically start from around £25,000–£35,000; dormer conversions from £35,000–£55,000. We provide detailed, transparent quotes with no hidden costs. Get a free quote for your project.",
+      "Costs vary. Basic loft conversions typically start from around £25,000-£35,000; dormer conversions from £35,000-£55,000. We provide detailed, transparent quotes with no hidden costs. Get a free quote for your project.",
   },
   {
     question: "Do you offer free quotes?",

@@ -156,7 +156,7 @@ export default function HomePage() {
                 creators of atmospheres.
               </p>
               <p className="mt-4 text-neutral-600 dark:text-neutral-400">
-                Our services span the entire spectrum of home transformation—from
+                Our services span the entire spectrum of home transformation, from
                 vibrant wall makeovers to luxurious bathroom designs, and from
                 culinary sanctuaries in the kitchen to breathing new life into
                 every floorboard. With over {getYearsExperience()} years of dedication, we&apos;ve

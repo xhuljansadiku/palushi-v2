@@ -77,7 +77,7 @@ export const projects: Project[] = [
   },
   {
     slug: "full-home-renovation-london",
-    title: "House renovation – Pinner HA5",
+    title: "House renovation, Pinner HA5",
     category: "Full Renovation",
     shortDescription:
       "Internal complete demolition and redesign in Pinner HA5. New kitchen, bathroom, heating system and boiler.",

@@ -47,7 +47,7 @@ export default function AboutPage() {
                 creators of atmospheres.
               </p>
               <p className="mt-4 text-neutral-600 dark:text-neutral-300">
-                Our services span the entire spectrum of home transformation—from
+                Our services span the entire spectrum of home transformation, from
                 vibrant wall makeovers to luxurious bathroom designs, and from
                 culinary sanctuaries in the kitchen to breathing new life into
                 every floorboard. With over {getYearsExperience()} years of dedication, we&apos;ve
@@ -55,7 +55,7 @@ export default function AboutPage() {
               </p>
               <p className="mt-4 text-neutral-600 dark:text-neutral-300">
                 As you explore our portfolio, witness the stories of
-                metamorphosis—a blend of innovative design and masterful
+                metamorphosis, a blend of innovative design and masterful
                 execution. Thank you for considering {siteConfig.name} as your
                 partner in crafting elevated living experiences. Join us in
                 transforming houses into homes across Westminster, Kensington & Chelsea,
@@ -88,7 +88,7 @@ export default function AboutPage() {
               Why Choose Us
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">
-              Experience, transparency, and quality—that&apos;s what we bring to
+              Experience, transparency, and quality, that&apos;s what we bring to
               every project.
             </p>
           </div>

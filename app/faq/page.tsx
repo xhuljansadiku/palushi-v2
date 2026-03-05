@@ -6,7 +6,7 @@ import { faqs } from "@/content/faq";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Common questions about loft conversions, extensions, renovations, and our services. Palushi Brothers Construction – London.",
+    "Common questions about loft conversions, extensions, renovations, and our services. Palushi Brothers Construction London.",
 };
 
 function FAQSchema() {

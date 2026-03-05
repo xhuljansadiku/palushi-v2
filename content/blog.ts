@@ -92,7 +92,7 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>One of the first questions homeowners ask when considering a loft conversion is: how much will it cost? The answer depends on your property type, the scope of work, and where in London you're based.</p>
       <h3>Typical Cost Ranges</h3>
-      <p>Basic loft conversions (Velux/rooflight style) typically start from around £25,000–£35,000. Dormer conversions, which add more headroom and floor space, often range from £35,000–£55,000. Larger projects with rear dormers or hip-to-gable conversions can exceed £60,000.</p>
+      <p>Basic loft conversions (Velux/rooflight style) typically start from around £25,000-£35,000. Dormer conversions, which add more headroom and floor space, often range from £35,000-£55,000. Larger projects with rear dormers or hip-to-gable conversions can exceed £60,000.</p>
       <h3>What Affects the Price?</h3>
       <ul>
         <li>Property type (terraced, semi-detached, detached)</li>
@@ -123,13 +123,13 @@ export const blogPosts: BlogPost[] = [
     ],
     content: `
       <p>Planning a house extension in London? Timing can affect both the build process and your experience as a homeowner.</p>
-      <h3>Spring & Summer (April–September)</h3>
+      <h3>Spring & Summer (April-September)</h3>
       <p>Longer daylight hours and generally drier weather make this the busiest period for extensions. Groundworks and external work are easier. However, demand is high, so book early.</p>
-      <h3>Autumn (October–November)</h3>
+      <h3>Autumn (October-November)</h3>
       <p>Still a good window for starting projects. The weather is usually manageable, and you may find more availability with contractors.</p>
-      <h3>Winter (December–February)</h3>
+      <h3>Winter (December-February)</h3>
       <p>Shorter days and rain can slow external work, but interior work continues. Starting in winter means your extension could be ready by spring.</p>
-      <p>Our advice: start planning and get quotes 2–3 months before you want work to begin. We work year-round across ${LONDON_AREAS}. <a href="/contact">Contact us</a> for a free site visit and quote.</p>
+      <p>Our advice: start planning and get quotes 2-3 months before you want work to begin. We work year-round across ${LONDON_AREAS}. <a href="/contact">Contact us</a> for a free site visit and quote.</p>
     `,
     date: "2025-01-12",
     author: "Palushi Brothers",
@@ -159,7 +159,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Location:</strong> Labour and material costs vary across London boroughs</li>
       </ul>
       <h3>Typical Price Ranges</h3>
-      <p>A cosmetic refresh (painting, new flooring, updated fixtures) might start from £15,000–£30,000. A mid-range renovation including kitchen and bathroom could be £40,000–£80,000. Full structural renovations with extensions can exceed £100,000.</p>
+      <p>A cosmetic refresh (painting, new flooring, updated fixtures) might start from £15,000-£30,000. A mid-range renovation including kitchen and bathroom could be £40,000-£80,000. Full structural renovations with extensions can exceed £100,000.</p>
       <h3>Get a Transparent Quote</h3>
       <p>We provide detailed, itemised quotes with no hidden costs. Our team serves ${LONDON_AREAS}. <a href="/contact">Book a free site visit</a> to discuss your project and get an accurate estimate.</p>
     `,
@@ -186,7 +186,7 @@ export const blogPosts: BlogPost[] = [
       <h3>Planning Your Bathroom Refurbishment</h3>
       <p>Consider your layout, storage needs, and whether you're keeping existing plumbing positions. Moving sanitaryware increases cost but can improve the flow of the room.</p>
       <h3>Typical Timeline</h3>
-      <p>Most bathroom refurbishments take 1–2 weeks depending on scope. Full rip-out and redesign may take 2–3 weeks. We'll give you a clear timeline before we start.</p>
+      <p>Most bathroom refurbishments take 1-2 weeks depending on scope. Full rip-out and redesign may take 2-3 weeks. We'll give you a clear timeline before we start.</p>
       <h3>Quality Materials Matter</h3>
       <p>Invest in good-quality tiles, fixtures, and waterproofing. We work with trusted suppliers and ensure all work meets building regulations.</p>
       <p>We serve ${LONDON_AREAS}. <a href="/contact">Get a free quote</a> for your bathroom refurbishment.</p>

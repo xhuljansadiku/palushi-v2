@@ -19,7 +19,7 @@ const heroSlides = (getYears: () => number) => [
   {
     image: siteConfig.heroImages[2],
     title: "Your Dream Home Awaits",
-    subtitle: "From concept to completion—we deliver projects that exceed expectations.",
+    subtitle: "From concept to completion, we deliver projects that exceed expectations.",
   },
 ];
 

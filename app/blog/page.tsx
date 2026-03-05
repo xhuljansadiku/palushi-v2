@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog – Construction & Renovation Tips | Palushi Brothers",
+  title: "Blog | Construction & Renovation Tips | Palushi Brothers",
   description:
     "Expert tips on loft conversions, house extensions, kitchen & bathroom refurbishments, and full renovations in London. Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth.",
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "construction blog UK",
   ],
   openGraph: {
-    title: "Blog – Construction & Renovation Tips | Palushi Brothers",
+    title: "Blog | Construction & Renovation Tips | Palushi Brothers",
     description:
       "Expert tips on loft conversions, house extensions, kitchen & bathroom refurbishments. Quality advice from London's trusted construction experts.",
     url: `${siteConfig.url}/blog`,
