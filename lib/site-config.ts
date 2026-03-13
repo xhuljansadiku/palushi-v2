@@ -42,7 +42,7 @@ export const siteConfig = {
   /** Google Ads - get conversion label from Goals > Conversions > Quote Form Submission */
   googleAds: {
     id: "AW-17889100194",
-    quoteConversionId: "AW-17889100194/CONVERSION_LABEL", // Replace CONVERSION_LABEL with value from Google Ads
+    quoteConversionId: "AW-17889100194/h4fsCJ_l2IccEKKDmNJC",
   },
   /** Stats shown on homepage - update as needed */
   stats: {
