@@ -39,6 +39,11 @@ export const siteConfig = {
     endpoint: "https://formsubmit.co/ajax/palushibrothers@gmail.com",
   },
   googleVerification: "thAvgR5h3dhrgNzhHCB7C1Ax6z5XJBHr1NM9iFE9cQw",
+  /** Google Ads - get conversion label from Goals > Conversions > Quote Form Submission */
+  googleAds: {
+    id: "AW-17889100194",
+    quoteConversionId: "AW-17889100194/CONVERSION_LABEL", // Replace CONVERSION_LABEL with value from Google Ads
+  },
   /** Stats shown on homepage - update as needed */
   stats: {
     projectsCompleted: "300+",

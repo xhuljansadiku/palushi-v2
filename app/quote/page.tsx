@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { trackLeadConversion } from "@/lib/tracking";
 import { CustomSelect } from "@/components/CustomSelect";
@@ -34,6 +34,7 @@ const timelines = [
 ];
 
 export default function QuotePage() {
+  const router = useRouter();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [projectType, setProjectType] = useState("");
   const [budget, setBudget] = useState("");
@@ -61,12 +62,12 @@ export default function QuotePage() {
       });
 
       if (response.ok) {
-        setStatus("success");
         form.reset();
         setProjectType("");
         setBudget("");
         setTimeline("");
         trackLeadConversion("quote");
+        router.push("/thank-you?from=quote");
       } else {
         setStatus("error");
       }
@@ -91,24 +92,7 @@ export default function QuotePage() {
 
       <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-          {status === "success" ? (
-            <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-800 dark:bg-green-950/50">
-              <h2 className="text-xl font-semibold text-green-800 dark:text-green-300">
-                Thank you!
-              </h2>
-              <p className="mt-2 text-green-700 dark:text-green-400">
-                We&apos;ve received your quote request and will be in touch
-                within 24 hours.
-              </p>
-              <Link
-                href="/"
-                className="mt-6 inline-block rounded-md bg-green-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700"
-              >
-                Back to Home
-              </Link>
-            </div>
-          ) : (
-            <form
+          <form
               action={siteConfig.formSubmit.endpoint}
               method="POST"
               onSubmit={handleSubmit}
@@ -262,7 +246,6 @@ export default function QuotePage() {
                 Request Free Quote
               </button>
             </form>
-          )}
         </div>
       </section>
     </>

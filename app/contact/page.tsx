@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { validateEmail, validatePhone, validateRequired } from "@/lib/form-validation";
 import { trackLeadConversion } from "@/lib/tracking";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export default function ContactPage() {
+  const router = useRouter();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -45,9 +47,9 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        setStatus("success");
         form.reset();
         trackLeadConversion("contact");
+        router.push("/thank-you?from=contact");
       } else {
         setStatus("error");
       }
@@ -191,12 +193,6 @@ export default function ContactPage() {
                 {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
                 </div>
 
-                {status === "success" && (
-                  <p className="rounded-md bg-green-50 p-4 text-green-800 dark:bg-green-950/50 dark:text-green-300">
-                    Thank you! Your message has been sent. We&apos;ll be in touch
-                    shortly.
-                  </p>
-                )}
                 {status === "error" && (
                   <p className="rounded-md bg-red-50 p-4 text-red-800 dark:bg-red-950/50 dark:text-red-300">
                     Something went wrong. Please try again or call us directly.
