@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { WhatsAppButton } from "./WhatsAppButton";
-import { trackEvent, TRACKING_EVENTS } from "@/lib/tracking";
+import { ClickToCallLink } from "./ClickToCallLink";
 
 interface CTAProps {
   title?: string;
@@ -37,14 +37,11 @@ export function CTA({
           >
             Get a Free Quote
           </Link>
-          <a
-            href={`tel:${siteConfig.phoneRaw}`}
-            onClick={() => trackEvent(TRACKING_EVENTS.CLICK_TO_CALL)}
-            aria-label={`Call us: ${siteConfig.phone}`}
+          <ClickToCallLink
             className="inline-flex w-full items-center justify-center rounded-md border-2 border-white px-8 py-4 text-base font-semibold text-white transition hover:bg-white hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 sm:w-auto"
           >
             Call Now: {siteConfig.phone}
-          </a>
+          </ClickToCallLink>
           <WhatsAppButton />
         </div>
       </div>

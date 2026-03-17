@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { siteConfig } from "@/lib/site-config";
 import { ThemeToggle } from "./ThemeToggle";
+import { ClickToCallLink } from "./ClickToCallLink";
 
 const SearchModal = dynamic(
   () => import("@/components/SearchModal").then((m) => ({ default: m.SearchModal })),
@@ -105,19 +106,20 @@ export function Header() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </button>
-          <Link
-            href="/quote"
-            className="hidden rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 lg:inline-flex"
-          >
-            Get a Free Quote
-          </Link>
-          <a
-            href={`tel:${siteConfig.phoneRaw}`}
-            aria-label={`Call us: ${siteConfig.phone}`}
-            className="hidden rounded-md border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-800 transition hover:border-red-600 hover:text-red-600 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-white/40 dark:text-white dark:hover:border-red-400 dark:hover:text-red-400 lg:inline-flex"
+          <span className="hidden text-sm font-semibold text-neutral-700 dark:text-neutral-300 lg:inline">
+            {siteConfig.phone}
+          </span>
+          <ClickToCallLink
+            className="hidden rounded-md bg-red-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 lg:inline-flex"
           >
             Call Now
-          </a>
+          </ClickToCallLink>
+          <Link
+            href="/quote"
+            className="hidden rounded-md border-2 border-red-600 px-4 py-2.5 text-sm font-bold text-red-600 transition hover:bg-red-600 hover:text-white focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-red-500 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white lg:inline-flex"
+          >
+            Get Free Quote
+          </Link>
 
           <button
             type="button"
@@ -200,16 +202,14 @@ export function Header() {
             Search
           </button>
           <div className="mt-4 space-y-2 border-t border-neutral-100 pt-4 dark:border-neutral-800">
-            <a
-              href={`tel:${siteConfig.phoneRaw}`}
+            <ClickToCallLink
               className="flex items-center justify-center gap-2 rounded-xl border-2 border-neutral-200 py-3.5 text-base font-semibold text-neutral-800 transition active:bg-neutral-50 dark:border-white/40 dark:text-white dark:active:bg-white/10"
-              onClick={() => setMobileOpen(false)}
             >
               <svg className="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
               Call {siteConfig.phone}
-            </a>
+            </ClickToCallLink>
             <Link
               href="/quote"
               className="flex items-center justify-center rounded-xl bg-red-600 py-3.5 text-base font-semibold text-white transition active:bg-red-700"

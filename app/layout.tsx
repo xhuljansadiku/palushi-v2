@@ -9,6 +9,8 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { CookieConsent } from "@/components/CookieConsent";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
+import { ConditionalLayout } from "@/components/ConditionalLayout";
 import { LocalBusinessSchema } from "@/components/JsonLd";
 import { TrackingScripts } from "@/components/TrackingScripts";
 import { siteConfig } from "@/lib/site-config";
@@ -108,13 +110,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LocalBusinessSchema />
           <TrackingScripts />
-          <Header />
-          <main id="main" className="min-h-screen text-center lg:text-left">{children}</main>
-        <Footer />
-        <ScrollToTop />
-        <FloatingWhatsApp />
-        <ExitIntentPopup />
-        <CookieConsent />
+          <ConditionalLayout>{children}</ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>

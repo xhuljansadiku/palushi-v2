@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site-config";
+
 /**
  * Tracking utilities for GA4, GTM, and conversion events.
  * Add your GA4/GTM IDs to environment variables when ready.
@@ -33,6 +35,17 @@ export function trackEvent(
       ...params,
     });
   }
+}
+
+/** Fire Google Ads conversion when user clicks tel: link */
+export function trackCallClick() {
+  if (typeof window !== "undefined" && window.gtag) {
+    const callId = siteConfig.googleAds?.callConversionId;
+    if (callId && !callId.includes("CALL_LABEL")) {
+      window.gtag("event", "conversion", { send_to: callId });
+    }
+  }
+  trackEvent(TRACKING_EVENTS.CLICK_TO_CALL);
 }
 
 /** Fire Meta Pixel Lead conversion for form submissions */

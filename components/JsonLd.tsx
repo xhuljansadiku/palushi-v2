@@ -42,6 +42,22 @@ export function LocalBusinessSchema() {
       siteConfig.social.youtube,
     ].filter((url) => url && url !== "#"),
     foundingDate: siteConfig.foundedYear.toString(),
+    areaServed: {
+      "@type": "City",
+      name: "London",
+      addressCountry: "GB",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Construction Services",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Loft Conversions" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "House Extensions" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Full Renovations" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Roofing" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kitchen & Bathroom Refurbishments" } },
+      ],
+    },
   };
 
   return (

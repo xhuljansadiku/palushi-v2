@@ -43,6 +43,7 @@ export const siteConfig = {
   googleAds: {
     id: "AW-17889100194",
     quoteConversionId: "AW-17889100194/h4fsCJ_l2IccEKKDmNJC",
+    callConversionId: "AW-17889100194/CALL_LABEL", // Add from Google Ads > Goals > Conversions > Call
   },
   /** Stats shown on homepage - update as needed */
   stats: {
