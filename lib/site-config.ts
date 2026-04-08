@@ -33,7 +33,8 @@ export const siteConfig = {
   },
   googleReviewUrl: "https://g.page/r/CfZQ-EVixSvZEBM/review",
   formSubmit: {
-    endpoint: "https://formsubmit.co/palushibrothers@gmail.com",
+    endpoint: "https://formsubmit.co/ajax/palushibrothers@gmail.com",
+    actionEndpoint: "https://formsubmit.co/palushibrothers@gmail.com",
   },
   newsletter: {
     endpoint: "https://formsubmit.co/ajax/palushibrothers@gmail.com",

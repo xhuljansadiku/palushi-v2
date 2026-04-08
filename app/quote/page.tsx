@@ -93,7 +93,7 @@ export default function QuotePage() {
       <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <form
-              action={siteConfig.formSubmit.endpoint}
+              action={siteConfig.formSubmit.actionEndpoint}
               method="POST"
               onSubmit={handleSubmit}
               className="space-y-6"

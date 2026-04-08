@@ -82,7 +82,7 @@ export default function ContactPage() {
               </p>
 
               <form
-                action={siteConfig.formSubmit.endpoint}
+                action={siteConfig.formSubmit.actionEndpoint}
                 method="POST"
                 onSubmit={handleSubmit}
                 className="mx-auto mt-8 max-w-md space-y-6 lg:mx-0 lg:max-w-none"
