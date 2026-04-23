@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ScrollToTop } from "@/components/ScrollToTop";
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { ExitIntentPopup } from "@/components/ExitIntentPopup";
-import { CookieConsent } from "@/components/CookieConsent";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { ConditionalLayout } from "@/components/ConditionalLayout";
 import { LocalBusinessSchema } from "@/components/JsonLd";
 import { TrackingScripts } from "@/components/TrackingScripts";
@@ -88,19 +80,6 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-[var(--background)] text-[var(--foreground)]`}>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAds.id}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', '${siteConfig.googleAds.id}');
-          `}
-        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-red-600 focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"

@@ -27,6 +27,7 @@ export function ConditionalLayout({
           {children}
         </main>
         <LpStickyCta />
+        <CookieConsent />
       </>
     );
   }
