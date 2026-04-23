@@ -25,7 +25,7 @@ export function Footer() {
       {/* Accent line - vijë e kuqe e hollë në krye */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/80 to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-4 py-12 pb-24 sm:px-6 sm:pb-12 lg:px-8 lg:py-14">
+      <div className="mx-auto max-w-7xl px-4 py-12 pb-20 sm:px-6 sm:pb-12 lg:px-8 lg:py-14">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-4 text-center lg:text-left lg:gap-0">
           {/* 1. Logo + tagline */}
           <div className="sm:col-span-4 lg:col-span-1 lg:border-r lg:border-neutral-200/70 lg:pr-8 dark:lg:border-neutral-700/70">

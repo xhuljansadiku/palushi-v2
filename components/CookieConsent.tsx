@@ -60,20 +60,28 @@ export function CookieConsent() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={openSettings}
-        aria-label="Cookie settings"
-        className="fixed bottom-24 left-4 z-[60] inline-flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border-0 bg-transparent p-0 text-neutral-700 shadow-none transition hover:-translate-y-0.5 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:text-neutral-100 lg:bottom-6"
-      >
-        <Image
-          src="/images/icon/cookies.png"
-          alt="Cookie settings"
-          width={64}
-          height={64}
-          className="h-16 w-16 object-contain drop-shadow-lg dark:drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
-        />
-      </button>
+      <span className="group fixed bottom-20 left-3 z-[60] inline-block lg:bottom-6 lg:left-4">
+        <button
+          type="button"
+          onClick={openSettings}
+          aria-label="Cookie settings"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border-0 bg-transparent p-0 text-neutral-700 shadow-none transition hover:-translate-y-0.5 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:text-neutral-100 lg:h-12 lg:w-12"
+        >
+          <Image
+            src="/images/icon/cookies.png"
+            alt=""
+            width={40}
+            height={40}
+            className="h-9 w-9 object-contain drop-shadow-md dark:drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] lg:h-10 lg:w-10"
+          />
+        </button>
+        <span
+          role="tooltip"
+          className="pointer-events-none absolute left-full top-1/2 z-[70] ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-neutral-900 px-2.5 py-1 text-right text-xs font-medium text-white opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 dark:bg-neutral-100 dark:text-neutral-900"
+        >
+          Cookie settings
+        </span>
+      </span>
 
       {visible && (
         <div
