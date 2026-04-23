@@ -18,3 +18,8 @@ export function validateRequired(value: string, fieldName: string): string | nul
   if (!value.trim()) return `${fieldName} is required`;
   return null;
 }
+
+export function validateLegalConsent(accepted: boolean): string | null {
+  if (!accepted) return "Please confirm you agree to the terms and privacy policy to submit this form.";
+  return null;
+}

@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
-import { validateEmail, validatePhone, validateRequired } from "@/lib/form-validation";
+import { FormConsentCheckbox } from "@/components/FormConsentCheckbox";
+import {
+  validateEmail,
+  validateLegalConsent,
+  validatePhone,
+  validateRequired,
+} from "@/lib/form-validation";
 import { trackLeadConversion } from "@/lib/tracking";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
@@ -11,6 +17,7 @@ export default function ContactPage() {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [legalAccepted, setLegalAccepted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +29,7 @@ export default function ContactPage() {
     const name = (formData.get("name") as string) ?? "";
     const phone = (formData.get("phone") as string) ?? "";
     const email = (formData.get("email") as string) ?? "";
+    const postcode = (formData.get("postcode") as string) ?? "";
     const message = (formData.get("message") as string) ?? "";
 
     const newErrors: Record<string, string> = {};
@@ -31,8 +39,12 @@ export default function ContactPage() {
     if (phoneErr) newErrors.phone = phoneErr;
     const emailErr = validateEmail(email);
     if (emailErr) newErrors.email = emailErr;
+    const postcodeErr = validateRequired(postcode, "Postcode");
+    if (postcodeErr) newErrors.postcode = postcodeErr;
     const msgErr = validateRequired(message, "Message");
     if (msgErr) newErrors.message = msgErr;
+    const legalErr = validateLegalConsent(legalAccepted);
+    if (legalErr) newErrors.legal = legalErr;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -48,6 +60,7 @@ export default function ContactPage() {
 
       if (response.ok) {
         form.reset();
+        setLegalAccepted(false);
         trackLeadConversion("contact");
         router.push("/thank-you?from=contact");
       } else {
@@ -163,15 +176,23 @@ export default function ContactPage() {
                       htmlFor="postcode"
                       className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      Postcode
+                      Postcode *
                     </label>
                     <input
                       type="text"
                       id="postcode"
                       name="postcode"
-                      className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500"
+                      required
+                      className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${
+                        errors.postcode
+                          ? "border-red-500"
+                          : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"
+                      }`}
                       placeholder="Your postcode"
                     />
+                    {errors.postcode && (
+                      <p className="mt-1 text-sm text-red-600">{errors.postcode}</p>
+                    )}
                   </div>
                 </div>
 
@@ -198,6 +219,13 @@ export default function ContactPage() {
                     Something went wrong. Please try again or call us directly.
                   </p>
                 )}
+
+                <FormConsentCheckbox
+                  id="contact-legal"
+                  checked={legalAccepted}
+                  onChange={setLegalAccepted}
+                  error={errors.legal}
+                />
 
                 <button
                   type="submit"

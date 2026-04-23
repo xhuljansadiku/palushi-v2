@@ -85,7 +85,27 @@ export function setCookiePreferences(
   };
 
   localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(nextPreferences));
+  applyConsentModeToGtag(nextPreferences);
   dispatchConsentUpdate();
+}
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+/** Sync Google Consent Mode when preferences change (e.g. user withdraws consent). */
+function applyConsentModeToGtag(p: CookiePreferences): void {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  const analytics = Boolean(p.decisionMade && p.analytics);
+  const marketing = Boolean(p.decisionMade && p.marketing);
+  window.gtag("consent", "update", {
+    analytics_storage: analytics ? "granted" : "denied",
+    ad_storage: marketing ? "granted" : "denied",
+    ad_user_data: marketing ? "granted" : "denied",
+    ad_personalization: marketing ? "granted" : "denied",
+  });
 }
 
 export function acceptAllCookies(): void {
@@ -98,6 +118,18 @@ export function rejectOptionalCookies(): void {
 
 export function hasConsentDecision(): boolean {
   return getCookiePreferences().decisionMade;
+}
+
+/** Use before firing analytics tags (GA4, GTM analytics, Clarity, etc.). */
+export function canTrackAnalytics(): boolean {
+  const p = getCookiePreferences();
+  return Boolean(p.decisionMade && p.analytics);
+}
+
+/** Use before firing advertising tags (Google Ads, Meta Pixel, ad conversions). */
+export function canTrackMarketing(): boolean {
+  const p = getCookiePreferences();
+  return Boolean(p.decisionMade && p.marketing);
 }
 
 export function getConsent(): ConsentStatus {

@@ -70,6 +70,18 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag("consent", "default", {
+                  analytics_storage: "denied",
+                  ad_storage: "denied",
+                  ad_user_data: "denied",
+                  ad_personalization: "denied",
+                  functionality_storage: "granted",
+                  personalization_storage: "denied",
+                  security_storage: "granted",
+                  wait_for_update: 500
+                });
                 var theme = localStorage.getItem('palushi-theme');
                 var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 var isDark = theme === 'dark' || (theme === 'system' && systemDark) || (!theme && systemDark);

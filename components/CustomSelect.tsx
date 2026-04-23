@@ -32,6 +32,10 @@ export function CustomSelect({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
+  useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);

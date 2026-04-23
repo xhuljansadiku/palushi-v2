@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
-import { validatePhone, validateRequired } from "@/lib/form-validation";
+import { FormConsentCheckbox } from "@/components/FormConsentCheckbox";
+import { validateEmail, validateLegalConsent, validatePhone, validateRequired } from "@/lib/form-validation";
 import { trackLeadConversion } from "@/lib/tracking";
 import { ClickToCallLink } from "@/components/ClickToCallLink";
 
@@ -11,6 +12,7 @@ export function LpQuoteForm() {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [legalAccepted, setLegalAccepted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ export function LpQuoteForm() {
     const formData = new FormData(form);
     const name = (formData.get("name") as string) ?? "";
     const phone = (formData.get("phone") as string) ?? "";
+    const email = (formData.get("email") as string) ?? "";
     const message = (formData.get("message") as string) ?? "";
 
     const newErrors: Record<string, string> = {};
@@ -28,8 +31,12 @@ export function LpQuoteForm() {
     if (nameErr) newErrors.name = nameErr;
     const phoneErr = validatePhone(phone);
     if (phoneErr) newErrors.phone = phoneErr;
+    const emailErr = validateEmail(email);
+    if (emailErr) newErrors.email = emailErr;
     const msgErr = validateRequired(message, "Message");
     if (msgErr) newErrors.message = msgErr;
+    const legalErr = validateLegalConsent(legalAccepted);
+    if (legalErr) newErrors.legal = legalErr;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -45,6 +52,7 @@ export function LpQuoteForm() {
 
       if (response.ok) {
         form.reset();
+        setLegalAccepted(false);
         trackLeadConversion("quote");
         router.push("/thank-you?from=quote");
       } else {
@@ -108,6 +116,24 @@ export function LpQuoteForm() {
             </div>
 
             <div>
+              <label htmlFor="lp-email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                Email *
+              </label>
+              <input
+                type="email"
+                id="lp-email"
+                name="email"
+                required
+                autoComplete="email"
+                className={`mt-2 block w-full rounded-lg border px-4 py-3 text-lg dark:bg-neutral-800 dark:text-neutral-100 ${
+                  errors.email ? "border-red-500" : "border-neutral-300 dark:border-neutral-600"
+                }`}
+                placeholder="Your email"
+              />
+              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+            </div>
+
+            <div>
               <label htmlFor="lp-message" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Message *
               </label>
@@ -137,6 +163,13 @@ export function LpQuoteForm() {
                 Call us now
               </ClickToCallLink>
             </p>
+
+            <FormConsentCheckbox
+              id="lp-legal"
+              checked={legalAccepted}
+              onChange={setLegalAccepted}
+              error={errors.legal}
+            />
 
             <button
               type="submit"

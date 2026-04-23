@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { canTrackMarketing } from "@/lib/consent";
 import { siteConfig } from "@/lib/site-config";
 
 export default function ThankYouPage() {
@@ -17,7 +18,7 @@ export default function ThankYouPage() {
 
     hasFiredConversion.current = true;
 
-    if (typeof window !== "undefined" && window.gtag) {
+    if (typeof window !== "undefined" && canTrackMarketing() && window.gtag) {
       window.gtag("event", "conversion", {
         send_to: siteConfig.googleAds.quoteConversionId,
       });

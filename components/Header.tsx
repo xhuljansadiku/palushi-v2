@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { services } from "@/content/services";
 import { siteConfig } from "@/lib/site-config";
 import { ThemeToggle } from "./ThemeToggle";
 import { ClickToCallLink } from "./ClickToCallLink";
@@ -31,7 +32,25 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-neutral-800 dark:bg-neutral-950/95 dark:supports-[backdrop-filter]:bg-neutral-950/90 transition-colors duration-300">
+    <div className="sticky top-0 z-50 w-full">
+      <div className="border-b-2 border-red-600 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 shadow-[inset_0_-1px_0_0_rgba(0,0,0,0.06)] dark:from-amber-500 dark:via-amber-400 dark:to-amber-500 dark:shadow-[inset_0_-1px_0_0_rgba(0,0,0,0.15)]">
+        <nav
+          className="mx-auto flex max-w-7xl items-center justify-center gap-0 overflow-x-auto px-2 py-2 sm:px-4 sm:py-2.5 lg:px-8 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-neutral-900/25"
+          aria-label="Our services"
+        >
+          {services.map((svc) => (
+            <Link
+              key={svc.slug}
+              href={`/services/${svc.slug}`}
+              className="shrink-0 border-r border-neutral-900/10 px-3 py-1 text-center text-[11px] font-semibold uppercase tracking-wide text-neutral-900 transition-colors last:border-r-0 hover:bg-red-600/15 hover:text-neutral-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700 sm:px-4 sm:text-xs md:text-sm"
+            >
+              {svc.title}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      <header className="w-full border-b border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-neutral-800 dark:bg-neutral-950/95 dark:supports-[backdrop-filter]:bg-neutral-950/90 transition-colors duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0 py-2">
           <Image
@@ -221,6 +240,7 @@ export function Header() {
         </nav>
       </div>
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-    </header>
+      </header>
+    </div>
   );
 }

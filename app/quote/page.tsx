@@ -5,6 +5,13 @@ import { useRouter } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { trackLeadConversion } from "@/lib/tracking";
 import { CustomSelect } from "@/components/CustomSelect";
+import { FormConsentCheckbox } from "@/components/FormConsentCheckbox";
+import {
+  validateEmail,
+  validateLegalConsent,
+  validatePhone,
+  validateRequired,
+} from "@/lib/form-validation";
 
 const projectTypes = [
   "Loft Conversion",
@@ -39,20 +46,43 @@ export default function QuotePage() {
   const [projectType, setProjectType] = useState("");
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
-  const [projectTypeError, setProjectTypeError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [legalAccepted, setLegalAccepted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("idle");
-    setProjectTypeError("");
-
-    if (!projectType.trim()) {
-      setProjectTypeError("Please select a project type");
-      return;
-    }
+    setErrors({});
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const name = (formData.get("name") as string) ?? "";
+    const phone = (formData.get("phone") as string) ?? "";
+    const email = (formData.get("email") as string) ?? "";
+    const postcode = (formData.get("postcode") as string) ?? "";
+    const message = (formData.get("message") as string) ?? "";
+
+    const newErrors: Record<string, string> = {};
+    if (!projectType.trim()) newErrors.project_type = "Please select a project type";
+    if (!budget.trim()) newErrors.budget = "Please select a budget range";
+    if (!timeline.trim()) newErrors.timeline = "Please select when you would like to start";
+    const nameErr = validateRequired(name, "Name");
+    if (nameErr) newErrors.name = nameErr;
+    const phoneErr = validatePhone(phone);
+    if (phoneErr) newErrors.phone = phoneErr;
+    const emailErr = validateEmail(email);
+    if (emailErr) newErrors.email = emailErr;
+    const postcodeErr = validateRequired(postcode, "Postcode");
+    if (postcodeErr) newErrors.postcode = postcodeErr;
+    const msgErr = validateRequired(message, "Project details");
+    if (msgErr) newErrors.message = msgErr;
+    const legalErr = validateLegalConsent(legalAccepted);
+    if (legalErr) newErrors.legal = legalErr;
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
     try {
       const response = await fetch(siteConfig.formSubmit.endpoint, {
@@ -66,6 +96,8 @@ export default function QuotePage() {
         setProjectType("");
         setBudget("");
         setTimeline("");
+        setLegalAccepted(false);
+        setErrors({});
         trackLeadConversion("quote");
         router.push("/thank-you?from=quote");
       } else {
@@ -124,29 +156,51 @@ export default function QuotePage() {
                 value={projectType}
                 onChange={(v) => {
                   setProjectType(v);
-                  setProjectTypeError("");
+                  setErrors((prev) => {
+                    const next = { ...prev };
+                    delete next.project_type;
+                    return next;
+                  });
                 }}
-                error={projectTypeError}
+                error={errors.project_type}
               />
 
               <CustomSelect
                 id="budget"
                 name="budget"
-                label="Approximate budget"
+                label="Approximate budget *"
                 placeholder="Select budget range"
                 options={budgetRanges.map((b) => ({ value: b, label: b }))}
+                required
                 value={budget}
-                onChange={setBudget}
+                onChange={(v) => {
+                  setBudget(v);
+                  setErrors((prev) => {
+                    const next = { ...prev };
+                    delete next.budget;
+                    return next;
+                  });
+                }}
+                error={errors.budget}
               />
 
               <CustomSelect
                 id="timeline"
                 name="timeline"
-                label="When would you like to start?"
+                label="When would you like to start? *"
                 placeholder="Select timeline"
                 options={timelines.map((t) => ({ value: t, label: t }))}
+                required
                 value={timeline}
-                onChange={setTimeline}
+                onChange={(v) => {
+                  setTimeline(v);
+                  setErrors((prev) => {
+                    const next = { ...prev };
+                    delete next.timeline;
+                    return next;
+                  });
+                }}
+                error={errors.timeline}
               />
 
               <div>
@@ -161,9 +215,14 @@ export default function QuotePage() {
                   id="name"
                   name="name"
                   required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
+                  className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${
+                    errors.name
+                      ? "border-red-500"
+                      : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"
+                  }`}
                   placeholder="Your name"
                 />
+                {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
               </div>
 
               <div>
@@ -178,9 +237,14 @@ export default function QuotePage() {
                   id="phone"
                   name="phone"
                   required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
+                  className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${
+                    errors.phone
+                      ? "border-red-500"
+                      : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"
+                  }`}
                   placeholder="Your phone number"
                 />
+                {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
               </div>
 
               <div>
@@ -195,9 +259,15 @@ export default function QuotePage() {
                   id="email"
                   name="email"
                   required
-                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
+                  autoComplete="email"
+                  className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${
+                    errors.email
+                      ? "border-red-500"
+                      : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"
+                  }`}
                   placeholder="Your email"
                 />
+                {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
               </div>
 
               <div>
@@ -205,15 +275,21 @@ export default function QuotePage() {
                   htmlFor="postcode"
                   className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
-                  Postcode
+                  Postcode *
                 </label>
                 <input
                   type="text"
                   id="postcode"
                   name="postcode"
-                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
+                  required
+                  className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${
+                    errors.postcode
+                      ? "border-red-500"
+                      : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"
+                  }`}
                   placeholder="Your postcode"
                 />
+                {errors.postcode && <p className="mt-1 text-sm text-red-600">{errors.postcode}</p>}
               </div>
 
               <div>
@@ -228,9 +304,14 @@ export default function QuotePage() {
                   name="message"
                   required
                   rows={5}
-                  className="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 shadow-sm focus:border-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-red-500"
+                  className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${
+                    errors.message
+                      ? "border-red-500"
+                      : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"
+                  }`}
                   placeholder="Tell us about your project, any specific requirements, or questions..."
                 />
+                {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
               </div>
 
               {status === "error" && (
@@ -238,6 +319,13 @@ export default function QuotePage() {
                   Something went wrong. Please try again or call us directly.
                 </p>
               )}
+
+              <FormConsentCheckbox
+                id="quote-page-legal"
+                checked={legalAccepted}
+                onChange={setLegalAccepted}
+                error={errors.legal}
+              />
 
               <button
                 type="submit"

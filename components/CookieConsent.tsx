@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import {
@@ -63,12 +64,14 @@ export function CookieConsent() {
         type="button"
         onClick={openSettings}
         aria-label="Cookie settings"
-        className="fixed bottom-24 left-4 z-[60] inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-white text-neutral-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800 lg:bottom-6"
+        className="fixed bottom-24 left-4 z-[60] inline-flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border-0 bg-transparent p-0 text-neutral-700 shadow-none transition hover:-translate-y-0.5 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:text-neutral-100 lg:bottom-6"
       >
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/6122/6122403.png"
+        <Image
+          src="/images/icon/cookies.png"
           alt="Cookie settings"
-          className="h-7 w-7"
+          width={64}
+          height={64}
+          className="h-16 w-16 object-contain drop-shadow-lg dark:drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
         />
       </button>
 
@@ -91,7 +94,7 @@ export function CookieConsent() {
                 <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                   Read our{" "}
                   <Link href="/privacy-policy" className="text-red-600 hover:underline">
-                    Privacy Policy
+                    Privacy policy &amp; cookies
                   </Link>{" "}
                   and{" "}
                   <Link href="/terms" className="text-red-600 hover:underline">

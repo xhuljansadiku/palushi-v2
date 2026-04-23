@@ -35,8 +35,16 @@ export function TrackingScripts() {
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}');
+              gtag("consent", "update", {
+                analytics_storage: "granted",
+                ad_storage: "denied",
+                ad_user_data: "denied",
+                ad_personalization: "denied",
+                functionality_storage: "granted",
+                security_storage: "granted"
+              });
+              gtag("js", new Date());
+              gtag("config", "${GA_ID}");
             `}
           </Script>
         </>
@@ -63,8 +71,15 @@ export function TrackingScripts() {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('config', '${siteConfig.googleAds.id}');
+              gtag("consent", "update", {
+                ad_storage: "granted",
+                ad_user_data: "granted",
+                ad_personalization: "granted",
+                functionality_storage: "granted",
+                security_storage: "granted"
+              });
+              gtag("js", new Date());
+              gtag("config", "${siteConfig.googleAds.id}");
             `}
           </Script>
         </>

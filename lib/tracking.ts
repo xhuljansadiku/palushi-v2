@@ -1,3 +1,4 @@
+import { canTrackAnalytics, canTrackMarketing } from "@/lib/consent";
 import { siteConfig } from "@/lib/site-config";
 
 /**
@@ -26,10 +27,11 @@ export function trackEvent(
   eventName: string,
   params?: Record<string, unknown>
 ) {
-  if (typeof window !== "undefined" && window.gtag) {
+  if (typeof window === "undefined" || !canTrackAnalytics()) return;
+  if (window.gtag) {
     window.gtag("event", eventName, params);
   }
-  if (typeof window !== "undefined" && window.dataLayer) {
+  if (window.dataLayer) {
     window.dataLayer.push({
       event: eventName,
       ...params,
@@ -39,7 +41,11 @@ export function trackEvent(
 
 /** Fire Google Ads conversion when user clicks tel: link */
 export function trackCallClick() {
-  if (typeof window !== "undefined" && window.gtag) {
+  if (
+    typeof window !== "undefined" &&
+    canTrackMarketing() &&
+    window.gtag
+  ) {
     const callId = siteConfig.googleAds?.callConversionId;
     if (callId && !callId.includes("CALL_LABEL")) {
       window.gtag("event", "conversion", { send_to: callId });
@@ -50,7 +56,7 @@ export function trackCallClick() {
 
 /** Fire Meta Pixel Lead conversion for form submissions */
 export function trackLeadConversion(formName?: string) {
-  if (typeof window !== "undefined" && window.fbq) {
+  if (typeof window !== "undefined" && canTrackMarketing() && window.fbq) {
     window.fbq("track", "Lead", { content_name: formName });
   }
   trackEvent(TRACKING_EVENTS.FORM_SUBMIT, { form: formName ?? "contact" });
