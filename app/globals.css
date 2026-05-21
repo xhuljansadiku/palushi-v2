@@ -73,6 +73,194 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.blog-content {
+  color: var(--foreground-muted);
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  text-wrap: pretty;
+}
+
+.blog-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.blog-content p {
+  max-width: 68ch;
+  overflow-wrap: anywhere;
+}
+
+.blog-content > p:first-child {
+  color: var(--foreground);
+  font-size: 1.2rem;
+  line-height: 1.85;
+  letter-spacing: -0.01em;
+}
+
+.blog-content h2 {
+  margin-top: 3.5rem;
+  color: var(--foreground);
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.blog-content h3,
+.blog-content h4 {
+  margin-top: 2.5rem;
+  color: var(--foreground);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.blog-content strong {
+  color: var(--foreground);
+  font-weight: 650;
+}
+
+.blog-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s ease, border-color 0.2s ease;
+  overflow-wrap: anywhere;
+}
+
+.blog-content a:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.blog-content figure {
+  margin: 2.5rem 0 3rem;
+}
+
+.blog-content figure img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  background: var(--surface-alt);
+  box-shadow: 0 24px 60px -38px rgba(0, 0, 0, 0.5);
+}
+
+.blog-content figcaption {
+  margin-top: 0.9rem;
+  color: var(--foreground-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-top: 1.5rem;
+  max-width: 68ch;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: var(--surface-alt);
+}
+
+.blog-content li + li {
+  margin-top: 0.8rem;
+}
+
+.blog-content blockquote {
+  margin-top: 3rem;
+  max-width: 68ch;
+  padding: 1.5rem 1.6rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 1.25rem;
+  background: var(--surface-alt);
+  color: var(--foreground);
+  box-shadow: 0 18px 45px -40px rgba(0, 0, 0, 0.35);
+}
+
+.blog-content blockquote p {
+  max-width: none;
+}
+
+.blog-content li,
+.blog-content blockquote,
+.blog-content figcaption {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 639px) {
+  .blog-content {
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+
+  .blog-content > * + * {
+    margin-top: 1.05rem;
+  }
+
+  .blog-content > p:first-child {
+    font-size: 1.06rem;
+    line-height: 1.78;
+  }
+
+  .blog-content h2 {
+    margin-top: 2.6rem;
+    font-size: clamp(1.5rem, 5.6vw, 1.9rem);
+    line-height: 1.12;
+  }
+
+  .blog-content h3,
+  .blog-content h4 {
+    margin-top: 2rem;
+  }
+
+  .blog-content figure {
+    margin: 2rem 0 2.35rem;
+  }
+
+  .blog-content figure img {
+    border-radius: 1rem;
+  }
+
+  .blog-content figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.82rem;
+    text-align: left;
+  }
+
+  .blog-content ul,
+  .blog-content ol {
+    padding: 1.1rem 1rem 1.1rem 1.2rem;
+    border-radius: 1rem;
+  }
+
+  .blog-content blockquote {
+    margin-top: 2.4rem;
+    padding: 1.2rem 1.05rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .blog-content figure {
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-content {
+    font-size: 1.1rem;
+  }
+
+  .blog-content figure {
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+}
+
 /* Form controls - match page accent (red) instead of browser default blue */
 select,
 input[type="checkbox"],

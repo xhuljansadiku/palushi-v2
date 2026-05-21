@@ -58,6 +58,9 @@ export default async function BlogPostPage({
 
   if (!post) notFound();
 
+  const plainText = post.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const readTime = Math.max(1, Math.round(plainText.split(" ").filter(Boolean).length / 200));
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -87,9 +90,9 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <article className="dark:bg-neutral-950">
+      <article className="bg-[var(--background)] dark:bg-neutral-950">
         {post.image && (
-          <div className="relative h-64 w-full overflow-hidden bg-neutral-200 sm:h-80">
+          <div className="relative isolate h-[32vh] min-h-[240px] w-full overflow-hidden bg-neutral-950 sm:h-[46vh] sm:min-h-[360px]">
             <Image
               src={post.image}
               alt={post.title}
@@ -98,41 +101,72 @@ export default async function BlogPostPage({
               priority
               sizes="100vw"
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/35 to-black/70" />
           </div>
         )}
-        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-red-600 hover:underline dark:text-red-500"
+
+        <div className="mx-auto max-w-5xl px-3 pb-14 sm:px-6 sm:pb-16 lg:px-8">
+          <div
+            className={`relative overflow-hidden rounded-[24px] border border-neutral-200/80 bg-white shadow-[0_30px_90px_-45px_rgba(0,0,0,0.45)] sm:rounded-[28px] dark:border-neutral-800 dark:bg-neutral-950 ${
+              post.image ? "-mt-10 sm:-mt-16" : "mt-8 sm:mt-10"
+            }`}
           >
-            ← Back to Blog
-          </Link>
-          <time
-            dateTime={post.date}
-            className="mt-4 block text-sm text-neutral-500 dark:text-neutral-400"
-          >
-            {new Date(post.date).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </time>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-100">
-            {post.title}
-          </h1>
-          <p className="mt-2 text-neutral-600 dark:text-neutral-400">By {post.author}</p>
-          <div className="mt-8">
-            <SanitizedHtml html={post.content} />
+            <div className="border-b border-neutral-200/80 px-5 py-6 sm:px-10 sm:py-10 dark:border-neutral-800">
+              <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
+
+              <Link
+                href="/blog"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-red-600 transition hover:text-red-700 dark:text-red-500 dark:hover:text-red-400"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Blog
+              </Link>
+
+              <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.95rem] text-neutral-500 dark:text-neutral-400 sm:mt-6 sm:text-sm">
+                <time dateTime={post.date}>
+                  {new Date(post.date).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </time>
+                <span className="hidden h-1 w-1 rounded-full bg-neutral-300 min-[400px]:inline-block dark:bg-neutral-600" />
+                <span>{readTime} min read</span>
+                <span className="hidden h-1 w-1 rounded-full bg-neutral-300 min-[400px]:inline-block dark:bg-neutral-600" />
+                <span>By {post.author}</span>
+              </div>
+
+              <h1 className="mt-4 max-w-4xl text-[clamp(2rem,7vw,3.4rem)] font-bold tracking-tight text-neutral-900 [text-wrap:balance] dark:text-neutral-100">
+                {post.title}
+              </h1>
+              <p className="mt-4 max-w-3xl text-[1.02rem] leading-7 text-neutral-600 [text-wrap:pretty] sm:mt-5 sm:text-lg sm:leading-8 dark:text-neutral-300">
+                {post.excerpt}
+              </p>
+            </div>
+
+            <div className="px-5 py-7 sm:px-10 sm:py-10">
+              <SanitizedHtml html={post.content} />
+            </div>
           </div>
-          <div className="mt-12 rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900/50">
-            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">Ready to start your project?</h3>
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+
+          <div className="mt-10 rounded-[24px] border border-neutral-200 bg-neutral-50 p-5 shadow-[0_24px_60px_-46px_rgba(0,0,0,0.4)] sm:mt-12 sm:rounded-[28px] sm:p-8 dark:border-neutral-800 dark:bg-neutral-900/60">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+              Ready to start your project?
+            </h3>
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-neutral-600 dark:text-neutral-400">
               Get a free quote. We serve Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London.
             </p>
             <Link
               href="/contact"
-              className="mt-4 inline-block rounded-md bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700"
+              className="mt-6 inline-block w-full rounded-md bg-red-600 px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-red-700 sm:w-auto"
             >
               Get a Free Quote
             </Link>

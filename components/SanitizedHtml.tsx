@@ -2,8 +2,25 @@
 
 import DOMPurify from "isomorphic-dompurify";
 
-const ALLOWED_TAGS = ["p", "br", "strong", "em", "u", "a", "ul", "ol", "li", "h2", "h3", "h4"];
-const ALLOWED_ATTR = ["href", "target", "rel"];
+const ALLOWED_TAGS = [
+  "p",
+  "br",
+  "strong",
+  "em",
+  "u",
+  "a",
+  "ul",
+  "ol",
+  "li",
+  "h2",
+  "h3",
+  "h4",
+  "img",
+  "blockquote",
+  "figure",
+  "figcaption",
+];
+const ALLOWED_ATTR = ["href", "target", "rel", "src", "alt"];
 
 export function SanitizedHtml({ html }: { html: string }) {
   const sanitized = DOMPurify.sanitize(html, {
@@ -12,7 +29,7 @@ export function SanitizedHtml({ html }: { html: string }) {
   });
   return (
     <div
-      className="prose prose-neutral max-w-none dark:prose-invert"
+      className="blog-content"
       dangerouslySetInnerHTML={{ __html: sanitized }}
     />
   );

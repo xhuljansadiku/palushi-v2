@@ -20,8 +20,8 @@ export const siteConfig = {
   hours: "Open 24 hours, 7 days a week",
   foundedYear: 2012,
   social: {
-    facebook: "https://bit.ly/sai4ull",
-    instagram: "#",
+    facebook: "",
+    instagram: "https://www.instagram.com/info.palushibrothers",
     linkedin: "#",
     youtube: "#",
     whatsapp: "https://wa.me/447447782369",
