@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     `Palushi Brothers Construction Ltd - London's premier space transformators. Over ${getYearsExperience()} years of construction and renovation excellence across London.`,
+  alternates: {
+    canonical: `${siteConfig.url}/about`,
+  },
 };
 
 export default function AboutPage() {

@@ -83,6 +83,11 @@ export function QuoteForm() {
             />
             <input type="hidden" name="_captcha" value="true" />
             <input type="hidden" name="_template" value="table" />
+            <input
+              type="hidden"
+              name="_autoresponse"
+              value={`Thank you for your enquiry! We've received your quote request and will be in touch within 24 hours. If it's urgent, call us now on ${siteConfig.phone}.\n\n— Palushi Brothers Construction Ltd`}
+            />
 
             <div>
               <label

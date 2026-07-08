@@ -9,6 +9,13 @@ import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { CTA } from "@/components/CTA";
 import { areas } from "@/content/areas";
 import { siteConfig, getYearsExperience } from "@/lib/site-config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: siteConfig.url,
+  },
+};
 
 const trustBullets = [
   `Over ${getYearsExperience()} years of experience across London`,

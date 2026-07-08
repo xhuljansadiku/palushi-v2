@@ -10,6 +10,7 @@ import { services } from "@/content/services";
 import { getFeaturedProjects } from "@/content/projects";
 import { siteConfig } from "@/lib/site-config";
 import { CTA } from "@/components/CTA";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -28,6 +29,9 @@ export async function generateMetadata({
   return {
     title: `Construction Services in ${area.name}`,
     description: area.metaDescription,
+    alternates: {
+      canonical: `${siteConfig.url}/areas/${slug}`,
+    },
     openGraph: {
       title: `${area.name} Construction | ${siteConfig.name}`,
       description: area.metaDescription,
@@ -89,6 +93,8 @@ export default async function AreaPage({
 
       <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ label: "Areas", href: "/areas" }, { label: area.name }]} />
+
           <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Our Services in {area.name}</h2>
           <p className="mt-2 text-neutral-600 dark:text-neutral-400">
             We offer a full range of construction and renovation services across{" "}

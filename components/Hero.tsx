@@ -58,7 +58,9 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 text-lg leading-relaxed text-neutral-200 sm:text-xl lg:text-2xl">
-            Loft Conversions, Extensions & Full Renovations – Get a Free Quote Today
+            Loft Conversions, Extensions & Full Renovations
+            <br />
+            – Get a Free Quote Today
           </p>
 
           <ul className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-8" role="list">

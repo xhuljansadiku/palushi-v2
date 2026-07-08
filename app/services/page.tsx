@@ -1,12 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/content/services";
+import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Services",
   description:
     "Loft conversions, house extensions, full renovations, roofing, and kitchen & bathroom refurbishments across London. Quality craftsmanship since 2012.",
+  alternates: {
+    canonical: `${siteConfig.url}/services`,
+  },
 };
 
 export default function ServicesPage() {

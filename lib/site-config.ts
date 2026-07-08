@@ -44,18 +44,18 @@ export const siteConfig = {
   googleAds: {
     id: "AW-17889100194",
     quoteConversionId: "AW-17889100194/h4fsCJ_l2IccEKKDmNJC",
-    callConversionId: "AW-17889100194/CALL_LABEL", // Add from Google Ads > Goals > Conversions > Call
+    callConversionId: "AW-17889100194/pShUCMrzo8wcEKKDmNJC",
   },
   /** Stats shown on homepage - update as needed */
   stats: {
     projectsCompleted: "300+",
     clientSatisfaction: "100%",
   },
-  /** Hero slider images - replace with local paths when available */
+  /** Hero images - real completed project photos */
   heroImages: [
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80",
+    "/images/gallery/interior/project-2/done/Image1.jpeg",
+    "/images/gallery/interior/project-2/done/Image2.jpeg",
+    "/images/gallery/interior/project-2/done/Image3.jpeg",
   ],
   /** Social links - replace # with real URLs when available */
   socialPlaceholderNote: "Add Instagram, LinkedIn, YouTube URLs in site-config when ready",

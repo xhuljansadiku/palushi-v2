@@ -41,6 +41,13 @@ export function LocalBusinessSchema() {
       siteConfig.social.linkedin,
       siteConfig.social.youtube,
     ].filter((url) => url && url !== "#"),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.3",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
     foundingDate: siteConfig.foundedYear.toString(),
     areaServed: {
       "@type": "City",

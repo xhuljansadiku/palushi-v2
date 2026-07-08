@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Areas We Cover",
   description:
     "Construction and renovation services in Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London.",
+  alternates: {
+    canonical: `${siteConfig.url}/areas`,
+  },
 };
 
 export default function AreasPage() {

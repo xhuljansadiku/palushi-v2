@@ -115,6 +115,11 @@ export default function ContactPage() {
                   name="_template"
                   value="table"
                 />
+                <input
+                  type="hidden"
+                  name="_autoresponse"
+                  value={`Thank you for contacting us! We've received your message and will be in touch within 24 hours. If it's urgent, call us now on ${siteConfig.phone}.\n\n— Palushi Brothers Construction Ltd`}
+                />
 
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>

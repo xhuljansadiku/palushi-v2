@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Privacy policy & cookies",
   description:
     "Privacy policy and cookie notice for Palushi Brothers Construction Ltd (UK GDPR, Data Protection Act 2018).",
+  alternates: {
+    canonical: `${siteConfig.url}/privacy-policy`,
+  },
 };
 
 const sectionTitle =

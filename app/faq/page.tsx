@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
     "Common questions about loft conversions, extensions, renovations, and our services. Palushi Brothers Construction London.",
+  alternates: {
+    canonical: `${siteConfig.url}/faq`,
+  },
 };
 
 function FAQSchema() {

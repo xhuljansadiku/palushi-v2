@@ -8,6 +8,7 @@ import {
 } from "@/content/services";
 import { siteConfig } from "@/lib/site-config";
 import { CTA } from "@/components/CTA";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -23,12 +24,25 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
 
+  const imageUrl = `${siteConfig.url}${service.image}`;
+
   return {
     title: service.title,
     description: service.metaDescription,
+    alternates: {
+      canonical: `${siteConfig.url}/services/${slug}`,
+    },
     openGraph: {
       title: `${service.title} | ${siteConfig.name}`,
       description: service.metaDescription,
+      type: "website",
+      images: [{ url: imageUrl, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | ${siteConfig.name}`,
+      description: service.metaDescription,
+      images: [imageUrl],
     },
   };
 }
@@ -106,6 +120,8 @@ export default async function ServicePage({
 
       <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ label: "Services", href: "/services" }, { label: service.title }]} />
+
           <div className="prose prose-lg max-w-none prose-neutral dark:prose-invert">
             <p className="text-xl text-neutral-600 dark:text-neutral-300">{service.description}</p>
           </div>
