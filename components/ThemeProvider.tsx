@@ -17,6 +17,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
 
+  // Theme lives in localStorage / matchMedia, only readable after mount.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setMounted(true);
     const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
@@ -37,6 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.setAttribute("data-theme", isDark ? "dark" : "light");
     setResolvedTheme(isDark ? "dark" : "light");
   }, [theme, mounted]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!mounted) return;

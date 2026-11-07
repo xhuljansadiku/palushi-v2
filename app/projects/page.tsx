@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { projects, getProjectCategories } from "@/content/projects";
@@ -9,10 +9,9 @@ export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const categories = getProjectCategories();
 
-  const filteredProjects = useMemo(() => {
-    if (!selectedCategory) return projects;
-    return projects.filter((p) => p.category === selectedCategory);
-  }, [selectedCategory]);
+  const filteredProjects = selectedCategory
+    ? projects.filter((p) => p.category === selectedCategory)
+    : projects;
 
   return (
     <>
@@ -22,9 +21,8 @@ export default function ProjectsPage() {
             Our Projects
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-300">
-            Step into a world of inspiration and see how we turn visions into
-            reality. Our portfolio showcases dreams transformed into tangible
-            elegance.
+            Real loft conversions, extensions and renovations we have completed
+            for homeowners across London, with before and after photos.
           </p>
         </div>
       </section>
@@ -95,7 +93,7 @@ export default function ProjectsPage() {
                       {project.location}
                     </div>
                   )}
-                  <p className="flex-1 text-neutral-600 dark:text-neutral-400">
+                  <p className="flex-1 text-balance text-neutral-600 dark:text-neutral-400">
                     {project.shortDescription}
                   </p>
                   <span className="mt-4 inline-flex items-center text-sm font-medium text-red-600 group-hover:underline dark:text-red-500 dark:group-hover:text-red-400">

@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "GeneralContractor",
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,

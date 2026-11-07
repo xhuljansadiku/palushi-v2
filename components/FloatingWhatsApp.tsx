@@ -1,7 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/site-config";
-import { trackEvent, TRACKING_EVENTS } from "@/lib/tracking";
+import { trackWhatsAppClick } from "@/lib/tracking";
 
 export function FloatingWhatsApp() {
   return (
@@ -10,7 +10,7 @@ export function FloatingWhatsApp() {
         href={siteConfig.social.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackEvent(TRACKING_EVENTS.WHATSAPP_CLICK)}
+        onClick={() => trackWhatsAppClick("floating")}
         aria-label="Chat with us on WhatsApp"
         className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-110 hover:bg-[#20bd5a] focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
       >

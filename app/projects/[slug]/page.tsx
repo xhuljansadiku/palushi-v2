@@ -99,7 +99,7 @@ export default async function ProjectDetailPage({
           )}
           <p className="text-lg text-neutral-600 dark:text-neutral-400">{project.description}</p>
 
-          {beforeImages.length > 0 && afterImages.length > 0 && (
+          {!project.hideComparison && beforeImages.length > 0 && afterImages.length > 0 && (
             <div className="mt-16">
               <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Before & After</h2>
               <p className="mt-1 text-neutral-600 dark:text-neutral-400">
@@ -121,7 +121,7 @@ export default async function ProjectDetailPage({
           )}
 
           {afterImages.length > 0 && (
-            <ProjectImageGrid images={afterImages} title="After" />
+            <ProjectImageGrid images={afterImages} title={beforeImages.length > 0 ? "After" : "Gallery"} />
           )}
 
           {project.videos && project.videos.length > 0 && (
@@ -137,7 +137,7 @@ export default async function ProjectDetailPage({
                       src={video.src}
                       controls
                       playsInline
-                      className="aspect-video w-full object-cover"
+                      className={`${video.portrait ? "aspect-[9/16]" : "aspect-video"} w-full bg-black object-cover`}
                       preload="metadata"
                     >
                       Your browser does not support the video tag.

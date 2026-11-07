@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { canTrackMarketing } from "@/lib/consent";
 import { siteConfig } from "@/lib/site-config";
+import { LEAD_PENDING_KEY } from "@/lib/tracking";
 
 export default function ThankYouPage() {
   const searchParams = useSearchParams();
@@ -14,8 +15,9 @@ export default function ThankYouPage() {
   const isQuote = from === "quote";
 
   useEffect(() => {
-    if (!isQuote || hasFiredConversion.current) return;
-
+    if (hasFiredConversion.current) return;
+    if (sessionStorage.getItem(LEAD_PENDING_KEY) !== "1") return;
+    sessionStorage.removeItem(LEAD_PENDING_KEY);
     hasFiredConversion.current = true;
 
     if (typeof window !== "undefined" && canTrackMarketing() && window.gtag) {
@@ -23,7 +25,7 @@ export default function ThankYouPage() {
         send_to: siteConfig.googleAds.quoteConversionId,
       });
     }
-  }, [isQuote]);
+  }, []);
 
   return (
     <>

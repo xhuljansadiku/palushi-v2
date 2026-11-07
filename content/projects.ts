@@ -7,6 +7,8 @@ export interface ProjectImage {
 export interface ProjectVideo {
   src: string;
   label?: string;
+  /** Phone videos shot vertically (9:16) */
+  portrait?: boolean;
 }
 
 export interface Project {
@@ -20,9 +22,49 @@ export interface Project {
   featured: boolean;
   serviceSlug?: string;
   location?: string;
+  /** Set when before and after photos are not from the same angle: no comparison slider */
+  hideComparison?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    slug: "luxury-townhouse-renovation",
+    title: "Luxury Townhouse Renovation",
+    category: "Full Renovation",
+    shortDescription:
+      "Complete renovation of a multi-storey townhouse, from the lower ground floor to the bedrooms.",
+    description:
+      "A full top-to-bottom renovation of a London townhouse. The work included an open-plan kitchen with a marble island, herringbone flooring through the lower ground floor and hallway, new staircases, a marble-clad shower room, panelled doors, fitted wardrobes and full redecoration of every bedroom.",
+    featured: true,
+    serviceSlug: "full-renovations",
+    images: [
+      { src: "/images/projects/townhouse-renovation/kitchen-marble-island.jpeg", alt: "Open-plan kitchen with marble island and garden doors", type: "after" },
+      { src: "/images/projects/townhouse-renovation/kitchen-dining-open-plan.jpeg", alt: "Open-plan kitchen and dining area", type: "after" },
+      { src: "/images/projects/townhouse-renovation/kitchen-shelving-dining.jpeg", alt: "Kitchen with open shelving and dining table", type: "after" },
+      { src: "/images/projects/townhouse-renovation/kitchen-ovens-island.jpeg", alt: "Kitchen with built-in ovens and marble island", type: "after" },
+      { src: "/images/projects/townhouse-renovation/lower-ground-garden-doors.jpeg", alt: "Lower ground floor with herringbone floor and garden doors", type: "after" },
+      { src: "/images/projects/townhouse-renovation/lower-ground-herringbone.jpeg", alt: "Lower ground floor with herringbone flooring and wall lights", type: "after" },
+      { src: "/images/projects/townhouse-renovation/lower-ground-living.jpeg", alt: "Lower ground floor living space", type: "after" },
+      { src: "/images/projects/townhouse-renovation/hallway-herringbone.jpeg", alt: "Hallway with herringbone floor and painted staircase", type: "after" },
+      { src: "/images/projects/townhouse-renovation/staircase-oak-treads.jpeg", alt: "Staircase with oak treads and black handrail", type: "after" },
+      { src: "/images/projects/townhouse-renovation/staircase-carpet.jpeg", alt: "Carpeted staircase with painted balustrade", type: "after" },
+      { src: "/images/projects/townhouse-renovation/landing-panelled-doors.jpeg", alt: "Landing with black panelled doors", type: "after" },
+      { src: "/images/projects/townhouse-renovation/landing-window.jpeg", alt: "Upper landing with balustrade", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bathroom-marble-shower.jpeg", alt: "Marble-clad shower room", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bedroom-sash-windows.jpeg", alt: "Bedroom with sash windows", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bedroom-fitted-wardrobes.jpeg", alt: "Bedroom with fitted wardrobes", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bedroom-1.jpeg", alt: "Renovated bedroom", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bedroom-2.jpeg", alt: "Renovated bedroom with fitted wardrobes", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bedroom-3.jpeg", alt: "Renovated bedroom", type: "after" },
+      { src: "/images/projects/townhouse-renovation/bedroom-4.jpeg", alt: "Renovated bedroom", type: "after" },
+      { src: "/images/projects/townhouse-renovation/study-window-desk.jpeg", alt: "Study with built-in desk", type: "after" },
+    ],
+    videos: [
+      { src: "/images/projects/townhouse-renovation/walkthrough-front-door.mp4", label: "Walkthrough from the front door", portrait: true },
+      { src: "/images/projects/townhouse-renovation/walkthrough-hallway.mp4", label: "Hallway and staircase", portrait: true },
+      { src: "/images/projects/townhouse-renovation/walkthrough-kitchen.mp4", label: "Through to the kitchen", portrait: true },
+    ],
+  },
   {
     slug: "bathroom-refurbishment",
     title: "Bathroom Refurbishment",
@@ -38,6 +80,11 @@ export const projects: Project[] = [
       { src: "/images/gallery/interior/project-1/before/image1.JPG", alt: "Bathroom before", type: "before" },
       { src: "/images/gallery/interior/project-1/before/image2.JPG", alt: "Bathroom before", type: "before" },
       { src: "/images/gallery/interior/project-1/before/image3.JPG", alt: "Bathroom before", type: "before" },
+      { src: "/images/gallery/interior/project-1/before/image4.JPG", alt: "Bathroom before refurbishment", type: "before" },
+      { src: "/images/gallery/interior/project-1/before/image5.JPG", alt: "Bathroom before refurbishment", type: "before" },
+      { src: "/images/gallery/interior/project-1/before/image6.JPG", alt: "Bathroom before refurbishment", type: "before" },
+      { src: "/images/gallery/interior/project-1/before/image7.JPG", alt: "Bathroom before refurbishment", type: "before" },
+      { src: "/images/gallery/interior/project-1/before/image8.JPG", alt: "Bathroom before refurbishment", type: "before" },
       { src: "/images/gallery/interior/project-1/after/image1.jpg", alt: "Bathroom after", type: "after" },
     ],
   },
@@ -73,10 +120,20 @@ export const projects: Project[] = [
       { src: "/images/gallery/interior/project-3/image1.jpeg", alt: "Modern house decoration", type: "after" },
       { src: "/images/gallery/interior/project-3/image6.jpeg", alt: "Modern house decoration", type: "after" },
       { src: "/images/gallery/interior/project-3/image7.jpeg", alt: "Modern house decoration", type: "after" },
+      { src: "/images/gallery/interior/project-3/image2.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image3.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image4.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image5.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image8.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image9.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image10.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image11.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
+      { src: "/images/gallery/interior/project-3/image12.jpeg", alt: "Modern house decoration, Streatham", type: "after" },
     ],
   },
   {
     slug: "full-home-renovation-london",
+    hideComparison: true,
     title: "House renovation, Pinner HA5",
     category: "Full Renovation",
     shortDescription:
@@ -87,12 +144,13 @@ export const projects: Project[] = [
     featured: true,
     serviceSlug: "full-renovations",
     images: [
+      { src: "/images/gallery/1/before-hallway.jpg", alt: "Hallway stripped back to joists and floorboards during renovation", type: "before" },
+      { src: "/images/gallery/1/6.jpeg", alt: "Finished hallway with herringbone parquet floor", type: "after" },
       { src: "/images/gallery/1/1.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/2.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/3.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/4.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/5.jpeg", alt: "Full home renovation", type: "after" },
-      { src: "/images/gallery/1/6.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/7.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/8.jpeg", alt: "Full home renovation", type: "after" },
       { src: "/images/gallery/1/9.jpeg", alt: "Full home renovation", type: "after" },
@@ -161,10 +219,20 @@ export const projects: Project[] = [
     featured: true,
     serviceSlug: "roofing",
     images: [
-      { src: "/images/gallery/exterior/project1/before/image1.jpg", alt: "Chimney before", type: "before" },
-      { src: "/images/gallery/exterior/project1/before/image2.jpg", alt: "Chimney before", type: "before" },
-      { src: "/images/gallery/exterior/project1/after/image1.jpg", alt: "Chimney after", type: "after" },
-      { src: "/images/gallery/exterior/project1/after/image2.jpg", alt: "Chimney after", type: "after" },
+      { src: "/images/gallery/exterior/project1/before/image2.jpg", alt: "Crumbling chimney stack before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image1.jpg", alt: "Chimney before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image3.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image4.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image5.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image6.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image7.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image8.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image9.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/before/image10.jpg", alt: "Chimney and brickwork before restoration", type: "before" },
+      { src: "/images/gallery/exterior/project1/after/image2.jpg", alt: "Rebuilt chimney stack after restoration", type: "after" },
+      { src: "/images/gallery/exterior/project1/after/image1.jpg", alt: "Chimney after restoration", type: "after" },
+      { src: "/images/gallery/exterior/project1/after/image3.jpg", alt: "Chimney after restoration", type: "after" },
+      { src: "/images/gallery/exterior/project1/after/image4.jpg", alt: "Chimney after restoration", type: "after" },
     ],
   },
 ];

@@ -14,7 +14,7 @@ export function ScrollToTop() {
   if (!visible) return null;
 
   return (
-    <span className="group fixed bottom-20 right-4 z-40 inline-block lg:bottom-24 lg:right-6">
+    <span className="group fixed bottom-24 right-6 z-40 hidden lg:inline-block">
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

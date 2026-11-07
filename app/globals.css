@@ -26,41 +26,35 @@
   --accent-hover: #dc2626;
 }
 
-/*
-:root {
-  --background: #f8f7f4;    warm off white 
-  --foreground: #1a1a1a;
-  --accent: #dc2626;
-  --accent-hover: #b91c1c;
-}
-
-:root {
-  --background: #f3f4f6;    soft light gray 
-  --foreground: #111827;
-  --accent: #dc2626;
-  --accent-hover: #b91c1c;
-}
-
-:root {
-  --background: #f5f1ea;   soft beige 
-  --foreground: #1c1917;
-  --accent: #dc2626;
-  --accent-hover: #b91c1c;
-}
-
-:root {
-  --background: #f1f5f9;    cool gray 
-  --foreground: #0f172a;
-  --accent: #dc2626;
-  --accent-hover: #b91c1c;
-}
-
-*/
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+}
+
+/* In a layer so Tailwind utilities (e.g. text-balance) can still override */
+@layer base {
+  h1,
+  h2,
+  h3,
+  dt {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    /* Even line lengths, no lonely last word in headings */
+    text-wrap: balance;
+  }
+
+  /* Avoid single-word last lines in running text */
+  p,
+  li,
+  blockquote,
+  figcaption,
+  dd {
+    text-wrap: pretty;
+  }
 }
 
 html {

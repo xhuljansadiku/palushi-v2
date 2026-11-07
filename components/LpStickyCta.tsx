@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
 import { ClickToCallLink } from "./ClickToCallLink";
 
 export function LpStickyCta() {

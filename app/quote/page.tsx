@@ -128,6 +128,7 @@ export default function QuotePage() {
               action={siteConfig.formSubmit.actionEndpoint}
               method="POST"
               onSubmit={handleSubmit}
+              noValidate
               className="space-y-6"
             >
               <input
@@ -140,6 +141,7 @@ export default function QuotePage() {
                 name="_captcha"
                 value="true"
               />
+              <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
               <input
                 type="hidden"
                 name="_template"
@@ -222,7 +224,7 @@ export default function QuotePage() {
                   }`}
                   placeholder="Your name"
                 />
-                {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                {errors.name && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
               </div>
 
               <div>
@@ -244,7 +246,7 @@ export default function QuotePage() {
                   }`}
                   placeholder="Your phone number"
                 />
-                {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+                {errors.phone && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>}
               </div>
 
               <div>
@@ -267,7 +269,7 @@ export default function QuotePage() {
                   }`}
                   placeholder="Your email"
                 />
-                {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+                {errors.email && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
               </div>
 
               <div>
@@ -289,7 +291,7 @@ export default function QuotePage() {
                   }`}
                   placeholder="Your postcode"
                 />
-                {errors.postcode && <p className="mt-1 text-sm text-red-600">{errors.postcode}</p>}
+                {errors.postcode && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.postcode}</p>}
               </div>
 
               <div>
@@ -311,7 +313,7 @@ export default function QuotePage() {
                   }`}
                   placeholder="Tell us about your project, any specific requirements, or questions..."
                 />
-                {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
+                {errors.message && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
               </div>
 
               {status === "error" && (

@@ -16,11 +16,8 @@ const body = "mt-4 leading-relaxed text-neutral-600 dark:text-neutral-300";
 const tableCell = "border border-neutral-200 px-3 py-2 align-top dark:border-neutral-700";
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = new Date().toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  // Update this date whenever the policy text changes
+  const lastUpdated = "5 November 2026";
 
   return (
     <>
@@ -113,6 +110,11 @@ export default function PrivacyPolicyPage() {
                     {siteConfig.email}
                   </a>
                   . Do not include special-category or unnecessary sensitive information in web forms.
+                </p>
+                <p className={body}>
+                  If you contact us via WhatsApp, your messages and phone number are processed by WhatsApp (Meta
+                  Platforms Ireland Ltd) under its own privacy policy, and we use them only to respond to your
+                  enquiry.
                 </p>
               </section>
 

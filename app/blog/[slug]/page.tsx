@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/site-config";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SanitizedHtml } from "@/components/SanitizedHtml";
 import type { Metadata } from "next";
+import { Sentences } from "@/components/Sentences";
 
 export async function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -162,7 +163,7 @@ export default async function BlogPostPage({
               Ready to start your project?
             </h3>
             <p className="mt-2 max-w-2xl text-sm leading-7 text-neutral-600 dark:text-neutral-400">
-              Get a free quote. We serve Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London.
+              <Sentences text="Get a free quote. We serve Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London." />
             </p>
             <Link
               href="/contact"

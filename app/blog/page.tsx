@@ -3,6 +3,7 @@ import Image from "next/image";
 import { blogPosts } from "@/content/blog";
 import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
+import { Sentences } from "@/components/Sentences";
 
 export const metadata: Metadata = {
   title: "Blog | Construction & Renovation Tips",
@@ -135,8 +136,7 @@ export default function BlogPage() {
               Ready to Start Your Project?
             </h2>
             <p className="mx-auto mt-2 max-w-md text-neutral-600 dark:text-neutral-400">
-              Get a free, no-obligation quote. We serve Westminster, Kensington & Chelsea,
-              Lambeth, Southwark, Wandsworth, and City of London.
+              <Sentences text="Get a free, no-obligation quote. We serve Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London." />
             </p>
             <Link
               href="/contact"

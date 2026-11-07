@@ -18,7 +18,7 @@ export const services: Service[] = [
       "Transform your attic into a functional living space. We design and build loft conversions that add value and extra rooms to your home.",
     description:
       `Whether you're looking to create more space in your home, add an extra bedroom, home office, or playroom, our team of professionals will work closely with you to design and execute loft conversions that exceed expectations. We handle everything from initial design to completion, ensuring your attic becomes a beautiful, functional living area. With over ${getYearsExperience()} years of experience across London, we bring your vision to life.`,
-    image: "/images/gallery/interior/project-2/done/Image1.jpeg",
+    image: "/images/gallery/interior/project-3/image5.jpeg",
     metaDescription:
       "Professional loft conversions in London. Transform your attic into extra living space. Design, build, and finish. Free quote.",
     faqs: [
@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Complete home transformations from painting and decorating to structural changes. We handle every aspect of your renovation.",
     description:
       "From vibrant wall makeovers to luxurious bathroom designs, and from culinary sanctuaries in the kitchen to breathing new life into every floorboard, our full renovation service covers the entire spectrum of home transformation. We coordinate painting, decorating, tiling, flooring, electrical, and plumbing work, ensuring a seamless project from start to finish. Whether it's a refresh or a complete overhaul, we deliver excellence.",
-    image: "/images/gallery/2/15.jpeg",
+    image: "/images/projects/townhouse-renovation/hallway-herringbone.jpeg",
     metaDescription:
       "Full home renovations in London. Painting, decorating, tiling, flooring, electrical, plumbing. Complete transformations.",
     faqs: [
@@ -127,12 +127,12 @@ export const services: Service[] = [
     slug: "kitchen-bathroom-refurbishments",
     title: "Kitchen & Bathroom Refurbishments",
     shortDescription:
-      "Bathroom tiling, kitchen remodeling, siliconing, and refurbishment. Create the kitchen or bathroom you've always wanted.",
+      "Bathroom tiling, kitchen refitting, siliconing, and refurbishment. Create the kitchen or bathroom you've always wanted.",
     description:
-      "We take care of bathroom tiling and refurbishment, siliconing, flooring, kitchen remodeling, and related electrical and plumbing work. Whether it's a new project or maintenance and refreshing, we always strive for excellence. From modern minimalist designs to classic finishes, we bring your vision to life with quality craftsmanship.",
-    image: "/images/gallery/interior/project-1/after/image1.jpg",
+      "We take care of bathroom tiling and refurbishment, siliconing, flooring, kitchen refitting, and related electrical and plumbing work. Whether it's a new project or maintenance and refreshing, we always strive for excellence. From modern minimalist designs to classic finishes, we bring your vision to life with quality craftsmanship.",
+    image: "/images/projects/townhouse-renovation/kitchen-dining-open-plan.jpeg",
     metaDescription:
-      "Kitchen and bathroom refurbishments in London. Tiling, remodeling, plumbing, electrical. Quality craftsmanship.",
+      "Kitchen and bathroom refurbishments in London. Tiling, refitting, plumbing, electrical. Quality craftsmanship.",
     faqs: [
       {
         question: "Do you supply fixtures and fittings?",

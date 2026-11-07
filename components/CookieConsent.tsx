@@ -17,12 +17,15 @@ export function CookieConsent() {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
   const [marketingEnabled, setMarketingEnabled] = useState(false);
 
+  // Consent lives in localStorage, which is only readable after mount.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const preferences = getCookiePreferences();
     setAnalyticsEnabled(preferences.analytics);
     setMarketingEnabled(preferences.marketing);
     setVisible(!hasConsentDecision());
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleAcceptAll = () => {
     acceptAllCookies();
@@ -58,10 +61,16 @@ export function CookieConsent() {
     setVisible(true);
   };
 
+  useEffect(() => {
+    const open = () => openSettings();
+    window.addEventListener("open-cookie-settings", open);
+    return () => window.removeEventListener("open-cookie-settings", open);
+  });
+
   return (
     <>
       {!visible && (
-        <span className="group fixed bottom-20 left-3 z-[60] inline-block lg:bottom-6 lg:left-4">
+        <span className="group fixed bottom-6 left-4 z-[60] hidden lg:inline-block">
           <button
             type="button"
             onClick={openSettings}
@@ -117,21 +126,21 @@ export function CookieConsent() {
                 <button
                   type="button"
                   onClick={() => setShowSettings((current) => !current)}
-                  className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                  className="min-h-11 rounded-md border border-neutral-300 px-4 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-800"
                 >
                   {showSettings ? "Hide details" : "Customize"}
                 </button>
                 <button
                   type="button"
                   onClick={handleRejectAll}
-                  className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                  className="min-h-11 rounded-md bg-neutral-900 px-5 text-sm font-semibold text-white transition hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
                 >
-                  Reject optional
+                  Reject all
                 </button>
                 <button
                   type="button"
                   onClick={handleAcceptAll}
-                  className="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
+                  className="min-h-11 rounded-md bg-red-600 px-5 text-sm font-semibold text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
                 >
                   Accept all
                 </button>

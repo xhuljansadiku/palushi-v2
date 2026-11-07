@@ -1,104 +1,83 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { testimonials } from "@/content/testimonials";
 import { siteConfig } from "@/lib/site-config";
+import { btn, eyebrow, sectionLead, sectionTitle } from "@/lib/ui";
 
+/** Split the stored HTML quote into a plain-text headline + body (no innerHTML needed). */
+function parseQuote(html: string) {
+  const titleMatch = html.match(/<b>(.*?)<\/b>/i);
+  const title = titleMatch ? titleMatch[1].trim() : "";
+  const body = html
+    .replace(/<b>.*?<\/b>/gi, " ")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return { title, body };
+}
+
+function Stars() {
+  return (
+    <div className="flex gap-0.5 text-[#00b67a]" aria-label="5 out of 5 stars">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+/** Testimonials grid (kept the file name so existing imports keep working). */
 export function TestimonialsCarousel() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setActive((a) => (a + 1) % testimonials.length);
-    }, 60000);
-    return () => clearInterval(t);
-  }, []);
+  const items = testimonials.slice(0, 3);
 
   return (
     <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
-            What Our Clients Say
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
-            Trusted by homeowners across London. Read what our clients have to
-            say about working with us.
-          </p>
+          <p className={eyebrow}>Reviews</p>
+          <h2 className={`mt-3 ${sectionTitle}`}>What Our Clients Say</h2>
+          <p className={sectionLead}>Rated Excellent on Trustpilot by homeowners and landlords across London.</p>
         </div>
-        <div className="mt-12">
-          <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white p-8 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 sm:p-12">
-            {testimonials.map((t, i) => (
-              <div
-                key={t.id}
-                className={`transition-opacity duration-500 ${
-                  i === active ? "opacity-100" : "absolute inset-0 opacity-0"
-                }`}
-              >
-                <blockquote className="text-center">
-                 <p
-  className="text-lg text-neutral-700 sm:text-xl dark:text-neutral-300"
-  dangerouslySetInnerHTML={{ __html: `&ldquo;${t.quote}&rdquo;` }}
-/>
-                  <footer className="mt-6">
-                    <cite className="not-italic font-semibold text-neutral-900 dark:text-neutral-100">
-                      {t.author}
-                    </cite>
-                    {t.location && (
-                      <span className="text-neutral-500 dark:text-neutral-400">, {t.location}</span>
-                    )}
+
+        <ul className="mt-12 grid gap-6 lg:grid-cols-3" role="list">
+          {items.map((t) => {
+            const { title, body } = parseQuote(t.quote);
+            return (
+              <li key={t.id}>
+                <figure className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 text-left shadow-sm dark:border-neutral-700 dark:bg-neutral-900">
+                  <Stars />
+                  {title && (
+                    <p className="mt-4 text-balance font-display text-lg font-bold text-neutral-900 dark:text-neutral-100">{title}</p>
+                  )}
+                  <blockquote className="mt-2 flex-1 text-neutral-600 line-clamp-6 dark:text-neutral-400">
+                    <p>&ldquo;{body}&rdquo;</p>
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center justify-between gap-3 border-t border-neutral-100 pt-4 dark:border-neutral-800">
+                    <span className="font-semibold text-neutral-900 dark:text-neutral-100">{t.author}</span>
                     {t.trustpilotReviewUrl && (
-                      <span className="mt-2 block">
-                        <a
-                          href={t.trustpilotReviewUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600 hover:underline"
-                        >
-                          <span aria-hidden>★★★★★</span>
-                          Verified on Trustpilot →
-                        </a>
-                      </span>
+                      <a
+                        href={t.trustpilotReviewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium text-red-600 hover:underline dark:text-red-400"
+                      >
+                        Read on Trustpilot<span className="sr-only"> (opens in new tab)</span>
+                      </a>
                     )}
-                  </footer>
-                </blockquote>
-              </div>
-            ))}
-          </div>
-          <div
-            className="mt-6 flex justify-center gap-2"
-            role="tablist"
-            aria-label="Testimonial carousel"
-          >
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                aria-label={`View testimonial ${i + 1} of ${testimonials.length}`}
-                onClick={() => setActive(i)}
-                className={`h-2 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900 ${
-                  i === active ? "w-8 bg-red-600 dark:bg-red-500" : "w-2 bg-neutral-300 dark:bg-neutral-600"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-center">
-            <a
-              href={siteConfig.trustpilot.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-5 py-2.5 text-sm font-medium text-neutral-700 shadow-sm transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:border-red-500/50 dark:hover:bg-red-950/30 dark:hover:text-red-500"
-            >
-              <span className="text-amber-500" aria-hidden>★★★★★</span>
-              View reviews on Trustpilot
-            </a>
-          </div>
+                  </figcaption>
+                </figure>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-10 flex justify-center">
+          <a href={siteConfig.trustpilot.url} target="_blank" rel="noopener noreferrer" className={btn("secondary", "md")}>
+            See all reviews on Trustpilot
+          </a>
         </div>
       </div>
     </section>
   );
 }
-
- 

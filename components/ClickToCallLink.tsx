@@ -12,7 +12,7 @@ interface ClickToCallLinkProps {
 export function ClickToCallLink({
   children,
   className,
-  ariaLabel = `Call us: ${siteConfig.phone}`,
+  ariaLabel,
 }: ClickToCallLinkProps) {
   return (
     <a

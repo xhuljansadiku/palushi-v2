@@ -76,9 +76,12 @@ export function LpQuoteForm() {
           <p className="mt-2 text-center font-semibold text-neutral-600 dark:text-neutral-400">
             We respond within 24 hours • Limited availability this month
           </p>
-          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+          <form onSubmit={handleSubmit}
+              noValidate className="mt-6 space-y-5">
             <input type="hidden" name="_subject" value="Quote request - Palushi Brothers LP" />
             <input type="hidden" name="_captcha" value="true" />
+            {/* Honeypot: hidden from people, bots fill it and FormSubmit discards the entry */}
+            <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
             <input type="hidden" name="_template" value="table" />
 
             <div>
@@ -95,7 +98,7 @@ export function LpQuoteForm() {
                 }`}
                 placeholder="Your name"
               />
-              {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+              {errors.name && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
             </div>
 
             <div>
@@ -112,7 +115,7 @@ export function LpQuoteForm() {
                 }`}
                 placeholder="Your phone number"
               />
-              {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+              {errors.phone && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>}
             </div>
 
             <div>
@@ -130,7 +133,7 @@ export function LpQuoteForm() {
                 }`}
                 placeholder="Your email"
               />
-              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+              {errors.email && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
             </div>
 
             <div>
@@ -147,7 +150,7 @@ export function LpQuoteForm() {
                 }`}
                 placeholder="Tell us about your project"
               />
-              {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
+              {errors.message && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
             </div>
 
             {status === "error" && (

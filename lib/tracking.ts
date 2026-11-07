@@ -55,11 +55,21 @@ export function trackCallClick() {
 }
 
 /** Fire Meta Pixel Lead conversion for form submissions */
+export const LEAD_PENDING_KEY = "palushi-lead-pending";
+
 export function trackLeadConversion(formName?: string) {
+  // Lets /thank-you fire the Ads conversion exactly once, only after a real submit
+  if (typeof window !== "undefined") sessionStorage.setItem(LEAD_PENDING_KEY, "1");
   if (typeof window !== "undefined" && canTrackMarketing() && window.fbq) {
     window.fbq("track", "Lead", { content_name: formName });
   }
   trackEvent(TRACKING_EVENTS.FORM_SUBMIT, { form: formName ?? "contact" });
+  // GA4 recommended event, can be marked as a key event in GA4
+  trackEvent("generate_lead", { form: formName ?? "contact" });
+}
+
+export function trackWhatsAppClick(location: string) {
+  trackEvent(TRACKING_EVENTS.WHATSAPP_CLICK, { location });
 }
 
 export const TRACKING_EVENTS = {

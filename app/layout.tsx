@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConditionalLayout } from "@/components/ConditionalLayout";
@@ -12,10 +12,15 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+    default: "Builders in London | Loft Conversions, Extensions & Renovations | Palushi Brothers",
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -38,13 +43,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [{ url: `${siteConfig.url}/images/gallery/interior/project-2/done/Image1.jpeg`, width: 1200, height: 630, alt: siteConfig.name }],
+    images: [{ url: `${siteConfig.url}/images/projects/townhouse-renovation/kitchen-marble-island.jpeg`, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/gallery/interior/project-2/done/Image1.jpeg`],
+    images: [`${siteConfig.url}/images/projects/townhouse-renovation/kitchen-marble-island.jpeg`],
   },
   robots: {
     index: true,
@@ -65,14 +70,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-GB" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                window.gtag = function(){dataLayer.push(arguments);};
+                var gtag = window.gtag;
                 gtag("consent", "default", {
                   analytics_storage: "denied",
                   ad_storage: "denied",
@@ -92,7 +98,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-[var(--background)] text-[var(--foreground)]`}>
+      <body className={`${inter.variable} ${manrope.variable} font-sans antialiased bg-[var(--background)] text-[var(--foreground)]`}>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-red-600 focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"

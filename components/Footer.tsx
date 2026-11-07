@@ -3,6 +3,8 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { services } from "@/content/services";
 import { ClickToCallLink } from "@/components/ClickToCallLink";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
+import { IllyrianSignature } from "@/components/IllyrianSignature";
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -71,7 +73,7 @@ export function Footer() {
                 alt={siteConfig.name}
                 width={560}
                 height={180}
-                className="h-28 w-auto max-w-full object-contain sm:h-32 lg:h-[200px]"
+                className="h-20 w-auto max-w-full object-contain sm:h-24 lg:h-28"
               />
             </Link>
             <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-neutral-500 lg:mx-0 dark:text-neutral-400">
@@ -81,9 +83,9 @@ export function Footer() {
 
           {/* 2. Quick Links */}
           <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Quick Links
-            </h4>
+            </h2>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
             <ul className="mt-3 space-y-1.5">
               {quickLinks.map((link) => (
@@ -96,14 +98,17 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookieSettingsLink className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500" />
+              </li>
             </ul>
           </div>
 
           {/* 3. Services */}
           <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Services
-            </h4>
+            </h2>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
             <ul className="mt-3 space-y-1.5">
               {services.map((svc) => (
@@ -121,9 +126,9 @@ export function Footer() {
 
           {/* 4. Contact */}
           <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Contact
-            </h4>
+            </h2>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
             <ul className="mt-3 space-y-3 text-xs">
               <li>
@@ -149,7 +154,7 @@ export function Footer() {
                   className="flex items-center justify-center gap-2 transition hover:text-red-600 lg:justify-start dark:hover:text-red-500"
                 >
                   <MailIcon className="h-4 w-4 shrink-0 text-red-500/80" />
-                  {siteConfig.email}
+                  <span className="min-w-0 [overflow-wrap:anywhere]">{siteConfig.email}</span>
                 </a>
               </li>
               <li>
@@ -171,9 +176,9 @@ export function Footer() {
 
           {/* 5. Legal */}
           <div className="lg:pl-8">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
               Legal
-            </h4>
+            </h2>
             <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
             <ul className="mt-3 space-y-1.5">
               {legalLinks.map((link) => (
@@ -196,18 +201,6 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <a
-              href="https://illyrianpixel.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400"
-            >
-              <span>Designed &amp; Developed by</span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-red-500/60 px-2.5 py-1 font-semibold uppercase tracking-wider text-red-600 transition group-hover:border-red-500 group-hover:bg-red-500/10 dark:text-red-500">
-                <span className="h-2 w-2 shrink-0 rotate-45 bg-red-600 dark:bg-red-500" aria-hidden />
-                Illyrian Pixel
-              </span>
-            </a>
             <div className="flex items-center gap-3">
               <a
                 href={siteConfig.social.whatsapp}
@@ -234,6 +227,7 @@ export function Footer() {
             </div>
           </div>
         </div>
+        <IllyrianSignature />
       </div>
     </footer>
   );

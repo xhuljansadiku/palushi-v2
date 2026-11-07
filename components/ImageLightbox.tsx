@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface ImageLightboxProps {
@@ -11,6 +11,19 @@ interface ImageLightboxProps {
 
 export function ImageLightbox({ images, initialIndex = 0, onClose }: ImageLightboxProps) {
   const [index, setIndex] = useState(initialIndex);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // Move focus into the dialog, lock page scroll, restore focus on close
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = overflow;
+      previous?.focus();
+    };
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -31,9 +44,10 @@ export function ImageLightbox({ images, initialIndex = 0, onClose }: ImageLightb
       aria-label="Image gallery"
     >
       <button
+        ref={closeRef}
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 rounded bg-white/10 p-2 text-white hover:bg-white/20"
+        className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         aria-label="Close"
       >
         <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,12 +66,13 @@ export function ImageLightbox({ images, initialIndex = 0, onClose }: ImageLightb
           className="max-h-[85vh] w-auto object-contain"
           sizes="90vw"
         />
+        <p className="sr-only" aria-live="polite">Image {index + 1} of {images.length}</p>
         {images.length > 1 && (
           <>
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); setIndex((i) => (i - 1 + images.length) % images.length); }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 rounded bg-white/20 p-2 text-white hover:bg-white/30"
+              className="absolute left-0 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-lg bg-white/20 text-white hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-label="Previous"
             >
               <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +82,7 @@ export function ImageLightbox({ images, initialIndex = 0, onClose }: ImageLightb
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); setIndex((i) => (i + 1) % images.length); }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 rounded bg-white/20 p-2 text-white hover:bg-white/30"
+              className="absolute right-0 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-lg bg-white/20 text-white hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-label="Next"
             >
               <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

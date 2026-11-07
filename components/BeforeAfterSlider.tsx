@@ -8,6 +8,10 @@ interface BeforeAfterSliderProps {
   afterSrc: string;
   beforeAlt: string;
   afterAlt: string;
+  /** Tailwind aspect class, e.g. "aspect-[3/4]" for portrait photos */
+  aspectClass?: string;
+  /** Where the divider starts, 0-100 (share of the before image shown) */
+  initialPosition?: number;
 }
 
 export function BeforeAfterSlider({
@@ -15,8 +19,10 @@ export function BeforeAfterSlider({
   afterSrc,
   beforeAlt,
   afterAlt,
+  aspectClass = "aspect-[4/3]",
+  initialPosition = 50,
 }: BeforeAfterSliderProps) {
-  const [position, setPosition] = useState(50);
+  const [position, setPosition] = useState(initialPosition);
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -24,24 +30,16 @@ export function BeforeAfterSlider({
     setPosition(Math.max(0, Math.min(100, x)));
   };
 
-  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
-    setPosition(Math.max(0, Math.min(100, x)));
-  };
 
   return (
     <div
-      className="relative aspect-[4/3] cursor-col-resize overflow-hidden rounded-lg select-none touch-none"
+      className={`group relative ${aspectClass} overflow-hidden rounded-lg select-none`}
       onMouseMove={handleMove}
-      onTouchMove={handleTouch}
-      role="img"
-      aria-label={`Before and after comparison. Slider at ${Math.round(position)}%`}
     >
       <div className="absolute inset-0">
         <Image
-          src={beforeSrc}
-          alt={beforeAlt}
+          src={afterSrc}
+          alt={afterAlt}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 672px"
@@ -52,8 +50,8 @@ export function BeforeAfterSlider({
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         <Image
-          src={afterSrc}
-          alt={afterAlt}
+          src={beforeSrc}
+          alt={beforeAlt}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 672px"
@@ -85,6 +83,19 @@ export function BeforeAfterSlider({
       <div className="absolute bottom-2 right-2 rounded bg-black/60 px-2 py-1 text-xs font-medium text-white">
         After
       </div>
+      {/* Native range input: drag, touch and keyboard (arrow keys) support for free */}
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={1}
+        value={Math.round(position)}
+        onChange={(e) => setPosition(Number(e.target.value))}
+        aria-label="Drag to compare before and after"
+        aria-valuetext={`${Math.round(position)}% before image shown`}
+        className="absolute inset-0 h-full w-full cursor-col-resize opacity-0"
+      />
+      <span className="pointer-events-none absolute inset-0 rounded-lg ring-red-600 ring-offset-2 group-has-[input:focus-visible]:ring-2" aria-hidden />
     </div>
   );
 }

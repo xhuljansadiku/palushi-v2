@@ -12,6 +12,7 @@ import {
 } from "@/lib/form-validation";
 import { trackLeadConversion } from "@/lib/tracking";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { Sentences } from "@/components/Sentences";
 
 export default function ContactPage() {
   const router = useRouter();
@@ -79,8 +80,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-300">
-            Get in touch for a free quote. We&apos;re here to help bring your
-            vision to life.
+            <Sentences text="Get in touch for a free quote. We're here to help bring your vision to life." />
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function ContactPage() {
       <section className="py-16 sm:py-24 dark:bg-neutral-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-3">
-            <div className="flex flex-col items-center lg:col-span-2 lg:items-stretch">
+            <div className="flex flex-col lg:col-span-2">
               <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Get in Touch</h2>
               <p className="mt-2 text-neutral-600 dark:text-neutral-400">
                 Just submit your details and we&apos;ll be in touch shortly.
@@ -98,6 +98,7 @@ export default function ContactPage() {
                 action={siteConfig.formSubmit.actionEndpoint}
                 method="POST"
                 onSubmit={handleSubmit}
+              noValidate
                 className="mx-auto mt-8 max-w-md space-y-6 lg:mx-0 lg:max-w-none"
               >
                 <input
@@ -110,6 +111,7 @@ export default function ContactPage() {
                   name="_captcha"
                   value="true"
                 />
+                <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
                 <input
                   type="hidden"
                   name="_template"
@@ -137,7 +139,7 @@ export default function ContactPage() {
                       className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.name ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                       placeholder="Your name"
                     />
-                    {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                    {errors.name && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                   </div>
                   <div>
                     <label
@@ -154,7 +156,7 @@ export default function ContactPage() {
                       className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.phone ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                       placeholder="Your phone number"
                     />
-                    {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+                    {errors.phone && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>}
                   </div>
                 </div>
 
@@ -174,7 +176,7 @@ export default function ContactPage() {
                       className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.email ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                       placeholder="Your email"
                     />
-                    {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+                    {errors.email && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
                   </div>
                   <div>
                     <label
@@ -196,7 +198,7 @@ export default function ContactPage() {
                       placeholder="Your postcode"
                     />
                     {errors.postcode && (
-                      <p className="mt-1 text-sm text-red-600">{errors.postcode}</p>
+                      <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.postcode}</p>
                     )}
                   </div>
                 </div>
@@ -216,7 +218,7 @@ export default function ContactPage() {
                   className={`mt-2 block w-full rounded-md border bg-white px-4 py-3 shadow-sm focus:ring-red-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500 ${errors.message ? "border-red-500" : "border-neutral-300 focus:border-red-600 dark:border-neutral-600 dark:focus:border-red-500"}`}
                   placeholder="Tell us about your project"
                 />
-                {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
+                {errors.message && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
                 </div>
 
                 {status === "error" && (
@@ -234,14 +236,14 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="rounded-md bg-red-600 px-8 py-4 text-base font-semibold text-white transition hover:bg-red-700"
+                  className="w-full rounded-lg bg-red-600 px-8 py-4 text-base font-semibold text-white transition hover:bg-red-700 sm:w-auto"
                 >
                   Send Message
                 </button>
               </form>
             </div>
 
-            <div className="flex flex-col items-center space-y-8 lg:items-stretch">
+            <div className="flex flex-col space-y-8">
               <div>
                 <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">Address</h3>
                 <a

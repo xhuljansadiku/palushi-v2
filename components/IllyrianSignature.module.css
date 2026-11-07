@@ -1,0 +1,175 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 24px);
+  padding: 28px 0 22px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+}
+.lineLeft {
+  background: linear-gradient(90deg, transparent, rgb(201 161 90 / 0.45));
+}
+.lineRight {
+  background: linear-gradient(90deg, rgb(201 161 90 / 0.45), transparent);
+}
+
+@media (max-width: 639px) {
+  .line {
+    display: none;
+  }
+}
+
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px 10px 10px;
+  border-radius: 999px;
+  border: 1px solid rgb(201 161 90 / 0.4);
+  /* Own dark surface so the gold reads on light and dark footers alike */
+  background:
+    linear-gradient(135deg, rgb(234 206 113 / 0.1), rgb(176 136 58 / 0.03)),
+    linear-gradient(135deg, #1a1610, #0e0d0c);
+  box-shadow: inset 0 1px 0 rgb(255 240 200 / 0.08);
+  overflow: hidden;
+  text-decoration: none;
+  transition:
+    border-color 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Light sweep across the pill */
+.pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgb(255 236 170 / 0.18) 50%, transparent 65%);
+  transform: translateX(-130%);
+  animation: ipSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.pill:hover {
+  border-color: #eace71;
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 5px rgb(201 161 90 / 0.08),
+    0 16px 36px -14px rgb(201 161 90 / 0.55);
+}
+
+.pill:focus-visible {
+  outline: 2px solid #c9a15a;
+  outline-offset: 4px;
+}
+
+.medallion {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #2a2318, #0e0d0c);
+  border: 1px solid rgb(234 206 113 / 0.55);
+  box-shadow: 0 0 0 4px rgb(201 161 90 / 0.08);
+}
+
+.eagle {
+  width: 26px;
+  height: auto;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.pill:hover .eagle {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.kicker {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8172;
+}
+
+.name {
+  font-size: 20px;
+  line-height: 1;
+  background: linear-gradient(100deg, #ab8339 0%, #eace71 40%, #fff3c4 50%, #eace71 60%, #ab8339 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ipShimmer 6s ease-in-out infinite;
+}
+
+.illyrian {
+  font-family: var(--font-anton), "Anton", Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pixel {
+  font-family: var(--font-instrument-serif), "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 1.1em;
+  margin-left: 0.2em;
+}
+
+.arrow {
+  width: 15px;
+  height: 15px;
+  color: #c9a15a;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.pill:hover .arrow {
+  transform: translateX(4px);
+}
+
+@keyframes ipShimmer {
+  0%,
+  55% {
+    background-position: 100% 0;
+  }
+  85%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@keyframes ipSweep {
+  0%,
+  55% {
+    transform: translateX(-130%);
+  }
+  85%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    animation: none;
+    background-position: 50% 0;
+  }
+  .pill::after {
+    animation: none;
+    display: none;
+  }
+}

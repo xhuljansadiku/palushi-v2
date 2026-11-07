@@ -15,7 +15,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={cycleTheme}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-600 transition-all duration-300 hover:bg-neutral-50 hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100 dark:focus-visible:ring-offset-neutral-950"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-600 transition-all duration-300 hover:bg-neutral-50 hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
       aria-label={
         theme === "system"
           ? `Theme: System (${resolvedTheme})`

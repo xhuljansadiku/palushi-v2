@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { btn } from "@/lib/ui";
 import { siteConfig, getYearsExperience } from "@/lib/site-config";
 import { CTA } from "@/components/CTA";
 import type { Metadata } from "next";
@@ -42,41 +42,28 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-neutral-100">
                 Our Story
               </h2>
-              <p className="mt-6 text-neutral-600 dark:text-neutral-300">
-                For over {getYearsExperience()} years, we&apos;ve been the creative force behind
-                countless homes across London, turning every room into a canvas
-                of inspiration. More than just painters and remodelers,
-                we&apos;re architects of dreams, curators of comfort, and
-                creators of atmospheres.
+              <p className="mt-6 max-w-2xl text-lg text-neutral-700 dark:text-neutral-300">
+                {siteConfig.name} is a family-run building company based in Norwood, South London.
+                Since {siteConfig.foundedYear} we&apos;ve completed {siteConfig.stats.projectsCompleted} projects
+                for homeowners, landlords and property managers across the capital.
               </p>
-              <p className="mt-4 text-neutral-600 dark:text-neutral-300">
-                Our services span the entire spectrum of home transformation, from
-                vibrant wall makeovers to luxurious bathroom designs, and from
-                culinary sanctuaries in the kitchen to breathing new life into
-                every floorboard. With over {getYearsExperience()} years of dedication, we&apos;ve
-                left our mark in every corner of London, making dreams a reality.
+              <p className="mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">
+                We handle loft conversions, house extensions, full renovations, roofing and kitchen &amp;
+                bathroom refurbishments, from the first site visit and written quote through to the final
+                finish. Because our own team does the work, you deal with the same people from start to end,
+                and the quality stays consistent.
               </p>
-              <p className="mt-4 text-neutral-600 dark:text-neutral-300">
-                As you explore our portfolio, witness the stories of
-                metamorphosis, a blend of innovative design and masterful
-                execution. Thank you for considering {siteConfig.name} as your
-                partner in crafting elevated living experiences. Join us in
-                transforming houses into homes across Westminster, Kensington & Chelsea,
-                Lambeth, Southwark, Wandsworth, and City of London. Your journey to exceptional living begins
-                here.
+              <p className="mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">
+                Most of our work comes from repeat clients and recommendations. We keep to agreed
+                timelines, give clear itemised quotes, and leave every site clean and tidy. We work across
+                Westminster, Kensington &amp; Chelsea, Lambeth, Southwark, Wandsworth and the City of London.
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-                <Link
-                  href="/projects"
-                  className="inline-block rounded-md bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-500"
-                >
+              <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+                <Link href="/projects" className={btn("primary", "md")}>
                   View our projects
                 </Link>
-                <Link
-                  href="/contact"
-                  className="inline-block rounded-md border-2 border-red-600 bg-transparent px-6 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-600 hover:text-white dark:border-red-500 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white"
-                >
-                  Get in touch
+                <Link href="/quote" className={btn("secondary", "md")}>
+                  Get a free quote
                 </Link>
               </div>
             </div>

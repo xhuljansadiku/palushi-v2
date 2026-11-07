@@ -1,8 +1,8 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
-import { getCookiePreferences, type CookiePreferences } from "@/lib/consent";
+import { useSyncExternalStore } from "react";
+import { getCookiePreferences } from "@/lib/consent";
 import { siteConfig } from "@/lib/site-config";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-HB6455XZT1";
@@ -10,79 +10,55 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || "wg3zf0rzu0";
 
+function subscribe(cb: () => void) {
+  window.addEventListener("cookie-consent-updated", cb);
+  return () => window.removeEventListener("cookie-consent-updated", cb);
+}
+
+/** Snapshot as a short string so React can compare it cheaply. "a" = analytics, "m" = marketing */
+function getSnapshot() {
+  const p = getCookiePreferences();
+  if (!p.decisionMade) return "";
+  return `${p.analytics ? "a" : ""}${p.marketing ? "m" : ""}`;
+}
+
 export function TrackingScripts() {
-  const [preferences, setPreferences] = useState<CookiePreferences | null>(null);
+  const consent = useSyncExternalStore(subscribe, getSnapshot, () => "");
+  const analyticsEnabled = consent.includes("a");
+  const marketingEnabled = consent.includes("m");
 
-  useEffect(() => {
-    setPreferences(getCookiePreferences());
-    const handler = () => setPreferences(getCookiePreferences());
-    window.addEventListener("cookie-consent-updated", handler);
-    return () => window.removeEventListener("cookie-consent-updated", handler);
-  }, []);
-
-  const analyticsEnabled = Boolean(preferences?.decisionMade && preferences.analytics);
-  const marketingEnabled = Boolean(preferences?.decisionMade && preferences.marketing);
+  // A single gtag.js load serves both GA4 and Google Ads. `window.gtag` and the
+  // default consent state are defined inline in app/layout.tsx.
+  const gtagLoaderId = analyticsEnabled ? GA_ID : marketingEnabled ? siteConfig.googleAds.id : null;
 
   return (
     <>
-      {analyticsEnabled && GA_ID && (
+      {gtagLoaderId && (
         <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ga4" strategy="afterInteractive">
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gtagLoaderId}`} strategy="afterInteractive" />
+          <Script id="gtag-config" strategy="afterInteractive">
             {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
               gtag("consent", "update", {
-                analytics_storage: "granted",
-                ad_storage: "denied",
-                ad_user_data: "denied",
-                ad_personalization: "denied",
-                functionality_storage: "granted",
-                security_storage: "granted"
+                analytics_storage: "${analyticsEnabled ? "granted" : "denied"}",
+                ad_storage: "${marketingEnabled ? "granted" : "denied"}",
+                ad_user_data: "${marketingEnabled ? "granted" : "denied"}",
+                ad_personalization: "${marketingEnabled ? "granted" : "denied"}"
               });
               gtag("js", new Date());
-              gtag("config", "${GA_ID}");
+              ${analyticsEnabled ? `gtag("config", "${GA_ID}");` : ""}
+              ${marketingEnabled ? `gtag("config", "${siteConfig.googleAds.id}");` : ""}
             `}
           </Script>
         </>
       )}
       {analyticsEnabled && GTM_ID && (
         <Script id="gtm" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `}
+          })(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
-      )}
-      {marketingEnabled && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAds.id}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-ads" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag("consent", "update", {
-                ad_storage: "granted",
-                ad_user_data: "granted",
-                ad_personalization: "granted",
-                functionality_storage: "granted",
-                security_storage: "granted"
-              });
-              gtag("js", new Date());
-              gtag("config", "${siteConfig.googleAds.id}");
-            `}
-          </Script>
-        </>
       )}
       {marketingEnabled && META_PIXEL_ID && (
         <Script id="meta-pixel" strategy="afterInteractive">
@@ -98,7 +74,7 @@ export function TrackingScripts() {
         </Script>
       )}
       {analyticsEnabled && CLARITY_ID && (
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

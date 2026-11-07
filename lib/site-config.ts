@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Palushi Brothers Construction Ltd",
-  tagline: "London's Premier Space Transformators",
+  tagline: "Transforming London Homes Since 2012",
   description:
     "Construction and renovation services across London. Loft conversions, house extensions, full renovations, roofing, and kitchen & bathroom refurbishments. Since 2012.",
   url: "https://www.palushibrothers.co.uk",
@@ -53,7 +53,7 @@ export const siteConfig = {
   },
   /** Hero images - real completed project photos */
   heroImages: [
-    "/images/gallery/interior/project-2/done/Image1.jpeg",
+    "/images/projects/townhouse-renovation/kitchen-marble-island.jpeg",
     "/images/gallery/interior/project-2/done/Image2.jpeg",
     "/images/gallery/interior/project-2/done/Image3.jpeg",
   ],
