@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { getPostBySlug, getAllPostSlugs } from "@/content/blog";
+import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from "@/content/blog";
+import { services } from "@/content/services";
+import { areas } from "@/content/areas";
 import { siteConfig } from "@/lib/site-config";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SanitizedHtml } from "@/components/SanitizedHtml";
@@ -61,6 +63,10 @@ export default async function BlogPostPage({
 
   const plainText = post.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
   const readTime = Math.max(1, Math.round(plainText.split(" ").filter(Boolean).length / 200));
+  const postServices = services.filter((s) => post.services.includes(s.slug));
+  const relatedPosts = getRelatedPosts(post);
+  const chip =
+    "inline-flex min-h-11 items-center rounded-full border border-neutral-300 px-4 text-sm font-medium text-neutral-700 transition hover:border-red-600 hover:text-red-600 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-red-500 dark:hover:text-red-400";
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -157,6 +163,41 @@ export default async function BlogPostPage({
               <SanitizedHtml html={post.content} />
             </div>
           </div>
+
+          <nav aria-label="Related content" className="mt-10 space-y-8 px-2 sm:mt-12">
+            <div>
+              <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Related services</h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {postServices.map((s) => (
+                  <Link key={s.slug} href={`/services/${s.slug}`} className={chip}>
+                    {s.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Areas we cover</h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {areas.map((a) => (
+                  <Link key={a.slug} href={`/areas/${a.slug}`} className={chip}>
+                    {a.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">More guides</h2>
+              <ul className="mt-3 space-y-2">
+                {relatedPosts.map((p) => (
+                  <li key={p.slug}>
+                    <Link href={`/blog/${p.slug}`} className="font-medium text-red-600 hover:underline dark:text-red-400">
+                      {p.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
 
           <div className="mt-10 rounded-[24px] border border-neutral-200 bg-neutral-50 p-5 shadow-[0_24px_60px_-46px_rgba(0,0,0,0.4)] sm:mt-12 sm:rounded-[28px] sm:p-8 dark:border-neutral-800 dark:bg-neutral-900/60">
             <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">

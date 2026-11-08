@@ -8,6 +8,8 @@ export interface BlogPost {
   image?: string;
   metaDescription: string;
   keywords: string[];
+  /** Slugs from content/services.ts: the post links to these and they link back. */
+  services: string[];
 }
 
 const LONDON_AREAS = "Westminster, Kensington & Chelsea, Lambeth, Southwark, Wandsworth, and City of London";
@@ -15,6 +17,7 @@ const LONDON_AREAS = "Westminster, Kensington & Chelsea, Lambeth, Southwark, Wan
 export const blogPosts: BlogPost[] = [
   {
     slug: "what-makes-a-luxury-house-exterior-stand-out-in-london",
+    services: ["full-renovations"],
     title: "What Makes a Luxury House Exterior Stand Out in London?",
     excerpt:
       "From crisp stucco lines and restored porticos to stone steps and ironwork, a well-executed house exterior shapes how a London home is seen, valued and remembered.",
@@ -81,6 +84,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "why-exterior-facade-maintenance-is-your-homes-best-defence",
+    services: ["roofing", "full-renovations"],
     title: "Why Exterior Facade Maintenance Is Your Home's Best Defence",
     excerpt:
       "Thoughtful exterior maintenance helps London homeowners prevent damp, protect architectural character, and avoid expensive repairs that start with very small defects.",
@@ -150,6 +154,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "loft-conversion-planning-permission",
+    services: ["loft-conversions"],
     title: "Do You Need Planning Permission for a Loft Conversion?",
     excerpt:
       "Many loft conversions fall under permitted development. Learn when you need planning permission and when you don't.",
@@ -180,6 +185,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "kitchen-refurbishment-tips",
+    services: ["kitchen-bathroom-refurbishments"],
     title: "5 Tips for a Successful Kitchen Refurbishment",
     excerpt:
       "Planning a kitchen refurbishment? Here are our top tips to ensure your project runs smoothly and delivers the results you want.",
@@ -212,6 +218,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "loft-conversion-cost-london",
+    services: ["loft-conversions"],
     title: "Loft Conversion Cost in London: What to Expect in 2025",
     excerpt:
       "A practical guide to loft conversion costs across London. From basic conversions to dormer extensions, we break down the typical price ranges.",
@@ -244,6 +251,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "best-time-house-extension-london",
+    services: ["house-extensions"],
     title: "Best Time of Year for a House Extension in London",
     excerpt:
       "When should you start your house extension? We look at the pros and cons of different seasons for construction work in London.",
@@ -272,6 +280,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "full-home-renovation-cost-london",
+    services: ["full-renovations"],
     title: "Full Home Renovation Cost in London: A Complete Guide",
     excerpt:
       "How much does a full home renovation cost in London? We break down the costs for different types of renovation projects and what to budget for.",
@@ -304,6 +313,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "bathroom-refurbishment-london-guide",
+    services: ["kitchen-bathroom-refurbishments"],
     title: "Bathroom Refurbishment London: What to Expect",
     excerpt:
       "Everything you need to know about bathroom refurbishment in London. From planning and design to timelines and costs.",
@@ -334,6 +344,19 @@ export const blogPosts: BlogPost[] = [
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
+}
+
+export function getPostsByService(serviceSlug: string): BlogPost[] {
+  return blogPosts.filter((p) => p.services.includes(serviceSlug));
+}
+
+/** Posts sharing a service come first, then the newest of the rest. */
+export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
+  const shared = (p: BlogPost) => p.services.some((s) => post.services.includes(s));
+  return blogPosts
+    .filter((p) => p.slug !== post.slug)
+    .sort((a, b) => Number(shared(b)) - Number(shared(a)) || b.date.localeCompare(a.date))
+    .slice(0, limit);
 }
 
 export function getAllPostSlugs(): string[] {

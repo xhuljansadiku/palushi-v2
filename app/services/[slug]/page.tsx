@@ -12,6 +12,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ClickToCallLink } from "@/components/ClickToCallLink";
 import { ProcessSection } from "@/components/ProcessSection";
 import { projects } from "@/content/projects";
+import { getPostsByService } from "@/content/blog";
 import { btn, eyebrow, sectionTitle } from "@/lib/ui";
 import type { Metadata } from "next";
 import { Sentences } from "@/components/Sentences";
@@ -63,6 +64,7 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const related = projects.filter((p) => p.serviceSlug === service.slug).slice(0, 3);
+  const guides = getPostsByService(service.slug);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -194,6 +196,26 @@ export default async function ServicePage({
           </div>
         </div>
       </section>
+
+      {guides.length > 0 && (
+        <section className="pb-16 sm:pb-20 dark:bg-neutral-950/30">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <h2 className={`text-center ${sectionTitle}`}>Helpful guides</h2>
+            <div className="mt-8 space-y-3">
+              {guides.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="block rounded-xl border border-neutral-200 bg-white p-5 transition hover:border-red-600 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-red-500/50"
+                >
+                  <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">{post.title}</h3>
+                  <span className="mt-2 inline-block text-sm font-semibold text-red-600 dark:text-red-400">Read guide →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

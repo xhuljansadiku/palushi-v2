@@ -13,17 +13,17 @@ import { getPostBySlug } from "@/content/blog";
  * Bump the relevant date here when you actually edit that page's content.
  */
 const CONTENT_UPDATED = {
-  home: "2026-03-17",
-  about: "2026-03-05",
-  services: "2026-03-05",
-  projects: "2026-03-05",
-  contact: "2026-04-23",
-  privacyPolicy: "2026-04-23",
-  terms: "2026-03-04",
-  faq: "2026-03-05",
-  blog: "2026-03-05",
-  areas: "2026-03-01",
-  quote: "2026-02-21",
+  home: "2026-11-08",
+  about: "2026-11-08",
+  services: "2026-11-08",
+  projects: "2026-11-08",
+  contact: "2026-11-08",
+  privacyPolicy: "2026-11-05",
+  terms: "2026-07-08",
+  faq: "2026-07-08",
+  blog: "2026-11-08",
+  areas: "2026-07-08",
+  quote: "2026-11-08",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

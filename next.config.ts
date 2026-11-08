@@ -14,6 +14,18 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
+  // Permanent redirects for URLs from the previous static .html site.
+  async redirects() {
+    return [
+      { source: "/index.html", destination: "/", permanent: true },
+      { source: "/about.html", destination: "/about", permanent: true },
+      { source: "/contact.html", destination: "/contact", permanent: true },
+      { source: "/services.html", destination: "/services", permanent: true },
+      { source: "/projects.html", destination: "/projects", permanent: true },
+      { source: "/privacy-policy.html", destination: "/privacy-policy", permanent: true },
+      { source: "/extensions-lofts.html", destination: "/services/house-extensions", permanent: true },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
