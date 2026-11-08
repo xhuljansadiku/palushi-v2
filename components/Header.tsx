@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { services } from "@/content/services";
 import { siteConfig } from "@/lib/site-config";
 import { ThemeToggle } from "./ThemeToggle";
+import { BrandLogo } from "./BrandLogo";
 import { ClickToCallLink } from "./ClickToCallLink";
 
 const SearchModal = dynamic(
@@ -40,7 +40,9 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 const linkBase =
-  "whitespace-nowrap rounded-md px-2 py-2 text-[15px] font-medium xl:px-3 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600";
+  "flex h-full items-center whitespace-nowrap border-b-[3px] px-0.5 pt-[3px] text-[15px] font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-600";
+const linkOn = "border-red-600 text-neutral-900";
+const linkOff = "border-transparent text-neutral-600 hover:border-neutral-300 hover:text-neutral-900";
 
 export function Header() {
   const pathname = usePathname();
@@ -112,40 +114,34 @@ export function Header() {
       </div>
 
       <header className="w-full border-b border-neutral-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-center gap-4 px-4 py-3 lg:justify-between sm:px-6 lg:h-20 lg:py-0 lg:px-8">
           <Link href="/" onClick={closeAll} className="shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
-            <Image
-              src="/images/logo/logo-2026.png"
-              alt={`${siteConfig.name} – home`}
-              width={300}
-              height={96}
-              className="block h-10 w-auto object-contain sm:h-12"
-              priority
-            />
+            <span className="sr-only">{siteConfig.name} – home</span>
+            <BrandLogo tone="light" size="md" />
           </Link>
 
           {/* Desktop navigation */}
-          <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1" aria-label="Main navigation">
+          <nav className="hidden h-full items-stretch gap-4 lg:flex 2xl:gap-7" aria-label="Main navigation">
             <Link
               href="/"
               aria-current={isActive("/") ? "page" : undefined}
-              className={`${linkBase} ${isActive("/") ? "text-red-600" : "text-neutral-800 hover:text-red-600"}`}
+              className={`${linkBase} ${isActive("/") ? linkOn : linkOff}`}
             >
               Home
             </Link>
 
-            <div ref={servicesRef} className="relative" onMouseEnter={openServices} onMouseLeave={closeServicesSoon}>
+            <div ref={servicesRef} className="relative flex" onMouseEnter={openServices} onMouseLeave={closeServicesSoon}>
               <button
                 type="button"
                 onClick={() => setServicesOpen((v) => !v)}
                 aria-expanded={servicesOpen}
                 aria-controls="services-menu"
-                className={`${linkBase} flex items-center gap-1 ${servicesActive || servicesOpen ? "text-red-600" : "text-neutral-800 hover:text-red-600"}`}
+                className={`${linkBase} gap-1 ${servicesActive || servicesOpen ? linkOn : linkOff}`}
               >
                 Services
                 <Chevron open={servicesOpen} />
               </button>
-              <div id="services-menu" hidden={!servicesOpen} className="absolute left-1/2 top-full z-20 w-72 -translate-x-1/2 pt-2">
+              <div id="services-menu" hidden={!servicesOpen} className="absolute left-1/2 top-full z-20 w-72 -translate-x-1/2 pt-1">
                 <ul className="rounded-xl border border-neutral-200 bg-white p-2 shadow-xl" role="list">
                   {services.map((s) => {
                     const href = `/services/${s.slug}`;
@@ -178,15 +174,15 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
-                className={`${linkBase} ${isActive(link.href) ? "text-red-600" : "text-neutral-800 hover:text-red-600"}`}
+                className={`${linkBase} ${isActive(link.href) ? linkOn : linkOff}`}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-            <div className="hidden lg:block">
+          <div className="hidden shrink-0 items-center gap-1.5 sm:gap-2 lg:flex">
+            <div className="hidden items-center xl:flex">
               <ThemeToggle />
             </div>
             <button
@@ -199,27 +195,32 @@ export function Header() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <ClickToCallLink className="hidden h-11 items-center gap-2 rounded-full border-2 border-red-600 px-5 text-sm font-semibold text-red-600 transition hover:bg-red-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 xl:inline-flex">
-              <PhoneIcon />
-              {siteConfig.phone}
+            <ClickToCallLink className="group ml-1 mr-2 hidden items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 xl:flex">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-red-600 transition group-hover:bg-red-600 group-hover:text-white">
+                <PhoneIcon className="h-5 w-5" />
+              </span>
+              <span className="leading-tight">
+                <span className="block text-[11px] font-semibold uppercase tracking-wider text-neutral-500">Call us 24/7</span>
+                <span className="block whitespace-nowrap text-base font-extrabold text-neutral-900 group-hover:text-red-600">{siteConfig.phone}</span>
+              </span>
             </ClickToCallLink>
             <Link
               href="/quote"
-              className="hidden h-11 items-center rounded-full bg-red-600 px-6 text-sm font-semibold text-white shadow-md transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 lg:inline-flex"
+              className="hidden h-12 items-center whitespace-nowrap rounded-md bg-red-600 px-6 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 lg:inline-flex"
             >
-              Get a Free Quote
+              Free Quote
             </Link>
 
             {/* Mobile: call is always one tap away */}
             <ClickToCallLink
               ariaLabel={`Call ${siteConfig.phone}`}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-red-600 text-white shadow-md active:bg-red-700 lg:hidden"
+              className="hidden"
             >
               <PhoneIcon className="h-5 w-5" />
             </ClickToCallLink>
             <button
               type="button"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 active:bg-neutral-100 lg:hidden"
+              className="hidden"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}

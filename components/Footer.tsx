@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { BrandLogo } from "./BrandLogo";
 import { siteConfig } from "@/lib/site-config";
 import { services } from "@/content/services";
 import { ClickToCallLink } from "@/components/ClickToCallLink";
@@ -67,16 +67,10 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-5 text-center lg:text-left lg:gap-0">
           {/* 1. Logo + tagline */}
           <div className="sm:col-span-5 lg:col-span-1 lg:border-r lg:border-neutral-200/70 lg:pr-8 dark:lg:border-neutral-700/70">
-            <Link href="/" className="inline-block mx-auto rounded-xl dark:bg-white dark:p-3 lg:mx-0">
-              <Image
-                src="/images/logo/logo-footer-2026.png"
-                alt={siteConfig.name}
-                width={560}
-                height={180}
-                className="h-20 w-auto max-w-full object-contain sm:h-24 lg:h-28"
-              />
+            <Link href="/" className="inline-block mx-auto lg:mx-0" aria-label={siteConfig.name}>
+              <BrandLogo size="md" />
             </Link>
-            <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-neutral-500 lg:mx-0 dark:text-neutral-400">
+            <p className="mx-auto mt-3max-w-xs text-xs leading-relaxed text-neutral-500 lg:mx-0 dark:text-neutral-400">
               {siteConfig.tagline}
             </p>
           </div>

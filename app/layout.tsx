@@ -58,9 +58,6 @@ export const metadata: Metadata = {
   verification: {
     google: siteConfig.googleVerification,
   },
-  icons: {
-    icon: "/images/logo/logo-2026.png",
-  },
   manifest: "/manifest.json",
 };
 

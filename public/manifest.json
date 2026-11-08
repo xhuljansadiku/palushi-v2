@@ -5,19 +5,19 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#dc2626",
+  "theme_color": "#9E1F1A",
   "icons": [
     {
-      "src": "/images/logo/logo-2026.png",
+      "src": "/images/palushi-logo/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/images/logo/logo-2026.png",
+      "src": "/images/palushi-logo/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

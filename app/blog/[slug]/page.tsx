@@ -76,7 +76,7 @@ export default async function BlogPostPage({
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.url}/images/logo/logo-2026.png`,
+        url: `${siteConfig.url}/images/palushi-logo/logo-mark-512.png`,
       },
     },
     mainEntityOfPage: {
