@@ -1,25 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { services } from "@/content/services";
 import { siteConfig } from "@/lib/site-config";
-import { ThemeToggle } from "./ThemeToggle";
 import { BrandLogo } from "./BrandLogo";
 import { ClickToCallLink } from "./ClickToCallLink";
 
-const SearchModal = dynamic(
-  () => import("@/components/SearchModal").then((m) => ({ default: m.SearchModal })),
-  { ssr: false }
-);
-
 const linksAfterServices = [
   { href: "/projects", label: "Projects" },
+  { href: "/areas", label: "Areas" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
-  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -47,11 +40,10 @@ const linkOff = "border-transparent text-neutral-600 hover:border-neutral-300 ho
 export function Header() {
   const pathname = usePathname();
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : Boolean(pathname?.startsWith(href)));
+  const isActive = (href: string) => Boolean(pathname?.startsWith(href));
   const servicesActive = isActive("/services");
 
   // Escape closes menus; clicking outside closes the dropdown
@@ -119,14 +111,6 @@ export function Header() {
 
           {/* Desktop navigation */}
           <nav className="hidden h-full items-stretch gap-4 lg:flex 2xl:gap-7" aria-label="Main navigation">
-            <Link
-              href="/"
-              aria-current={isActive("/") ? "page" : undefined}
-              className={`${linkBase} ${isActive("/") ? linkOn : linkOff}`}
-            >
-              Home
-            </Link>
-
             <div ref={servicesRef} className="relative flex" onMouseEnter={openServices} onMouseLeave={closeServicesSoon}>
               <button
                 type="button"
@@ -179,19 +163,6 @@ export function Header() {
           </nav>
 
           <div className="hidden shrink-0 items-center gap-1.5 sm:gap-2 lg:flex">
-            <div className="hidden items-center xl:flex">
-              <ThemeToggle />
-            </div>
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              className="hidden h-11 w-11 items-center justify-center rounded-full text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 lg:flex"
-              aria-label="Search"
-            >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
             <ClickToCallLink location="header" className="group ml-1 mr-2 hidden items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 xl:flex">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-red-600 transition group-hover:bg-red-600 group-hover:text-white">
                 <PhoneIcon className="h-5 w-5" />
@@ -210,8 +181,6 @@ export function Header() {
 
           </div>
         </div>
-
-        <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
       </header>
     </div>
   );

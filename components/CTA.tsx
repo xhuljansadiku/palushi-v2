@@ -19,7 +19,7 @@ export function CTA({
   variant = "default",
 }: CTAProps) {
   return (
-    <section className="relative overflow-hidden bg-neutral-900 py-16 text-white sm:py-20">
+    <section data-page-cta className="relative overflow-hidden bg-neutral-900 py-16 text-white sm:py-20">
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
           {title}

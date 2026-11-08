@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
       { source: "/projects.html", destination: "/projects", permanent: true },
       { source: "/privacy-policy.html", destination: "/privacy-policy", permanent: true },
       { source: "/extensions-lofts.html", destination: "/services/house-extensions", permanent: true },
+      { source: "/interior.html", destination: "/projects", permanent: true },
+      { source: "/exterior.html", destination: "/projects", permanent: true },
     ];
   },
   async headers() {

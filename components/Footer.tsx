@@ -2,223 +2,140 @@ import Link from "next/link";
 import { BrandLogo } from "./BrandLogo";
 import { siteConfig } from "@/lib/site-config";
 import { services } from "@/content/services";
+import { areas } from "@/content/areas";
 import { ClickToCallLink } from "@/components/ClickToCallLink";
 import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 import { IllyrianSignature } from "@/components/IllyrianSignature";
 
-const quickLinks = [
-  { href: "/", label: "Home" },
+type FooterLink = { href: string; label: string };
+
+const companyLinks: FooterLink[] = [
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
-  { href: "/areas", label: "Areas" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
-const legalLinks = [
+const serviceLinks: FooterLink[] = [
+  ...services.map((s) => ({ href: `/services/${s.slug}`, label: s.title })),
+  { href: "/services", label: "All services" },
+];
+
+const areaLinks: FooterLink[] = [
+  ...areas.map((a) => ({ href: `/areas/${a.slug}`, label: a.name })),
+  { href: "/areas", label: "All areas" },
+];
+
+const legalLinks: FooterLink[] = [
   { href: "/privacy-policy", label: "Privacy & Cookies" },
   { href: "/terms", label: "Terms of Service" },
 ];
 
-function MapPinIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  );
-}
+// Split so a narrow column wraps the address before the @, not mid-word.
+const [emailUser, emailDomain] = siteConfig.email.split("@");
 
-function MailIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect width="20" height="16" x="2" y="4" rx="2" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-    </svg>
-  );
-}
+const heading = "text-sm font-bold text-white";
+const hoverLink = "transition hover:text-white";
+const socialLink =
+  "flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-neutral-200 transition hover:bg-red-600 hover:text-white";
 
-function PhoneIcon(props: React.SVGProps<SVGSVGElement>) {
+function LinkColumn({ title, links }: { title: string; links: FooterLink[] }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
-    </svg>
-  );
-}
-
-function ClockIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
+    <div>
+      <h2 className={heading}>{title}</h2>
+      <ul className="mt-3 space-y-1">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className={`inline-block py-1 text-sm ${hoverLink}`}>
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-neutral-200 bg-neutral-50 text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400">
-      {/* Accent line - vijë e kuqe e hollë në krye */}
-      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/80 to-transparent" />
-
-      <div className="mx-auto max-w-7xl px-4 py-12 pb-20 sm:px-6 sm:pb-12 lg:px-8 lg:py-14">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-5 text-center lg:text-left lg:gap-0">
-          {/* 1. Logo + tagline */}
-          <div className="sm:col-span-5 lg:col-span-1 lg:border-r lg:border-neutral-200/70 lg:pr-8 dark:lg:border-neutral-700/70">
-            <Link href="/" className="inline-block mx-auto lg:mx-0" aria-label={siteConfig.name}>
-              <BrandLogo size="md" />
+    <footer className="border-t border-white/10 bg-[#1C1C1C] text-neutral-400">
+      {/* Bottom padding keeps the content clear of the mobile tab bar. */}
+      <div className="mx-auto max-w-7xl px-4 pb-24 pt-14 sm:px-6 lg:px-8 lg:pb-12">
+        {/* Hidden when the page already ends with its own call to action. */}
+        <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-end [body:has(main_[data-page-cta]:last-child)_&]:hidden">
+          <div className="max-w-2xl">
+            <p className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Got a project in mind?</p>
+            <p className="mt-4 text-lg text-neutral-300">Book a free site visit and get a detailed, itemised quote.</p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/quote"
+              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-md bg-red-600 px-6 text-sm font-bold text-white transition hover:bg-red-700"
+            >
+              Get a Free Quote
             </Link>
-            <p className="mx-auto mt-3max-w-xs text-xs leading-relaxed text-neutral-500 lg:mx-0 dark:text-neutral-400">
-              {siteConfig.tagline}
-            </p>
-          </div>
-
-          {/* 2. Quick Links */}
-          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
-              Quick Links
-            </h2>
-            <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
-            <ul className="mt-3 space-y-1.5">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <CookieSettingsLink className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500" />
-              </li>
-            </ul>
-          </div>
-
-          {/* 3. Services */}
-          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
-              Services
-            </h2>
-            <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
-            <ul className="mt-3 space-y-1.5">
-              {services.map((svc) => (
-                <li key={svc.slug}>
-                  <Link
-                    href={`/services/${svc.slug}`}
-                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
-                  >
-                    {svc.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* 4. Contact */}
-          <div className="lg:border-r lg:border-neutral-200/70 lg:px-8 dark:lg:border-neutral-700/70">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
-              Contact
-            </h2>
-            <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
-            <ul className="mt-3 space-y-3 text-xs">
-              <li>
-                <a
-                  href={siteConfig.address.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start justify-center gap-2 text-left transition hover:text-red-600 lg:justify-start dark:hover:text-red-500"
-                >
-                  <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-red-500/80" />
-                  <span>
-                    {siteConfig.address.line1}
-                    <br />
-                    {siteConfig.address.line2}
-                    <br />
-                    {siteConfig.address.line3}
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-center justify-center gap-2 transition hover:text-red-600 lg:justify-start dark:hover:text-red-500"
-                >
-                  <MailIcon className="h-4 w-4 shrink-0 text-red-500/80" />
-                  <span className="min-w-0 [overflow-wrap:anywhere]">{siteConfig.email}</span>
-                </a>
-              </li>
-              <li>
-                <ClickToCallLink location="footer" className="flex items-center justify-center gap-2 transition hover:text-red-600 lg:justify-start dark:hover:text-red-500">
-                  <PhoneIcon className="h-4 w-4 shrink-0 text-red-500/80" />
-                  {siteConfig.phone}
-                </ClickToCallLink>
-              </li>
-              <li className="flex items-center justify-center gap-2 text-neutral-500 lg:justify-start dark:text-neutral-400">
-                <ClockIcon className="h-4 w-4 shrink-0 text-red-500/80" />
-                {siteConfig.hours}
-              </li>
-            </ul>
-            <ClickToCallLink location="footer" className="mt-4 inline-flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-red-700">
-              <PhoneIcon className="h-3.5 w-3.5" />
-              Call Now
+            <ClickToCallLink
+              location="footer"
+              className="inline-flex h-12 items-center justify-center rounded-md border border-white/25 px-6 text-sm font-bold text-white transition hover:bg-white hover:text-neutral-900"
+            >
+              Call {siteConfig.phone}
             </ClickToCallLink>
-          </div>
-
-          {/* 5. Legal */}
-          <div className="lg:pl-8">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
-              Legal
-            </h2>
-            <span className="mt-1.5 block h-0.5 w-8 rounded-full bg-red-500/50 mx-auto lg:mx-0" aria-hidden />
-            <ul className="mt-3 space-y-1.5">
-              {legalLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-xs transition hover:text-red-600 hover:underline underline-offset-2 dark:hover:text-red-500"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
-        {/* Copyright bar: © | Designed by | Social - mobile: stacked & centered */}
-        <div className="mt-10 flex flex-col items-center gap-5 border-t border-neutral-200/80 pt-6 dark:border-neutral-700/80 sm:flex-row sm:justify-between sm:gap-6">
-          <p className="text-center text-sm text-neutral-500 sm:text-left dark:text-neutral-400">
+        <div className="mt-12 [body:has(main_[data-page-cta]:last-child)_&]:mt-0 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_1fr_1.3fr_1fr_1.2fr]">
+          <div className="col-span-2 lg:col-span-1">
+            <Link href="/" aria-label={siteConfig.name} className="inline-block">
+              <BrandLogo tone="dark" size="md" />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm">{siteConfig.tagline}</p>
+          </div>
+          <LinkColumn title="Company" links={companyLinks} />
+          <LinkColumn title="Services" links={serviceLinks} />
+          <LinkColumn title="Areas" links={areaLinks} />
+          <div>
+            <h2 className={heading}>Contact</h2>
+            <address className="mt-4 space-y-3 text-sm not-italic">
+              <a href={siteConfig.address.mapsUrl} target="_blank" rel="noopener noreferrer" className={`block ${hoverLink}`}>
+                {siteConfig.address.line1}
+                <br />
+                {siteConfig.address.line2}
+                <br />
+                {siteConfig.address.line3}
+              </a>
+              <a href={`mailto:${siteConfig.email}`} className={`block ${hoverLink}`}>
+                {emailUser}
+                <wbr />@{emailDomain}
+              </a>
+              <p>{siteConfig.hours}</p>
+            </address>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-6 text-center text-sm sm:flex-row sm:justify-between sm:text-left">
+          <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <div className="flex items-center gap-3">
-              <a
-                href={siteConfig.social.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition hover:bg-red-600 hover:text-white dark:bg-neutral-700/80 dark:text-neutral-400 dark:hover:bg-red-600 dark:hover:text-white"
-                aria-label="WhatsApp"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              </a>
-              <a
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition hover:bg-red-600 hover:text-white dark:bg-neutral-700/80 dark:text-neutral-400 dark:hover:bg-red-600 dark:hover:text-white"
-                aria-label="Instagram"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.766 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                </svg>
-              </a>
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+            {legalLinks.map((link) => (
+              <Link key={link.href} href={link.href} className={`inline-block py-1 ${hoverLink}`}>
+                {link.label}
+              </Link>
+            ))}
+            <CookieSettingsLink className={`py-1 ${hoverLink}`} />
+          </div>
+          <div className="flex items-center gap-3">
+            <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer" className={socialLink} aria-label="WhatsApp">
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </a>
+            <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className={socialLink} aria-label="Instagram">
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.766 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
           </div>
         </div>
         <IllyrianSignature />

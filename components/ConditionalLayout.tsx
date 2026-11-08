@@ -35,7 +35,7 @@ export function ConditionalLayout({
   return (
     <>
       <Header />
-      <main id="main" className="min-h-screen pb-20 lg:pb-0">
+      <main id="main" className="min-h-screen">
         {children}
       </main>
       <Footer />
