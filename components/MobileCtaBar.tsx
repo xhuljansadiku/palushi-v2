@@ -7,6 +7,9 @@ import { siteConfig } from "@/lib/site-config";
 import { ClickToCallLink } from "./ClickToCallLink";
 import { trackWhatsAppClick } from "@/lib/tracking";
 import { ThemeToggle } from "./ThemeToggle";
+import dynamic from "next/dynamic";
+
+const SearchModal = dynamic(() => import("./SearchModal").then((m) => ({ default: m.SearchModal })), { ssr: false });
 
 const P = {
   home: "M3 11l9-8 9 8M5 9.5V21h5v-6h4v6h5V9.5",
@@ -16,6 +19,7 @@ const P = {
   phone:
     "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
   close: "M6 18L18 6M6 6l12 12",
+  search: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
 };
 
 function Icon({ d, className = "h-6 w-6", sw = 1.8 }: { d: string; className?: string; sw?: number }) {
@@ -38,6 +42,7 @@ const MORE_LINKS = [
 export function MobileCtaBar() {
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const active = (href: string) => (href === "/" ? pathname === "/" : Boolean(pathname?.startsWith(href)));
   const moreActive = MORE_LINKS.some((l) => active(l.href));
 
@@ -68,6 +73,17 @@ export function MobileCtaBar() {
         hidden={!moreOpen}
         className="fixed inset-x-0 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] z-40 mx-2 rounded-2xl bg-white p-4 shadow-2xl dark:bg-neutral-900"
       >
+        <button
+          type="button"
+          onClick={() => {
+            setMoreOpen(false);
+            setSearchOpen(true);
+          }}
+          className="mb-1 flex min-h-12 w-full items-center gap-3 rounded-lg bg-neutral-100 px-4 text-left text-base text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400"
+        >
+          <Icon d={P.search} className="h-5 w-5" sw={2} />
+          Search services, projects…
+        </button>
         <nav aria-label="More pages">
           <ul className="divide-y divide-neutral-100 dark:divide-neutral-800">
             {MORE_LINKS.map((l) => (
@@ -119,6 +135,7 @@ export function MobileCtaBar() {
           </Link>
           <div className="flex flex-1 justify-center">
             <ClickToCallLink
+              location="tab_bar"
               ariaLabel={`Call ${siteConfig.phone}`}
               className="-mt-5 flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-white bg-red-600 text-white shadow-lg active:bg-red-700 dark:border-neutral-900"
             >
@@ -142,6 +159,7 @@ export function MobileCtaBar() {
           </button>
         </div>
       </nav>
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }

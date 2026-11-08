@@ -21,7 +21,7 @@ export function LpHero() {
 
       <div className="relative mx-auto flex min-h-[50vh] max-w-4xl flex-col justify-center px-4 py-8 sm:min-h-[60vh] sm:px-6 sm:py-12 lg:min-h-[70vh] lg:px-8 lg:py-14">
         <div className="mx-auto w-full text-center">
-          <ClickToCallLink className="mb-4 block text-2xl font-bold text-white drop-shadow-lg hover:underline sm:text-3xl lg:text-4xl">
+          <ClickToCallLink location="lp_hero" className="mb-4 block text-2xl font-bold text-white drop-shadow-lg hover:underline sm:text-3xl lg:text-4xl">
             {siteConfig.phone}
           </ClickToCallLink>
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -39,7 +39,7 @@ export function LpHero() {
             ))}
           </ul>
           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-8">
-            <ClickToCallLink className="inline-flex min-h-[60px] w-full items-center justify-center rounded-xl bg-red-600 px-12 py-4 text-xl font-bold text-white shadow-xl shadow-red-900/40 transition hover:bg-red-700 active:scale-[0.98] sm:w-auto sm:min-w-[240px]">
+            <ClickToCallLink location="lp_hero" className="inline-flex min-h-[60px] w-full items-center justify-center rounded-xl bg-red-600 px-12 py-4 text-xl font-bold text-white shadow-xl shadow-red-900/40 transition hover:bg-red-700 active:scale-[0.98] sm:w-auto sm:min-w-[240px]">
               Call Now
             </ClickToCallLink>
             <Link

@@ -113,14 +113,13 @@ export function QuoteWizard() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const panelRef = useRef<HTMLDivElement>(null);
-  const firstRender = useRef(true);
+  const shownStep = useRef(step);
 
-  // Move focus to the new step's heading so keyboard / screen-reader users follow along
+  // Move focus to the new step's heading so keyboard / screen-reader users follow along.
+  // Only when the step actually changed (not on load), so the page never jumps to the form.
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
+    if (shownStep.current === step) return;
+    shownStep.current = step;
     panelRef.current?.querySelector<HTMLElement>("[data-step-heading]")?.focus();
   }, [step]);
 
@@ -402,7 +401,7 @@ export function QuoteWizard() {
           No obligation · Itemised written quote · Reply within 24 hours
           <br />
           Prefer to talk?{" "}
-          <ClickToCallLink className="font-semibold text-red-600 underline underline-offset-2 dark:text-red-400">
+          <ClickToCallLink location="quote_wizard" className="font-semibold text-red-600 underline underline-offset-2 dark:text-red-400">
             Call {siteConfig.phone}
           </ClickToCallLink>
         </p>

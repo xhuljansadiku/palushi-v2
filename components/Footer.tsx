@@ -152,7 +152,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <ClickToCallLink className="flex items-center justify-center gap-2 transition hover:text-red-600 lg:justify-start dark:hover:text-red-500">
+                <ClickToCallLink location="footer" className="flex items-center justify-center gap-2 transition hover:text-red-600 lg:justify-start dark:hover:text-red-500">
                   <PhoneIcon className="h-4 w-4 shrink-0 text-red-500/80" />
                   {siteConfig.phone}
                 </ClickToCallLink>
@@ -162,7 +162,7 @@ export function Footer() {
                 {siteConfig.hours}
               </li>
             </ul>
-            <ClickToCallLink className="mt-4 inline-flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-red-700">
+            <ClickToCallLink location="footer" className="mt-4 inline-flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-red-700">
               <PhoneIcon className="h-3.5 w-3.5" />
               Call Now
             </ClickToCallLink>

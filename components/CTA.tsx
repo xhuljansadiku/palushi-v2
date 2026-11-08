@@ -36,7 +36,7 @@ export function CTA({
           >
             Get a Free Quote
           </Link>
-          <ClickToCallLink
+          <ClickToCallLink location="cta_section"
             className={btn("inverse", "lg", "w-full sm:w-auto")}
           >
             Call Now: {siteConfig.phone}

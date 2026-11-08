@@ -122,7 +122,7 @@ export default async function ServicePage({
               <Link href="/quote" className={btn("primary", "lg", "w-full sm:w-auto")}>
                 Get a Free Quote
               </Link>
-              <ClickToCallLink className={btn("inverse", "lg", "w-full sm:w-auto")}>
+              <ClickToCallLink location="service_hero" className={btn("inverse", "lg", "w-full sm:w-auto")}>
                 Call {siteConfig.phone}
               </ClickToCallLink>
             </div>

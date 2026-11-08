@@ -40,7 +40,8 @@ export function trackEvent(
 }
 
 /** Fire Google Ads conversion when user clicks tel: link */
-export function trackCallClick() {
+/** `location` says which call button was used, e.g. "tab_bar", "header", "footer" */
+export function trackCallClick(location = "other") {
   if (
     typeof window !== "undefined" &&
     canTrackMarketing() &&
@@ -51,7 +52,7 @@ export function trackCallClick() {
       window.gtag("event", "conversion", { send_to: callId });
     }
   }
-  trackEvent(TRACKING_EVENTS.CLICK_TO_CALL);
+  trackEvent(TRACKING_EVENTS.CLICK_TO_CALL, { location });
 }
 
 /** Fire Meta Pixel Lead conversion for form submissions */

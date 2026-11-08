@@ -11,7 +11,7 @@ export function LpHeader() {
           <span className="sm:hidden"><BrandLogo size="sm" /></span>
           <span className="hidden sm:inline"><BrandLogo size="md" /></span>
         </Link>
-        <ClickToCallLink
+        <ClickToCallLink location="lp_header"
           className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-red-600 px-2.5 py-2.5 text-[13px] font-bold sm:px-5 sm:py-3 sm:text-lg text-white shadow-lg transition hover:bg-red-700 active:scale-[0.98]"
         >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

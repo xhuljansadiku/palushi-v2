@@ -73,7 +73,7 @@ export default function HomePage() {
               <Link href="#quote-form" className={btn("primary", "lg", "w-full sm:w-auto")}>
                 Get my free quote
               </Link>
-              <ClickToCallLink className={btn("inverse", "lg", "w-full sm:w-auto")}>{siteConfig.phone}</ClickToCallLink>
+              <ClickToCallLink location="home_hero" className={btn("inverse", "lg", "w-full sm:w-auto")}>{siteConfig.phone}</ClickToCallLink>
             </div>
           </div>
 

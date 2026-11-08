@@ -156,13 +156,13 @@ export function LpQuoteForm() {
             {status === "error" && (
               <p className="rounded-lg bg-red-50 p-4 text-red-800 dark:bg-red-950/50 dark:text-red-300">
                 Something went wrong. Please call us directly:{" "}
-                <ClickToCallLink className="font-bold underline">{siteConfig.phone}</ClickToCallLink>
+                <ClickToCallLink location="lp_form" className="font-bold underline">{siteConfig.phone}</ClickToCallLink>
               </p>
             )}
 
             <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
               Prefer to call?{" "}
-              <ClickToCallLink className="font-bold text-red-600 underline dark:text-red-400">
+              <ClickToCallLink location="lp_form" className="font-bold text-red-600 underline dark:text-red-400">
                 Call us now
               </ClickToCallLink>
             </p>
