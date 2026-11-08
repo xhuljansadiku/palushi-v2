@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { services } from "@/content/services";
 import { siteConfig } from "@/lib/site-config";
 import { BrandLogo } from "./BrandLogo";
+import { ThemeToggle } from "./ThemeToggle";
 import { ClickToCallLink } from "./ClickToCallLink";
 
 const linksAfterServices = [
@@ -34,8 +35,9 @@ function Chevron({ open }: { open: boolean }) {
 
 const linkBase =
   "flex h-full items-center whitespace-nowrap border-b-[3px] px-0.5 pt-[3px] text-[15px] font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-600";
-const linkOn = "border-red-600 text-neutral-900";
-const linkOff = "border-transparent text-neutral-600 hover:border-neutral-300 hover:text-neutral-900";
+const linkOn = "border-red-600 text-neutral-900 dark:text-white";
+const linkOff =
+  "border-transparent text-neutral-600 hover:border-neutral-300 hover:text-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white";
 
 export function Header() {
   const pathname = usePathname();
@@ -102,11 +104,11 @@ export function Header() {
         </nav>
       </div>
 
-      <header className="w-full border-b border-neutral-200 bg-white">
+      <header className="w-full border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
         <div className="mx-auto flex max-w-7xl items-center justify-center gap-4 px-4 py-3 lg:justify-between sm:px-6 lg:h-20 lg:py-0 lg:px-8">
           <Link href="/" onClick={closeAll} className="shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
             <span className="sr-only">{siteConfig.name} – home</span>
-            <BrandLogo tone="light" size="md" />
+            <BrandLogo size="md" />
           </Link>
 
           {/* Desktop navigation */}
@@ -123,7 +125,7 @@ export function Header() {
                 <Chevron open={servicesOpen} />
               </button>
               <div id="services-menu" hidden={!servicesOpen} className="absolute left-1/2 top-full z-20 w-72 -translate-x-1/2 pt-1">
-                <ul className="rounded-xl border border-neutral-200 bg-white p-2 shadow-xl" role="list">
+                <ul className="rounded-xl border border-neutral-200 bg-white p-2 shadow-xl dark:border-neutral-700 dark:bg-neutral-800" role="list">
                   {services.map((s) => {
                     const href = `/services/${s.slug}`;
                     return (
@@ -133,7 +135,9 @@ export function Header() {
                           onClick={closeAll}
                           aria-current={pathname === href ? "page" : undefined}
                           className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
-                            pathname === href ? "bg-red-50 text-red-600" : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
+                            pathname === href
+                              ? "bg-red-50 text-red-600 dark:bg-white/10 dark:text-red-400"
+                              : "text-neutral-700 hover:bg-red-50 hover:text-red-600 dark:text-neutral-200 dark:hover:bg-white/10 dark:hover:text-red-400"
                           }`}
                         >
                           {s.title}
@@ -141,8 +145,8 @@ export function Header() {
                       </li>
                     );
                   })}
-                  <li className="mt-1 border-t border-neutral-100 pt-1">
-                    <Link href="/services" onClick={closeAll} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50">
+                  <li className="mt-1 border-t border-neutral-100 pt-1 dark:border-neutral-700">
+                    <Link href="/services" onClick={closeAll} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-white/10">
                       All services →
                     </Link>
                   </li>
@@ -163,14 +167,13 @@ export function Header() {
           </nav>
 
           <div className="hidden shrink-0 items-center gap-1.5 sm:gap-2 lg:flex">
-            <ClickToCallLink location="header" className="group ml-1 mr-2 hidden items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 xl:flex">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-red-600 transition group-hover:bg-red-600 group-hover:text-white">
-                <PhoneIcon className="h-5 w-5" />
-              </span>
-              <span className="leading-tight">
-                <span className="block text-[11px] font-semibold uppercase tracking-wider text-neutral-500">Call us 24/7</span>
-                <span className="block whitespace-nowrap text-base font-extrabold text-neutral-900 group-hover:text-red-600">{siteConfig.phone}</span>
-              </span>
+            <ThemeToggle className="dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white" />
+            <ClickToCallLink
+              location="header"
+              ariaLabel={`Call ${siteConfig.phone}`}
+              className="mr-2 flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-red-600 transition hover:bg-red-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:bg-white/10 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
+            >
+              <PhoneIcon className="h-5 w-5" />
             </ClickToCallLink>
             <Link
               href="/quote"

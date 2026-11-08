@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { BrandLogo } from "./BrandLogo";
 import { siteConfig } from "@/lib/site-config";
 import { services } from "@/content/services";
 import { areas } from "@/content/areas";
@@ -87,7 +87,14 @@ export function Footer() {
         <div className="mt-12 [body:has(main_[data-page-cta]:last-child)_&]:mt-0 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_1fr_1.3fr_1fr_1.2fr]">
           <div className="col-span-2 lg:col-span-1">
             <Link href="/" aria-label={siteConfig.name} className="inline-block">
-              <BrandLogo tone="dark" size="md" />
+              <Image
+                src="/images/palushi-logo/logo-vertikal-white@2x.png"
+                alt=""
+                width={926}
+                height={636}
+                sizes="208px"
+                className="h-auto w-48 xl:w-52"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm">{siteConfig.tagline}</p>
           </div>
