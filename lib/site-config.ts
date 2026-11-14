@@ -40,10 +40,10 @@ export const siteConfig = {
     endpoint: "https://formsubmit.co/ajax/palushibrothers@gmail.com",
   },
   googleVerification: "thAvgR5h3dhrgNzhHCB7C1Ax6z5XJBHr1NM9iFE9cQw",
-  /** Google Ads - get conversion label from Goals > Conversions > Quote Form Submission */
+  /** Google Ads - conversion label from Goals > Conversions > Quote Form Lead (Submit lead form) */
   googleAds: {
     id: "AW-17889100194",
-    quoteConversionId: "AW-17889100194/h4fsCJ_l2IccEKKDmNJC",
+    quoteConversionId: "AW-17889100194/s_jwCLDPi7gdEKKDmNJC",
     callConversionId: "AW-17889100194/pShUCMrzo8wcEKKDmNJC",
   },
   /** Stats shown on homepage - update as needed */
